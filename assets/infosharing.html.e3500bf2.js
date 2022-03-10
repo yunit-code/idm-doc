@@ -1,0 +1,1 @@
+const e={key:"v-17877431",path:"/zh/moduledevelop/infosharing.html",title:"\u4FE1\u606F\u5171\u4EAB",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{},filePathRelative:"zh/moduledevelop/infosharing.md"};export{e as data};
