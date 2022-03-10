@@ -1,1 +1,0 @@
-const e={key:"v-2e24f7d1",path:"/zh/guide/extenddevelop.html",title:"\u4E8C\u6B21\u5F00\u53D1",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{},filePathRelative:"zh/guide/extenddevelop.md"};export{e as data};
