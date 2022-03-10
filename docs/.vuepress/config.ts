@@ -8,7 +8,15 @@ export default defineUserConfig<DefaultThemeOptions>({
     // 站点配置
     lang: 'zh-CN',
     title: 'IDM',
-    head: [['link', { rel: 'icon', href: '/idm-doc/favicon.ico' }]],
+    head: [
+      ['link', { rel: 'icon', href: '/idm-doc/favicon.ico' }],
+      ['meta', { name: 'application-name', content: 'IDM官方文档' }],
+      ['meta', { name: 'apple-mobile-web-app-title', content: 'IDM官方文档' }],
+      [
+        'meta',
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
+      ]
+    ],
     description: '一个组件标准化、可视化拖拽低代码的框架-IDM',
     locales: {
         // 键名是该语言所属的子路径
@@ -27,7 +35,9 @@ export default defineUserConfig<DefaultThemeOptions>({
     // 主题和它的配置
     theme: '@vuepress/theme-default',
     themeConfig: {
+        repo:"yunit-source/idm-doc",
         logo: '/logo.png',
+        docsDir: 'docs',
         locales: {
           '/': {
             // navbar
@@ -46,6 +56,11 @@ export default defineUserConfig<DefaultThemeOptions>({
     
             // sidebar
             sidebar: sidebar.zh,
+            
+            // page meta
+            editLinkText: '在 GitHub 上编辑此页',
+            lastUpdatedText: '上次更新',
+            contributorsText: '贡献者',
             
             // custom containers
             tip: '提示',

@@ -24,6 +24,9 @@ features:
     details: 自行研发的搭建技术，基于人性化设计，提高用户体验，智能化生成页面。
 footer: MIT Licensed | Copyright © 2022-present Evan You
 ---
+:::tip
+写作能力有限，欢迎您来纠正我的错误 [GitHub](https://github.com/yunit-source/idm-doc)
+:::
 <!-- 
 ### 像数 1, 2, 3 一样容易
 
