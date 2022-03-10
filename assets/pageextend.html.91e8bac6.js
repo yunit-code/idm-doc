@@ -1,1 +1,0 @@
-const e={key:"v-f210076c",path:"/zh/moduledevelop/pageextend.html",title:"\u9875\u9762\u6269\u5C55\u5F00\u53D1",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{},filePathRelative:"zh/moduledevelop/pageextend.md"};export{e as data};
