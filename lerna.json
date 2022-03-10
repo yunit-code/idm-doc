@@ -1,0 +1,14 @@
+{
+  "npmClient": "npm",
+  "useWorkspaces": true,
+  "version": "1.0.0",
+  "command": {
+    "version": {
+      "allowBranch": "main",
+      "conventionalCommits": true,
+      "exact": true,
+      "ignoreChanges": ["**/*.md"],
+      "message": "build: publish %s"
+    }
+  }
+}

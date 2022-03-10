@@ -1,0 +1,31 @@
+{
+  "hash": "9e46ee15",
+  "browserHash": "d34705fa",
+  "optimized": {
+    "vue": {
+      "file": "D:/vue/DreamWeb/idmdoc/docs/.vuepress/.cache/vue.js",
+      "src": "D:/vue/DreamWeb/idmdoc/node_modules/_@vue_runtime-dom@3.2.27@@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "file": "D:/vue/DreamWeb/idmdoc/docs/.vuepress/.cache/vue-router.js",
+      "src": "D:/vue/DreamWeb/idmdoc/node_modules/_vue-router@4.0.12@vue-router/dist/vue-router.esm-bundler.js",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "file": "D:/vue/DreamWeb/idmdoc/docs/.vuepress/.cache/@vueuse_core.js",
+      "src": "D:/vue/DreamWeb/idmdoc/node_modules/_@vueuse_core@7.5.3@@vueuse/core/index.mjs",
+      "needsInterop": false
+    },
+    "nprogress": {
+      "file": "D:/vue/DreamWeb/idmdoc/docs/.vuepress/.cache/nprogress.js",
+      "src": "D:/vue/DreamWeb/idmdoc/node_modules/_nprogress@0.2.0@nprogress/nprogress.js",
+      "needsInterop": true
+    },
+    "@vuepress/shared": {
+      "file": "D:/vue/DreamWeb/idmdoc/docs/.vuepress/.cache/@vuepress_shared.js",
+      "src": "D:/vue/DreamWeb/idmdoc/node_modules/_@vuepress_shared@2.0.0-beta.33@@vuepress/shared/lib/esm/index.js",
+      "needsInterop": false
+    }
+  }
+}
