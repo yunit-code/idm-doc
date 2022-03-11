@@ -3,9 +3,12 @@ home: true
 title: 首页
 heroImage: /logo.png
 actions:
+  - text: 在线预览
+    link: https://yunit-code.github.io/idm/index.html#/develop/test
+    type: primary
   - text: 快速上手
     link: /zh/guide/integrated.html
-    type: primary
+    type: secondary
   - text: 框架简介
     link: /zh/guide/
     type: secondary

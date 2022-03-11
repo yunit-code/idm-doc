@@ -4,12 +4,12 @@ import { navbar, sidebar } from './configs'
 
 export default defineUserConfig<DefaultThemeOptions>({
     port: 8099, //端口号
-    base:"/idm-doc/",
+    base:"/",
     // 站点配置
     lang: 'zh-CN',
     title: 'IDM',
     head: [
-      ['link', { rel: 'icon', href: '/idm-doc/favicon.ico' }],
+      ['link', { rel: 'icon', href: '/favicon.ico' }],
       ['meta', { name: 'application-name', content: 'IDM官方文档' }],
       ['meta', { name: 'apple-mobile-web-app-title', content: 'IDM官方文档' }],
       [
