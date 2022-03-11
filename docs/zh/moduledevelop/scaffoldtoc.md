@@ -4,7 +4,7 @@
 基于[Vue](https://cn.vuejs.org/)开发的组件脚手架
 - **脚手架地址**
 
-  [https://github.com/yunit-source/idm-module-vue/](https://github.com/yunit-source/idm-module-vue/)
+  [https://github.com/yunit-code/idm-module-vue/](https://github.com/yunit-code/idm-module-vue/)
 
 - **目录结构**
   ```bash

@@ -35,7 +35,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     // 主题和它的配置
     theme: '@vuepress/theme-default',
     themeConfig: {
-        repo:"yunit-source/idm-doc",
+        repo:"yunit-code/idm-doc",
         logo: '/logo.png',
         docsDir: 'docs',
         locales: {

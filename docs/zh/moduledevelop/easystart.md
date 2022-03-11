@@ -28,7 +28,7 @@ cd packageName
   <CodeGroupItem title="Vue" active>
 
 ```bash
-git clone https://github.com/yunit-source/idm-module-vue.git
+git clone https://github.com/yunit-code/idm-module-vue.git
 ```
 
   </CodeGroupItem>

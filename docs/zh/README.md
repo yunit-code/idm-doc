@@ -25,7 +25,7 @@ features:
 footer: MIT Licensed | Copyright © 2022-present Evan You
 ---
 :::tip
-写作能力有限，欢迎您来纠正我的错误 [GitHub](https://github.com/yunit-source/idm-doc)
+写作能力有限，欢迎您来纠正我的错误 [GitHub](https://github.com/yunit-code/idm-doc)
 :::
 <!-- 
 ### 像数 1, 2, 3 一样容易
