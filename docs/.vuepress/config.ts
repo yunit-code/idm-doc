@@ -24,7 +24,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         '/': {
             lang: 'en-US',
             title: 'IDM',
-            description: 'Vue-powered Static Site Generator',
+            description: 'A framework that standardizes components and visually drags low code',
         },
         '/zh/': {
             lang: 'zh-CN',
