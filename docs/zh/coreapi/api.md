@@ -1295,6 +1295,8 @@
   用于组件直接的消息发送，消息广播，组件之间的通信等等。
   :::tip
   组件接收消息请参考：组件开发的[组件通信](../moduledevelop/communication.md) 或 [内置方法](../moduledevelop/builtin.md) - [receiveBroadcastMessage](../moduledevelop/builtin.md#receivebroadcastmessage)
+
+  组件内置协议值详细请参考：[组件通信-内置通信协议](../moduledevelop/communication.md#内置通信协议)
   :::
 ### getModuleContextValue
 - **定义**：
