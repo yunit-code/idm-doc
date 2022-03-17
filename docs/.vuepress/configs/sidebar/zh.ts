@@ -54,6 +54,7 @@ export const zh: SidebarConfig = {
       text: '深入开发',
       children: [
         '/zh/moduledevelop/infosharing.md',
+        '/zh/moduledevelop/moduleobject.md',
         '/zh/moduledevelop/responsive.md',
         '/zh/moduledevelop/pageextend.md',
       ],

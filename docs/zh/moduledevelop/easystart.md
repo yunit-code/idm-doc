@@ -124,12 +124,6 @@ npm run serve
    :id="moduleObject.id" 
    :idm-ctrl-id="moduleObject.id" 
    :title="propData.htmlTitle?propData.fontContent:''">
-    <!--
-      组件内部容器
-      增加class="drag_container" 必选
-      idm-ctrl-id：组件的id，这个必须不能为空
-      idm-container-index  组件的内部容器索引，不重复唯一且不变，必选
-    -->
     {{propData.fontContent}}
   </div>
 </template>

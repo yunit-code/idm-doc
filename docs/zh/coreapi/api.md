@@ -1248,6 +1248,7 @@
   - linkageShowModule：显示组件
   - linkageHideModule：隐藏组件
   - linkageResetDefaultValue：重置默认值
+  - pageResize：页面大小调整通知
   
   **rangeModule 获取方式**：
   ``` js
@@ -1704,7 +1705,7 @@
   - `{String} [object]`
 - **用法**：
   ``` js
-  IDM.theme.setCurrentThemeInfo("idm-theme-blue")
+  IDM.theme.setCurrentThemeInfo("blue")
   ```
   用于设置当前登录用户的主题信息，信息初始化参考：页面属性的 [应用主题](../guide/developtool.md#应用主题)
 ## watermark
