@@ -51,14 +51,17 @@ IDM.http.get(fetchUserSetDataUrl, this.commonParam())
 });
 
 function commonParam() {
+    let urlObject = IDM.url.queryObject();
     //urlObject必须包含下面几项：
     //marketModuleId：组件市场ID
+    urlObject.marketModuleId = this.moduleObject.comId;
     //pageId：页面ID
+    urlObject.pageId = IDM.broadcast.pageModule.id;
     //packageid：组件实例ID
+    urlObject.packageid = this.moduleObject.packageid;
     //后端需要获取用户ID的session，如果使用其他方式存储当前用户请在后端自行处理或前端传递相关参数至后端获取。
     
     //上述几项参数可以查看打开控制中心  openControlSetPanel  的方法传递的参数及说明
-    let urlObject = IDM.url.queryObject();
     var params = {
     pageId:
         window.IDM.broadcast && window.IDM.broadcast.pageModule
@@ -68,6 +71,28 @@ function commonParam() {
     };
     return params;
 }
+```
+或者直接使用IDM提供的[标准API-controlcenter](../coreapi/api.md#controlcenter)获取，使用方法如下：
+```js
+IDM.controlcenter.getModuleAttrList({
+    marketModuleId: this.moduleObject.comId,
+    pageId: IDM.broadcast ? IDM.broadcast.pageModule.id : "",
+    packageid: this.moduleObject.packageid
+  },function(res){
+
+  },function(err){
+    
+  })
+// 或者
+IDM.controlcenter.getModuleAttrInstance({
+    marketModuleId: this.moduleObject.comId,
+    pageId: IDM.broadcast ? IDM.broadcast.pageModule.id : "",
+    packageid: this.moduleObject.packageid
+  }).then((res) => {
+      //成功结果
+  }).catch((err) => {
+      //失败结果
+  })
 ```
 :::tip
 IDM默认不提供后端接口，请自行根据上述请求示例开发后端接口。

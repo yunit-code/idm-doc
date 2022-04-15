@@ -470,6 +470,45 @@ window.$$IDMSetting = {
   :::tip
   返回的数据结构请参考：[AllCodePackageListData](./mockdata.md#allcodepackagelistdata)
   :::
+### dynamicAttributeListUrl
+
+获取文档管理的左上角代码包切换数据接口地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/console/fetchMarketModuleAttrUserSetData`
+
+- 请求方式：`GET`
+
+- 请求参数：
+  
+  ```js
+  {
+    "urlData": JSON.stringify({
+          marketModuleId: this.moduleObject.comId,
+          pageId: IDM.broadcast ? IDM.broadcast.pageModule.id : "",
+          packageid: this.moduleObject.packageid,
+        })
+  }
+  ```
+  
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{
+        "id":"主键ID",
+        "attrCode":"标识key",
+        "attrData":"用户设置的数据",
+        ...
+      }]
+  }
+  ```
 ## mockurl
 
 mockdata地址，只有对应的api地址为空的时候才会使用这里的静态数据。mockdata数据格式参考：[mockdata](./mockdata.md)

@@ -1923,3 +1923,51 @@
   :::tip
   详细使用请参考组件开发=>组件属性=>[反向设置属性](../moduledevelop/attributes.md#反向设置属性)
   :::
+
+## controlcenter
+此分类为操作组件的控制中心(动态属性)方法分类，此分类需要追加分类名（IDM.controlcenter.方法名）访问下列的方法。
+### getModuleAttrList
+- **定义**：
+
+  `getModuleAttrList(paramObject, success, error)`
+- **参数**：
+  - `{Object} [paramObject]`  {marketModuleId:组件comId,pageId:页面ID,packageid:组件实例ID(packageid)}  请求参数对象
+  - `{Function} [success]` 请求成功回调方法
+  - `{Function} [error]` 请求失败回调方法
+
+- **用法**：
+  ``` js
+  IDM.controlcenter.getModuleAttrList({
+    marketModuleId: this.moduleObject.comId,
+    pageId: IDM.broadcast ? IDM.broadcast.pageModule.id : "",
+    packageid: this.moduleObject.packageid
+  },function(res){
+
+  },function(err){
+    
+  })
+  ```
+  此方法用于组件内获取控制中心设置的组件动态属性
+
+### getModuleAttrInstance
+- **定义**：
+
+  `getModuleAttrInstance(paramObject)`
+- **参数**：
+  - `{Object} [paramObject]`  {marketModuleId:组件comId,pageId:页面ID,packageid:组件实例ID(packageid)}  请求参数对象
+
+- **用法**：
+  ``` js
+  IDM.controlcenter.getModuleAttrInstance({
+    marketModuleId: this.moduleObject.comId,
+    pageId: IDM.broadcast ? IDM.broadcast.pageModule.id : "",
+    packageid: this.moduleObject.packageid
+  }).then((res) => {
+      //成功结果
+  }).catch((err) => {
+      //失败结果
+  })
+  ```
+- **返回值**：http axios
+
+  此方法用于组件内获取控制中心设置的组件动态http axios 实例
