@@ -35,8 +35,8 @@
         "color":"blue",
         "background-color":"blue"
     };
-    IDM.setStyleToPageHead('.idm-theme-blue '+this.moduleObject.packageid,cssObject);
-    IDM.setStyleToPageHead('.idm-theme-blue '+this.moduleObject.packageid+' .children-element',cssObject);
+    IDM.setStyleToPageHead('.idm-theme-blue #'+this.moduleObject.packageid,cssObject);
+    IDM.setStyleToPageHead('.idm-theme-blue #'+this.moduleObject.packageid+' .children-element',cssObject);
     ```
     上述例子只讲解了如何利用js注册到页面中，但是在实际过程中不可能把样式值写死，这时候就可以通过组件属性进行动态应用样式表，例如以下简单的例子：
     ```js
@@ -55,8 +55,8 @@
             "color":item.color,
             "background-color":item.bgcolor
         };
-        IDM.setStyleToPageHead('.idm-theme-'+item.key+' '+this.moduleObject.packageid,cssObject);
-        IDM.setStyleToPageHead('.idm-theme-'+item.key+' '+this.moduleObject.packageid+' .children-element',cssObject);
+        IDM.setStyleToPageHead('.idm-theme-'+item.key+' #'+this.moduleObject.packageid,cssObject);
+        IDM.setStyleToPageHead('.idm-theme-'+item.key+' #'+this.moduleObject.packageid+' .children-element',cssObject);
     }
     ```
     :::tip
