@@ -182,3 +182,11 @@
 :::tip
 layout组件包：[layout](https://github.com/yunit-code/layout)
 :::
+
+## 内置弹窗(layer)
+上述介绍的弹窗是组件化弹窗，是以组件的形式存在，但如果组件内想要直接使用是无法使用的，必须还要先配置出来再通过属性进行选择才能使用。如果我们想要开发组件的时候直接使用弹窗则可以使用此[标准API-layer](../coreapi/api.md#layer)提供的API
+:::tip
+此内置弹窗延用了layui框架作者贤心开发的[layer](https://gitee.com/sentsin/layer/tree/master)源码，在此非常感谢!
+
+[标准API-layer](../coreapi/api.md#layer)几乎与layer文档一致，如果你熟悉可直接跳过，只不过需要在layer前面加上IDM即可
+:::
