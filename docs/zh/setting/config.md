@@ -828,3 +828,20 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   ]
   ```
   组件属性控件 [font](../moduledevelop/attributes.md#font) 控件中的字体列表，`value` 代表实际应用的值，`label` 代表下拉选项显示的值
+
+### commonRequireJsCss
+- 值类型：`array`
+
+- 默认值：
+  ```json
+  [
+      "/resource/js/public.js",
+      "/resource/js/dreamweb-core.js",
+      "/websocket/webscoket.js"
+  ]
+  ```
+  设置应用程序组件加载之前要加载的公共脚本和样式文件
+  
+  :::tip
+  以上的地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
+  :::
