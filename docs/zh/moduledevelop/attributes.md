@@ -156,7 +156,10 @@
 - **dictionary**
   - 值类型：Array
 
-  设置控件所需要的数据字典，目前只有`checkbox`、`numberunit`、`radio`、`select`、`treeselect` 类型的控件才有效。
+  设置控件所需要的数据字典，目前只有`checkbox`、`numberunit`、`radio`、`select`、`treeselect`、`uploadImage` 类型的控件才有效。
+  :::tip
+  `uploadImage`的字典为字符串数组格式，主要用于上传图片的时候能默认出现可选择的图库，这里就是图库中图片的地址，例如：`["/resource/idm/img/demo1.png","/resource/idm/img/demo2.png","/resource/idm/img/demo3.png"]`，图片的地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
+  :::
 - **buttonText**
   - 值类型：string
 
@@ -165,6 +168,10 @@
   - 值类型：Array
 
   用于存放子级属性控件，主要用于分组、分层级显示，只有`group`、`inlineGroup`才有效。
+- **ctrlAttrObject**
+  - 值类型：Object
+
+  用于存放属性控件的综合属性，每个控件所需要的属性可能不同，这里面详细属性介绍可以参考对应的属性控件的介绍。
 ### 层级结构
 IDM开发工具组件的属性控件展示是支持树结构展示形式的，但是展示的层级以及控件是有限定的，格式如下：
 ```bash
@@ -741,10 +748,48 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
 
   <img :src="$withBase('/images/attr/page_attr_icoImgUrl.jpg')" style="margin-top:10px" alt="预览效果" />
 
+  <img :src="$withBase('/images/attr/page_attr_icoImgUrl_uploadimg_001.jpg')" style="margin-top:10px" alt="预览效果" />
+
+  <img :src="$withBase('/images/attr/page_attr_icoImgUrl_uploadimg_002.jpg')" style="margin-top:10px" alt="预览效果" />
+
 - 返回值示例：
   ```bash
   "/p1000/idm/upload/imgname.jpg"
   ```
+- ctrlAttrObject属性介绍：
+  - width：
+  
+    图库中的图片宽度，为空则默认为auto
+  - height：
+  
+    图库中的图片高度，为空则默认为auto
+  - cropper：
+  
+    是否使用裁剪功能，如果设置为true则上传完图片后会出现裁剪功能（前提是裁剪保存的接口地址[saveCropperBase64ImageUrl](../setting/config.md#savecropperbase64imageurl)正常使用才行）
+  - cropperOption:
+
+    用于配置裁剪功能的
+    |属性名称|功能|默认值|可选值|
+    |-|-|-|-|
+    |outputSize | 裁剪生成图片的质量 | `1` | 0.1 ~ 1|
+    |outputType | 裁剪生成图片的格式 | jpg (jpg 需要传入jpeg) | `jpeg`, `png`, `webp`|
+    |info | 裁剪框的大小信息 | `true` | `true`, `false`|
+    |canScale | 图片是否允许滚轮缩放 | `true` | `true`, `false`|
+    |autoCrop | 是否默认生成截图框 | `true` | `true`, `false`|
+    |autoCropWidth | 默认生成截图框宽度 | 200 | 0 ~ max|
+    |autoCropHeight | 默认生成截图框高度 | 200 | 0 ~ max|
+    |fixed | 是否开启截图框宽高固定比例 | `false` | `true`, `false`|
+    |fixedNumber | 截图框的宽高比例 | `[1, 1]` | `[ 宽度 ,  高度 ]`|
+    |full | 是否输出原图比例的截图 | `false` | `true`, `false`|
+    |canMove | 上传图片是否可以移动 | `true` | `true`, `false`|
+    |canMoveBox | 截图框能否拖动 | `true` | `true`, `false`|
+    |original | 上传图片按照原始比例渲染 | `false` | `true`, `false`|
+    |centerBox | 截图框是否被限制在图片里面 | `false` | `true`, `false`|
+    |high | 是否按照设备的dpr 输出等比例图片 | `true` | `true`, `false`|
+    |infoTrue | true 为展示真实输出图片宽高 `false` 展示看到的截图框宽高 | false | `true`, `false`|
+    |maxImgSize | 限制图片最大宽度和高度 | `2000` | 0 ~ max|
+    |enlarge | 图片根据截图框输出比例倍数 | `1` | 0 ~ max(建议不要太大不然会卡死的呢)|
+    |mode | 图片默认渲染方式 | `contain` | `contain` , `cover`, `100px`, `100%` auto|
 ### table
 - 中文名：表格
 

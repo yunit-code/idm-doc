@@ -311,6 +311,44 @@ window.$$IDMSetting = {
       }
   }
   ```
+
+### saveCropperBase64ImageUrl
+
+保存裁剪后的图片base64转存为图片文件（主要用于框架、公共上传方法）
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/saveBase64ToImageFile`
+
+- 请求方式：`POST`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |type|上传的类型值，这个由框架内决定性，例如图片上传属性控件的值为`dev_uploadimage_ctrl`|
+  |data|图片base64|
+  |suffix|后缀名 jpeg, png, webp|
+  |...webRoot|[webRoot](./config.md#webroot) 属性下面的所有子属性都会传递到后端，可以利用此处配置合理的存储文件|
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": {
+        "fileName":"文件名称.png",
+        "filePath": "/upload/idmfiles/f22081da-9410-40bc-afa0-6b3106c45c1c.png",
+        "fileSize":"2188888",
+        "imageWidth":"图片的宽度，如果上传的文件为图片的情况下",
+        "imageHeight":"图片的高度，如果上传的文件为图片的情况下"
+      }
+  }
+  ```
 ### developTraceListUrl
 
 开发工具的获取操作痕迹的列表记录接口地址
