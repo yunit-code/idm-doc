@@ -133,7 +133,7 @@ window.$$IDMSetting = {
 
 - 请求参数：
   
-  无
+  url地址接收的参数会作为此处参数
 
   :::tip
   返回的数据结构请参考：[ComponentMarketData](./mockdata.md#componentmarketdata)
