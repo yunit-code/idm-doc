@@ -696,12 +696,30 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
   <img :src="$withBase('/images/attr/page_attr_treeselecttest.jpg')" style="margin-top:10px" alt="预览效果" />
 
 - 返回值示例：
-  ```json
-  [
-      "0-0-2",
-      "0-0"
-  ]
-  ```
+  - 单选的时候返回结果：
+    ```json
+    {
+      "title": "Child Node2",
+      "value": "0-0-2",
+      "key": "0-0-2"
+    }
+    ```
+    
+  - 多选的时候返回结果：
+    ```json
+    [
+      {
+        "title": "Child Node2",
+        "value": "0-0-2",
+        "key": "0-0-2"
+      },
+      {
+        "title": "Node2",
+        "value": "0-1",
+        "key": "0-1"
+      }
+    ]
+    ```
 - `dictionary`数据字典格式示例：
   ```json
   [
