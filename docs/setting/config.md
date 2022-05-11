@@ -410,26 +410,77 @@ window.$$IDMSetting = {
   :::
 ### saveUserCustomizationUrl
 
-页面个性化保存的接口地址
+用于用户对页面个性化定制的保存的接口地址，比如用户可以调整页面布局进行个性化排序等等。
 - 值类型：`string`
 
 - 默认值：`/ctrl/idm/api/saveUserCustomization`
 
 - 请求方式：`POST`
 
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |urlData|url地址中的全部参数地址|
+  |pageid|页面ID|
+  |version|页面版本号|
+  |customData|个性化定制的数据，结构为对象，对象下包含数组层级的|
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": null
+  }
+  ```
   :::tip
-  此功能暂未开通，敬请期待
+  页面个性化功能IDM已内置，如果想要自行实现布局组件可以直接调用此接口进行对数据结构存储即可。
   :::
 ### userCustomizationUrl
 
-页面个性化获取的接口地址
+用于获取用户对页面个性化定制的接口地址，比如用户已经对页面进行个性化定制排序后的结果等等。
 - 值类型：`string`
 
 - 默认值：`/ctrl/idm/api/fetchUserCustomization`
 
 - 请求方式：`GET`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |urlData|url地址中的全部参数地址|
+  |pageid|页面ID|
+  |version|页面版本号|
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": {
+        "id":"定制化ID",
+        "idmId":"页面ID",
+        "pageId":"页面ID",
+        "pageVersion":"页面版本号",
+        "customData":"此处为用户个性化定制后的数据，为保存的时候传的customData",
+        "userId":"用户ID"
+      }
+  }
+  ```
   :::tip
-  此功能暂未开通，敬请期待
+  如果需要自定义开发定制化页面，可以通过此接口获取当前用户已保存的结构
   :::
 ### saveFormsMetaDataUrl
 
