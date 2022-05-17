@@ -86,6 +86,12 @@ IDM框架中内置了几种通信协议，通过参数`type`指定以下的类�
   含义：页面大小调整通知
   
   主要使用`window.onresize`来监听浏览器或页面大小改变而通知所有组件，可以针对性的进行做组件调整或重新渲染。
+
+- **websocket**
+
+  含义：websocket消息
+  
+  主要通过页面设置的属性[websocket](../guide/developtool.md#websocket)中设置的基本属性，当收到消息时会给所有组件发送此消息，然后组件内可以针对消息内容做组件相应的功能处理，比如刷新组件的数据等等。
 :::tip
 如果要使用打开弹窗、关闭弹窗功能需要自行开发弹窗组件来接收消息进行打开显示，或者也可以从GitHub下载IDM官方提供的[Layout](https://github.com/yunit-code/layout)组件包（内含`IDialog`组件）
 :::
