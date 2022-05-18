@@ -934,3 +934,42 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   :::tip
   以上的地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
   :::
+
+## websocket
+
+主要用来对整个框架的websocket消息配置的属性归类
+
+### websocketInitEventName
+- 值类型：`string`
+
+- 默认值：`initDreamSocketClient`
+
+  用于设置调用初始化websocket方法名。
+
+  :::tip
+  此处只是用来配置开发工具中的页面设置属性中的[初始化websocket方法名](../guide/developtool.md#初始化websocket方法名【websocketinitname】)
+
+  websocket脚本可通过[commonRequireJsCss](./config.md#commonrequirejscss)引入，也可通过[页面扩展开发](../moduledevelop/pageextend.md)
+  :::
+
+### websocketOpenEventName
+- 值类型：`string`
+
+- 默认值：`onWebSocketOpen`
+
+  websocket打开后会调用IDM内置的打开方法
+
+  :::tip
+  此处只是用来配置开发工具中的页面设置属性中的[连接打开监听方法名](../guide/developtool.md#连接打开监听方法名【websocketopenevent】)
+  :::
+
+### websocketMessageEventName
+- 值类型：`string`
+
+- 默认值：`onWebSocketMessage`
+
+  websocket收到消息后会调用IDM内置的监听消息方法，收到消息后会给所有组件发送指定协议（websocket）的值
+
+  :::tip
+  此处只是用来配置开发工具中的页面设置属性中的[监听接收消息方法名](../guide/developtool.md#监听接收消息方法名【websocketmessageevent】)
+  :::

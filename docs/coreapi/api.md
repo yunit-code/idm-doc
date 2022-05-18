@@ -1911,7 +1911,7 @@
   - `{Object} [attrData]`  {attrKey1,attrKey2}  要变更的属性对象
   - `{String} [modulePackageid]` 对应的组件包ID
   - `{String} [attrDataInnerIndex]` 属性对应的类型，默认为-1是组件属性，如果为组件内部的容器属性，则需要传指定容器的idm-container-index
-  - `{Boolean} [responseProps]` 是否响应props属性，默认为false，如果为true，将会调用idmProps方法把最新的熟悉传递给组件进行响应
+  - `{Boolean} [responseProps]` 是否响应props属性，默认为false，如果为true，将会调用idmProps方法把最新的属性传递给组件进行响应
 
 - **用法**：
   ``` js

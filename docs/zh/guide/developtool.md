@@ -24,7 +24,9 @@
 #### dragSizeKey
 用于进入工具时候默认显示的工作区大小，不传参数时候默认为适应当前屏幕的
 - 值类型：尺寸的key值，可选的值可参考配置项 [dragAreaSizeList](../setting/config.md#dragareasizelist)
-
+#### defaultPageTitle
+用于设置工具的页面标题的默认初始值，如果不传则页面标题默认为空（页面标题是用于显示浏览器页签上面的标题名称的）
+- 值类型：浏览器页签上面要显示的字符串标题
 :::tip
 传递的参数可扩展，获取方式可通过 `IDM.url.queryObject()` 获取全部参数。
 
@@ -510,6 +512,63 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 - 默认值配置参考：[配置项](../setting/config.md#usercustomizationurl)
 - 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
 :::
+#### websocket
+
+websocket初始化连接，监听等等方法请自行处理，这里只做一个与组件之间的沟通桥梁
+##### 开启websocket监听【switchWebSocket】
+
+用于设置页面是否启用websocke功能，开启后将会在页面加载用户信息之后调用初始化websocket方法
+- 默认值：`true`
+
+##### 初始化websocket方法名【websocketInitName】
+
+用于设置调用外部的websocket的初始化的方法名称
+- 默认值：自动获取配置项`websocket.websocketInitEventName`
+- 显示条件：`开启websocket监听 = true`
+
+##### 连接打开监听方法名【websocketOpenEvent】
+
+用于外部的websocket打开的时候调用此处设置的方法名
+- 默认值：自动获取配置项`websocket.websocketOpenEventName`
+- 显示条件：`开启websocket监听 = true`
+
+##### 自定义打开处理函数【websocketOpenFunction】
+
+用于处理连接打开后需要执行额外逻辑的处理函数设置，函数接收参数格式为：
+```json
+{
+    "pageId":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数"
+}
+```
+- 支持多选：`是`
+:::tip
+自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+:::
+
+##### 监听接收消息方法名【websocketMessageEvent】
+
+用于外部的websocket监听接收到消息的时候调用此处设置的方法名
+- 默认值：自动获取配置项`websocket.websocketMessageEventName`
+- 显示条件：`开启websocket监听 = true`
+
+##### 接收消息自定义函数【websocketOpenFunction】
+
+用于处理接收到消息后需要执行额外逻辑的处理函数，函数接收参数格式为：
+```json
+{
+    "pageId":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "msgData":"websocket接收到的消息"
+}
+```
+- 支持多选：`是`
+:::tip
+自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+:::
+
 #### 应用主题
 ##### 开启应用主题【openIdmTheme】
 <img :src="$withBase('/images/attr/page_attr_openIdmTheme.jpg')" style="margin-top:10px" alt="预览效果" />
