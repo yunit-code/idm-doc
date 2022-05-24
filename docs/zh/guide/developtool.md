@@ -544,7 +544,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 
 ##### 监听接收消息方法名【websocketMessageEvent】
@@ -566,7 +566,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 
 #### 应用主题
@@ -630,7 +630,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
  `{customParam:自定义的,结果集名或接口返回的resultData,_this:当前渲染引擎的this对象}`
 - 显示条件：`开启应用主题 = true && 获取主题方式 != 自定义函数`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 自定义处理函数【themeCustomFunction】
 <img :src="$withBase('/images/attr/page_attr_themeCustomFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -646,7 +646,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 ```
 - 显示条件：`开启应用主题 = true && 获取主题方式 = 自定义函数`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 #### 脚本与样式【子表】【resourceList】
 <img :src="$withBase('/images/attr/page_attr_resourceList.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -695,7 +695,7 @@ defer解释请参考： [async](https://www.w3school.com.cn/html5/att_script_def
 :::tip
 此处设置的页面接口不会在开发工具中加载，只有在渲染模式下才会加载生效
 
-页面接口使用方法请参考： [组件高级开发](../coreapi/README.md#url)
+页面接口使用方法请参考： [组件高级开发-统一接口](../moduledevelop/unifiedinterface.md)
 :::
 ##### 请求方式【interfaceMode】
 <img :src="$withBase('/images/attr/page_attr_interfaceMode.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -745,7 +745,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 - 显示条件：`请求方式 = POST`
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 请求前置条件自定义函数【preAllowFunction】
 <img :src="$withBase('/images/attr/page_attr_preAllowFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -761,7 +761,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 自定义函数必须返回 true 或 false ，不返回代表可以请求接口
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 结果集名称【resultDataName】
 <img :src="$withBase('/images/attr/page_attr_resultDataName.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -782,7 +782,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 #### 组件加载之前执行【beforeLoadingFunction】
 <img :src="$withBase('/images/attr/page_attr_beforeLoadingFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -798,7 +798,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 #### 组件加载完后执行【afterLoadingFunction】
 <img :src="$withBase('/images/attr/page_attr_afterLoadingFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -814,7 +814,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ### 控制中心设置
 
@@ -830,7 +830,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 :::tip
 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
 
-目前已有该渲染动态属性的组件： [控制中心组件](../coreapi/README.md#url)
+目前已有该渲染动态属性的组件： [控制中心组件](https://github.com/yunit-code/controlCenter)
 :::
 #### 显示标题【drawerTitleShow】
 <img :src="$withBase('/images/attr/page_attr_drawerTitleShow.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -914,7 +914,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 自定义函数返回格式必须为cssObject对象 `{a:b,c:d}`
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 最外层样式自定义函数【drawerWrapStyleFunction】
 <img :src="$withBase('/images/attr/page_attr_drawerWrapStyleFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -931,7 +931,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 自定义函数返回格式必须为cssObject对象 `{a:b,c:d}`
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 抽屉样式自定义函数【drawerStyleFunction】
 <img :src="$withBase('/images/attr/page_attr_drawerStyleFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -948,7 +948,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 自定义函数返回格式必须为cssObject对象 `{a:b,c:d}`
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 抽屉头部样式自定义函数【drawerHeaderStyleFunction】
 <img :src="$withBase('/images/attr/page_attr_drawerHeaderStyleFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -965,7 +965,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 自定义函数返回格式必须为cssObject对象 `{a:b,c:d}`
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ##### 抽屉内容样式自定义函数【drawerBodyStyleFunction】
 <img :src="$withBase('/images/attr/page_attr_drawerBodyStyleFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -982,7 +982,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 自定义函数返回格式必须为cssObject对象 `{a:b,c:d}`
 - 支持多选：`否`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 #### 切换显示动画结束自定义函数【drawerAfterVisibleChangeFunction】
 <img :src="$withBase('/images/attr/page_attr_drawerAfterVisibleChangeFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -998,7 +998,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 #### 关闭回调自定义函数【drawerCloseFunction】
 <img :src="$withBase('/images/attr/page_attr_drawerCloseFunction.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -1014,7 +1014,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 ```
 - 支持多选：`是`
 :::tip
-自定义函数用法请参考：[动作选择控件](../coreapi/README.md#url)
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
 ## 字体图标
 核心框架工具组件的图标使用的是字体图标的，IDM使用的是[iconfont](https://www.iconfont.cn/)的字体图标，目前IDM默认提供了一部分，如果觉得满足不了需求或者想自定义只需要把代码包下的`static/iconfont`替换掉即可。
