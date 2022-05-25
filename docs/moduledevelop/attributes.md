@@ -144,7 +144,7 @@
 - **multiple**
   - 值类型：boolean
 
-  设置提供了多选的是否支持多选模式，目前只有`actionSelect`、`iconSelect`、`pageModuleSelect`、`select``treeSelect`才有效。
+  设置提供了多选的是否支持多选模式，目前只有`actionSelect`、`iconSelect`、`pageModuleSelect`、`select`、`treeSelect`才有效。
 - **dataSourceUrl**
   - 值类型：string
 
