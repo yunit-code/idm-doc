@@ -639,6 +639,12 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
   ```bash
   "FormData"
   ```
+  
+- ctrlAttrObject属性介绍：
+  - mode：`tags`
+
+  用于设置下拉框支持标签类型的选择，也就是标签可以从下拉框中提供的值选择，也能自己输入，注意：此属性只有在multiple属性为true时候才有效
+
 - `dictionary`数据字典格式示例：
   ```json
   [
