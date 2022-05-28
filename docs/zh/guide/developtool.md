@@ -467,6 +467,10 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 - 应用信息对象格式参考：[mock data](../setting/mockdata.md#applicationinfodata)
 - 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
 :::
+
+::: warning
+如果应用信息返回的数据格式为{"code":200,data:{appName:\"\"}},则会直接取data下面的对象作为应用信息对象，其他情况则直接用返回结果作为应用对象
+:::
 #### 用户信息
 ##### 开启用户信息【openFetchUserInfo】
 <img :src="$withBase('/images/attr/page_attr_openFetchUserInfo.jpg')" style="margin-top:10px" alt="预览效果" />
@@ -498,10 +502,13 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 <img :src="$withBase('/images/attr/page_attr_switchUserInfoFiledName.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置判断是否登录了用户的字段，用户是否登录依据此处设置的判断字段是否为true，如果为 true 则显示，false 则会跳转到登录页
-- 默认值：`data.userid`
+- 默认值：`userid`
 - 显示条件：`登录判断 = true`
 :::tip
-此处填写的格式为a.b.c或者[0]a.b[0].c，例如：用户信息返回的数据格式为{code:'',data:{userid:\"\"}}，则这里填写data.userid，如果返回结果data.userid为false则会自动跳转到设置的登录地址，更多语法请参考：[标准API](../coreapi/api.md#express)
+此处填写的格式为a.b.c或者[0]a.b[0].c，例如：用户信息返回的数据格式为{userid:\"\"}，则这里填写userid，如果返回结果userid为false则会自动跳转到设置的登录地址，更多语法请参考：[标准API](../coreapi/api.md#express)
+:::
+::: warning
+如果用户信息返回的数据格式为{"code":200,data:{userid:\"\"}},则会直接取data下面的对象作为用户信息对象，其他情况则直接用返回结果作为用户对象
 :::
 ##### 登录页地址【loginPageUrl】
 <img :src="$withBase('/images/attr/page_attr_loginPageUrl.jpg')" style="margin-top:10px" alt="预览效果" />
