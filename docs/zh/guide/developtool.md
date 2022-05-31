@@ -209,6 +209,20 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 该值可以通过url追加参数 `showStatusBar=true` 控制是否默认显示，例如：在 http://domain/projectName/idm/index.html#/develop/{pageid}后面追加 `?showStatusBar=true` 即可
 :::
 
+#### 加载动画【openPreviewLoadStyle】
+用于设置是否开启加载动画效果，也就是loading进度条
+- 标识：`openPreviewLoadStyle`
+- 默认值：`true`
+
+::: tip
+此处的加载动画与核心框架资源加载动画不同，只有此核心框架加载完成了才会继续执行此处页面内部资源、请求等等资源请求动画。
+:::
+
+#### 动画颜色【previewLoadColor】
+用于设置动画要显示的颜色，也就是loading进度条的颜色
+- 标识：`previewLoadColor`
+- 默认值：`@[IDM.setting.applications.defaultPreviewLoadColor]`
+
 ### 水印设置
 此级为页面级水印设置属性归类分组，主要用于设置页面级水印的一些基本样式。
 #### 水印方式【watermarkType】

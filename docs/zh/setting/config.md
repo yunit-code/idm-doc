@@ -935,6 +935,33 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   以上的地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
   :::
 
+### openIdmCoreLoadStyle
+- 值类型：`boolean`
+
+- 默认值：true
+
+  用于设置是否开启核心框架的资源加载动画，如果设为false则是关闭，开启则不显示加载动画
+
+  :::tip
+  此动画效果非页面属性的 [加载动画](../guide/developtool.md#加载动画【openpreviewloadstyle】)，只有此动画效果结束了才会开始页面级别的加载进度动画。
+  :::
+
+### idmCoreLoadColor
+
+- 值类型：`string`
+
+- 默认值：`#1890ff`
+
+  用于设置核心框架的资源加载动画的颜色。
+
+### defaultPreviewLoadColor
+
+- 值类型：`string`
+
+- 默认值：`#1890ff`
+
+  用于设置页面属性的 [动画颜色](../guide/developtool.md#动画颜色【previewloadcolor】) 的默认值。
+
 ## websocket
 
 主要用来对整个框架的websocket消息配置的属性归类
