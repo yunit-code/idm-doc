@@ -763,6 +763,18 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 - 默认值：`grid`
 
   开发工具中的组件市场的列表默认显示类型，目前有两种显示类型，`list` 代表为默认显示列表类型，`grid` 代表为默认显示网格类型，虽然此处设置了默认显示，但是在开发工具中可以进行切换显示
+
+### openFetchUserInfo
+- 值类型：`boolean`
+
+- 默认值：`true`
+
+  开启开发工具中在初始化的时候获取用户信息填充至[IDM.user](../coreapi/api.md#user)全局变量中
+
+  :::tip
+  只会使用配置项中（[userInfoUrl](config.md#userInfoUrl)）的接口进行加载，页面属性设置中如果修改了是不会加载修改后的接口返回的信息，所以请根据按需开启。
+  :::
+
 ## document
 
 主要用来对[文档管理](../guide/documentmanage.md)的功能进行配置的属性归类
