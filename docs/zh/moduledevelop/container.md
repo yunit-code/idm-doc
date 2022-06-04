@@ -31,6 +31,7 @@
       增加idm-ctrl-inner 代表内部容器组件（可定义单独的属性，只支持定义一类的属性,一个组件内只包含一种） 可选
       idm-ctrl-id：组件的id，这个必须不能为空
       idm-container-index  组件的内部容器索引，不重复唯一且不变，必选，建议从1开始
+      idm-refresh-container：刷新容器所在的组件状态，如果要刷新，只需要此属性有变化即可刷新整个组件的状态
     -->
     <div class="drag_container" idm-ctrl-inner :idm-ctrl-id="moduleObject.id" idm-container-index="1">
       
@@ -40,8 +41,21 @@
     </div> -->
   </div>
 ```
-:::warning
-容器组件暂时不支持异步请求然后生成的DOM元素，后期会以其他方案解决此问题
+栅格组件示例（部分代码）：
+```html
+<div
+    class="drag_container"
+    :class="`flex-${item}`"
+    v-for="(item, index) in (propData.grid || '12:12').split(':')"
+    :key="index"
+    idm-ctrl-inner
+    :idm-ctrl-id="moduleObject.id"
+    :idm-container-index="index + 1"
+    :idm-refresh-container="`flex-${item}`"
+  ></div>
+```
+:::tip
+容器组件已支持异步请求生成的DOM元素，如果要刷新可以在内部容器中追加 `idm-refresh-container` 属性并且在需要刷新空状态、容器事件的时候变化此属性为任何值即可
 :::
 ## 属性设置
 容器也是可以定义组件属性的，普通容器的属性应用与普通组件的属性应用没有任何区别，这里不概述。但是内嵌容器的属性与组件本身的容器属性是共存关系，具体请看下述介绍。
