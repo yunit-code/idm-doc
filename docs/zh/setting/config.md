@@ -974,6 +974,14 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
   用于设置页面属性的 [动画颜色](../guide/developtool.md#动画颜色【previewloadcolor】) 的默认值。
 
+### defaultOpenWeixinJSSDK
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  用于设置页面属性的 [开启JS-SDK功能](../guide/developtool.md#开启JS-SDK功能【switchweixinjssdk】) 的默认值。
+
 ## websocket
 
 主要用来对整个框架的websocket消息配置的属性归类
@@ -1012,3 +1020,62 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   :::tip
   此处只是用来配置开发工具中的页面设置属性中的[监听接收消息方法名](../guide/developtool.md#监听接收消息方法名【websocketmessageevent】)
   :::
+
+## weixin
+
+主要用来对整个框架的微信功能配置的属性归类
+
+### requireJsCss
+- 值类型：`array` or `string`
+
+- 默认值：
+  ```json
+  [
+      "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"
+  ]
+  ```
+  设置应用程序组件加载之前要引入的微信js-sdk
+  
+  :::tip
+  以上的地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
+  :::
+
+
+### jsApiList
+- 值类型：`array`
+
+- 默认值：`['launch3rdApp', 'request3rdApp', 'onHistoryBack', 'hideAllNonBaseMenuItem', 'hideOptionMenu', 'openUrl', 'closeWindow']`
+
+  设置需要使用的JS接口列表，所有JS接口列表见[官方文档](https://developer.work.weixin.qq.com/document/path/90513)
+
+  :::tip
+  微信的JS接口列表可查看[山东通API](http://im.sdt.sdbdc.cn:9080/api/doc#18026)
+  :::
+  
+
+### debug
+- 值类型：`boolean`
+
+- 默认值：false
+
+  设置是否开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+
+### signatureUrl
+- 值类型：`string`
+
+- 默认值：`/tencentCustomize/getConfig`
+
+  设置签名获取接口地址，返回结果可参考如下：
+  ```json
+  {
+    "code":"200",
+    "message":"",
+    "type":"success",
+    "data":{
+      "appId":"",
+      "timestamp":"",
+      "nonceStr":"",
+      "signature":""
+    }
+  }
+  ```
