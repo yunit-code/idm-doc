@@ -696,6 +696,47 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 :::tip
 自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
+
+
+#### 微信JS-SDK
+
+用于开启设置微信JS-SDK功能，如果配置的页面有使用到微信APP的功能请开启此项配置
+##### 开启JS-SDK功能【switchWeixinJSSDK】
+
+开启后将会自动加载微信的js-sdk，并且会根据配置项加载对应的功能
+- 默认值：`@[IDM.setting.applications.defaultOpenWeixinJSSDK]`
+
+##### 自定义ready处理函数【weixinReadyFunction】
+
+如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中，函数接收参数格式为：
+```json
+{
+    "pageId":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数"
+}
+```
+- 支持多选：`是`
+
+- ***📢温馨提示：***
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+
+##### 自定义error处理函数【weixinErrorFunction】
+
+config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名，函数接收参数格式为：
+```json
+{
+    "pageId":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "error":"config信息验证失败的消息"
+}
+```
+- 支持多选：`是`
+
+- ***📢温馨提示：***
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+
 #### 脚本与样式【子表】【resourceList】
 <img :src="$withBase('/images/attr/page_attr_resourceList.jpg')" style="margin-top:10px" alt="预览效果" />
 
