@@ -412,8 +412,19 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       "a": 1
   }
   ```
-  :::tip
-  如果未修改属性值的时候设置了默认值为字符串，则返回的值也可能是字符串，比如设置了"#DA0C0CFF"，则也是返回此格式，所以开发的时候请注意判断数据类型
+- ctrlAttrObject属性介绍：
+  - disabledInput：
+
+    值类型：`boolean`
+
+    默认值：`false`
+
+    是否禁用颜色选择可输入
+
+  :::warning
+  1. 如果未修改属性值的时候设置了默认值为字符串，则返回的值也可能是字符串，比如设置了"#DA0C0CFF"，则也是返回此格式，所以开发的时候请注意判断数据类型
+  
+  2. 默认情况下颜色选择属性控件是支持输入的，输入只会改变`hex8`属性，所以建议组件内直接使用`hex8`的值即可，如果要属性一致，请加上`ctrlAttrObject.disabledInput`并设置为true
   :::
 ### datePicker
 - 中文名：日期选择
@@ -789,22 +800,34 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
 - ctrlAttrObject属性介绍：
   - width：
   
+    值类型：`string`
+    
     图库中的图片宽度，为空则默认为auto
   - height：
-  
+
+    值类型：`string`
+
     图库中的图片高度，为空则默认为auto
   - maxSize：
-  
+
+    值类型：`number`
+
     上传控件最大上传的文件大小，单位为B，默认为无限制
   - suffix：
-  
+
+    值类型：`string`
+
     上传控件可上传的文件类型，默认为无限制
   - desc：
-  
+
+    值类型：`string`
+
     上传控件备注提示内容，默认为`支持${suffix||'jpg,jpeg,png,gif,bmp,ico'}格式文件，请上传尺寸小于${maxSize}的图片`
 
   - cropper：
-  
+
+    值类型：`boolean`
+
     是否使用裁剪功能，如果设置为true则上传完图片后会出现裁剪功能（前提是裁剪保存的接口地址[saveCropperBase64ImageUrl](../setting/config.md#savecropperbase64imageurl)正常使用才行）
   - cropperOption:
 
