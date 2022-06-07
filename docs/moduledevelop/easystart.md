@@ -248,7 +248,7 @@ npm run build
 ```
 - **步骤2**: 把dist下面的全部文件拷贝到配置项[moduleDir](../setting/config.md#moduledir)配置的目录下，一般情况直接到目录`idm_modules/packageName(包名)/1.0.0(版本号)/`下直接粘贴即可。然后在组件市场中注册（如果已经把配置项[componentMarketUrl](../setting/config.md#componentmarketurl)改成了接口形式）即可，如果接口为空则在mockurl配置项[componentMarketUrl](../setting/config.md#componentmarketurl-1)的数据注册即可。
   :::tip
-  建议搭配IDM页面控制台就能实现组件包自动化更新维护，只要上传rar压缩包即可实现整个过程的更新，目前已内部使用，敬请期待公开产品！！
+  建议搭配IDM页面控制台就能实现组件包自动化更新维护，只要上传zip压缩包即可实现整个过程的更新，目前已内部使用，敬请期待公开产品！！
   :::
 ### React
 - **步骤1**: 执行build打包命令
