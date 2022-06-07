@@ -158,7 +158,80 @@ export default {
 ```
 - **步骤4**: 在浏览器中输入`http://localhost:8080/index.html#/?className=Test001`地址访问您的组件
 ### React
-TODO
+- **步骤1**: 在`public\static\config.json`文件中注册一个新的组件类名为`DemoText`的组件。
+```json
+{
+    "version": "1.0.0",
+    "lasttime": "2022-6-6 18:10:21",
+    "author": "申龙",
+    "className": "packageName",
+    "module": [
+        {
+            "classId": "idm.componet.packagename.demoText",
+            "comName": "测试文本",
+            "className": "DemoText",
+            "comType": "common",
+            "comLangue": "react"
+        }
+    ]
+}
+```
+- **步骤2**: 在`public\static\attributes\`目录下新建一个与组件类名同名的`DemoText.json`属性注册文件。
+```json
+{
+    "classId": "idm.componet.packagename.demoText",
+    "comName": "测试文本",
+    "className": "DemoText",
+    "comType": "common",
+    "comLangue": "react",
+    "compositeAttr": [
+        {
+            "type": "input",
+            "layoutType": "inline",
+            "text": "唯一标识",
+            "bindKey": "ctrlId",
+            "disabled": true,
+            "default": "@[packageid]"
+        },
+        {
+            "type": "textarea",
+            "layoutType": "inline",
+            "text": "文本内容",
+            "bindKey": "fontContent",
+            "default": "文本内容"
+        }
+    ]
+}
+```
+- **步骤3**: 在`src\components\`目录下新建一个与组件类名同名的`DemoText.tsx`组件代码文件。
+```tsx
+import { Component } from 'react'
+
+class DemoText extends Component<{}, {}> {
+  constructor(props) {
+      super(props)
+      this.state = {
+        id: '',
+        propData: {
+          htmlTitle: '测试文本'
+        },
+        ...props,
+      }
+  }
+
+  propDataWatchHandle(propData){
+    this.setState({ ...this.state, propData })
+  }
+  render() {
+    const { propData } = this.state
+    return <div>{propData.htmlTitle}</div>
+  }
+}
+
+export default DemoText
+
+```
+- **步骤4**: 在浏览器中输入`http://localhost:3000/?className=DemoText`地址访问您的组件
 ### Jquery
 TODO
 ## 构建及部署
@@ -167,11 +240,15 @@ TODO
 ```bash
 npm run build
 ```
-- **步骤2**: 把dist下面的全部文件拷贝到配置项[moduleDir](../setting/config.md#moduledir)配置的目录下，一般情况直接到目录`idm_modules/packageName(包名)/1.0.0(版本号)/`下直接粘贴即可。然后在组件市场中注册（如果已经把配置项[componentMarketUrl](../setting/config.md#componentmarketurl)改成了接口形式）即可，如果接口为空则在mockurl配置项[componentMarketUrl](../setting/config.md#componentmarketurl-1)的数据注册即可。
+- **步骤2**: 把`dist`下面的全部文件拷贝到配置项[moduleDir](../setting/config.md#moduledir)配置的目录下，一般情况直接到目录`idm_modules/packageName(包名)/1.0.0(版本号)/`下直接粘贴即可。然后在组件市场中注册（如果已经把配置项[componentMarketUrl](../setting/config.md#componentmarketurl)改成了接口形式）即可，如果接口为空则在mockurl配置项[componentMarketUrl](../setting/config.md#componentmarketurl-1)的数据注册即可。
   :::tip
   建议搭配IDM页面控制台就能实现组件包自动化更新维护，只要上传rar压缩包即可实现整个过程的更新，目前已内部使用，敬请期待公开产品！！
   :::
 ### React
-TODO
+- **步骤1**: 执行build打包命令
+```bash
+npm run build
+```
+- **步骤2**: 把`build`下面的全部文件拷贝到配置项[moduleDir](../setting/config.md#moduledir)配置的目录下，一般情况直接到目录`idm_modules/packageName(包名)/1.0.0(版本号)/`下直接粘贴即可。然后在组件市场中注册（如果已经把配置项[componentMarketUrl](../setting/config.md#componentmarketurl)改成了接口形式）即可，如果接口为空则在mockurl配置项[componentMarketUrl](../setting/config.md#componentmarketurl-1)的数据注册即可。
 ### Jquery
 TODO
