@@ -27,6 +27,10 @@
 #### defaultPageTitle
 用于设置工具的页面标题的默认初始值，如果不传则页面标题默认为空（页面标题是用于显示浏览器页签上面的标题名称的）
 - 值类型：浏览器页签上面要显示的字符串标题
+#### mode
+用于控制页面属性显示的模式，如果为`easy`则页面属性中的`display`含有此`url('mode')!='easy'`判断都将被隐藏不显示。
+- 值类型：`easy` or 为空
+
 :::tip
 传递的参数可扩展，获取方式可通过 `IDM.url.queryObject()` 获取全部参数。
 
@@ -474,7 +478,7 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 
 用于设置获取应用信息的接口地址，开启了应用信息后在页面加载之前会请求此接口并返回应用信息对象
 - 默认值：自动获取配置项`api.applicationInfoUrl` 配置的地址
-- 显示条件：`开启应用信息 = true`
+- 显示条件：`开启应用信息 = true && url('mode') != 'easy'`
 
 :::tip
 - 默认值配置参考：[配置项](../setting/config.md#applicationinfourl)
@@ -499,7 +503,7 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 
 用于设置获取用户信息的接口地址，开启了用户信息后在页面加载之前会请求此接口并返回用户信息对象
 - 默认值：自动获取配置项`api.userInfoUrl` 配置的地址
-- 显示条件：`开启用户信息 = true`
+- 显示条件：`开启用户信息 = true && url('mode') != 'easy'`
 
 :::tip
 - 默认值配置参考：[配置项](../setting/config.md#userinfourl)
@@ -511,7 +515,7 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 
 用于设置页面是否必须登录才能显示的权限，开启后将会在页面加载之前先获取用户信息是否已经登录，未登录则跳转到登录界面
 - 默认值：`false`
-- 显示条件：`开启用户信息 = true`
+- 显示条件：`开启用户信息 = true && url('mode') != 'easy'`
 ##### 判断字段【switchUserInfoFiledName】
 <img :src="$withBase('/images/attr/page_attr_switchUserInfoFiledName.jpg')" style="margin-top:10px" alt="预览效果" />
 
@@ -545,7 +549,7 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 
 用于设置用户完成个性化配置后保存的地址
 - 默认值：自动获取配置项`api.saveUserCustomizationUrl` 配置的地址
-- 显示条件：`用户个性化定制 = true`
+- 显示条件：`用户个性化定制 = true && url('mode') != 'easy'`
 :::tip
 - 默认值配置参考：[配置项](../setting/config.md#saveusercustomizationurl)
 - 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
@@ -555,7 +559,7 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 
 用于设置页面加载时候获取当前用户个性化后的数据接口地址
 - 默认值：自动获取配置项`api.userCustomizationUrl` 配置的地址
-- 显示条件：`用户个性化定制 = true`
+- 显示条件：`用户个性化定制 = true && url('mode') != 'easy'`
 :::tip
 - 默认值配置参考：[配置项](../setting/config.md#usercustomizationurl)
 - 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
@@ -572,13 +576,13 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 
 用于设置调用外部的websocket的初始化的方法名称
 - 默认值：自动获取配置项`websocket.websocketInitEventName`
-- 显示条件：`开启websocket监听 = true`
+- 显示条件：`开启websocket监听 = true && url('mode') != 'easy'`
 
 ##### 连接打开监听方法名【websocketOpenEvent】
 
 用于外部的websocket打开的时候调用此处设置的方法名
 - 默认值：自动获取配置项`websocket.websocketOpenEventName`
-- 显示条件：`开启websocket监听 = true`
+- 显示条件：`开启websocket监听 = true && url('mode') != 'easy'`
 
 ##### 自定义打开处理函数【websocketOpenFunction】
 
@@ -590,6 +594,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
     "customParam":"自定义的参数"
 }
 ```
+- 显示条件：`开启websocket监听 = true && url('mode') != 'easy'`
 - 支持多选：`是`
 :::tip
 自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
@@ -599,7 +604,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 
 用于外部的websocket监听接收到消息的时候调用此处设置的方法名
 - 默认值：自动获取配置项`websocket.websocketMessageEventName`
-- 显示条件：`开启websocket监听 = true`
+- 显示条件：`开启websocket监听 = true && url('mode') != 'easy'`
 
 ##### 接收消息自定义函数【websocketOpenFunction】
 
@@ -612,6 +617,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
     "msgData":"websocket接收到的消息"
 }
 ```
+- 显示条件：`开启websocket监听 = true && url('mode') != 'easy'`
 - 支持多选：`是`
 :::tip
 自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
@@ -623,6 +629,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 
 用于设置页面是否启用主题风格切换功能，开启后将会在页面加载之前根据设置的获取主题方式获取用户存储的主题信息并存储到`IDM.theme` 中
 - 默认值：`false`
+- 显示条件：`url('mode') != 'easy'`
 :::tip
 获取用户信息只需要调用 `IDM.theme.getCurrentThemeInfo()` 即可获取
 :::
@@ -634,7 +641,7 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 2. 自定义接口：通过直接填写接口地址来实现获取用户设置的主题信息
 3. 页面结果集：通过页面属性中的页面接口属性中接口请求成功后返回的结果集作为用户设置的主题结果
 - 默认值：`自定义函数`
-- 显示条件：`开启应用主题 = true`
+- 显示条件：`开启应用主题 = true && url('mode') != 'easy'`
 ##### 接口地址【themeInterfaceUrl】
 <img :src="$withBase('/images/attr/page_attr_themeInterfaceUrl.jpg')" style="margin-top:10px" alt="预览效果" />
 
@@ -741,6 +748,9 @@ config信息验证失败会执行error函数，如签名过期导致验证失败
 <img :src="$withBase('/images/attr/page_attr_resourceList.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于加载框架之外或自定义的脚本与样式，此处是一个以子表形式展示的控件，支持新增和删除以及调整行数
+
+- 显示条件：`url('mode') != 'easy'`
+
 :::tip
 此处设置的资源不会在开发工具中加载，只有在渲染模式下才会加载生效
 :::
@@ -781,6 +791,9 @@ defer解释请参考： [async](https://www.w3school.com.cn/html5/att_script_def
 <img :src="$withBase('/images/attr/page_attr_interfaceList.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于页面需要自定义请求接口的设置，例如页面的所有组件都是用的一个请求返回的结果，在这种模式下此属性就会有效果，此处是一个以子表形式展示的控件，支持新增和删除以及调整行数
+
+- 显示条件：`url('mode') != 'easy'`
+
 :::tip
 此处设置的页面接口不会在开发工具中加载，只有在渲染模式下才会加载生效
 
@@ -885,6 +898,9 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
     "_this":"当前渲染引擎的this对象"
 }
 ```
+
+- 显示条件：`url('mode') != 'easy'`
+
 - 支持多选：`是`
 :::tip
 自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
@@ -901,6 +917,9 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
     "_this":"当前渲染引擎的this对象"
 }
 ```
+
+- 显示条件：`url('mode') != 'easy'`
+
 - 支持多选：`是`
 :::tip
 自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
@@ -908,6 +927,9 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 ### 控制中心设置
 
 用于设置组件的控制中心（动态属性或可以理解为在渲染引擎上组件个性化定制）的抽屉式弹出框样式风格等基本信息。
+
+- 显示条件：`url('mode') != 'easy'`
+
 :::tip
 该设置项只有在预览时候才能看到效果。更详细的用法参考：组件开发的 [控制中心](../moduledevelop/controlcenter.md)
 :::
