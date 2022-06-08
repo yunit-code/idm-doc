@@ -52,15 +52,17 @@
      └─ vue.config.js  # <- 脚手架的配置文件
   ```
 
-  ## idm-module-react
+## idm-module-react
 
 基于[React](https://reactjs.org/)开发的组件脚手架
+
 - **脚手架地址**
+
   [https://github.com/web-csq/idm-module-react/](https://github.com/web-csq/idm-module-react/)
 
-:::warning
-由于idm框架使用了`antd-vue`，在`idm-module-react`中如果使用了`antd-react`组件，在idm配置页面时，与右侧配置栏的属性控件可能会产生样式冲突
-:::
+  :::warning
+  由于idm框架使用了`antd-vue`，在`idm-module-react`中如果使用了`antd-react`组件，在idm配置页面时，与右侧配置栏的属性控件可能会产生样式冲突
+  :::
 
 - **目录结构**
   ```bash
