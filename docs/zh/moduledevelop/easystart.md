@@ -17,13 +17,6 @@ v14.17.0
 无需准备任何环境
 ## 脚手架初始化
 - **步骤1**: 创建并进入一个新目录
-
-```bash
-mkdir packageName
-cd packageName
-```
-## 脚手架初始化
-- **步骤1**: 创建并进入一个新目录
 <CodeGroup>
   <CodeGroupItem title="Both" active>
 
@@ -45,10 +38,7 @@ git clone https://github.com/yunit-code/idm-module-vue.git
 ```
 
   </CodeGroupItem>
-</CodeGroup>
-
-<CodeGroup>
-  <CodeGroupItem title="React" active>
+  <CodeGroupItem title="React">
 
 ```bash
 git clone https://github.com/web-csq/idm-module-react.git
@@ -79,10 +69,7 @@ npm run serve
 ```
 
   </CodeGroupItem>
-</CodeGroup>
-
-<CodeGroup>
-  <CodeGroupItem title="React" active>
+  <CodeGroupItem title="React">
 
 ```bash
 npm start
