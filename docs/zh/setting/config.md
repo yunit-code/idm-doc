@@ -982,6 +982,14 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
   用于设置页面属性的 [开启JS-SDK功能](../guide/developtool.md#开启JS-SDK功能【switchweixinjssdk】) 的默认值。
 
+### defaultOpenPulltorefresh
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  用于设置页面属性的 [开启下拉刷新](../guide/developtool.md#开启下拉刷新【openPulltorefresh】) 的默认值。
+
 ## websocket
 
 主要用来对整个框架的websocket消息配置的属性归类
