@@ -22,6 +22,19 @@ v14.17.0
 mkdir packageName
 cd packageName
 ```
+## 脚手架初始化
+- **步骤1**: 创建并进入一个新目录
+<CodeGroup>
+  <CodeGroupItem title="Both" active>
+
+```bash
+mkdir packageName
+cd packageName
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
 - **步骤2**: 初始化脚手架
 
 <CodeGroup>
@@ -34,10 +47,20 @@ git clone https://github.com/yunit-code/idm-module-vue.git
   </CodeGroupItem>
 </CodeGroup>
 
+<CodeGroup>
+  <CodeGroupItem title="React" active>
+
+```bash
+git clone https://github.com/web-csq/idm-module-react.git
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
 - **步骤3**: 安装脚手架依赖
 
 <CodeGroup>
-  <CodeGroupItem title="Vue" active>
+  <CodeGroupItem title="Both" active>
 
 ```bash
 npm i
@@ -58,11 +81,20 @@ npm run serve
   </CodeGroupItem>
 </CodeGroup>
 
+<CodeGroup>
+  <CodeGroupItem title="React" active>
+
+```bash
+npm start
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
 - **步骤5**: 在浏览器中输入`http://localhost:8080/index.html#/?className=IText`地址访问您的组件
   :::tip
   参数className为组件的类名
   :::
-
 ## 开始开发
 在开始开发之前建议先了解下 [脚手架目录结构](./scaffoldtoc.md)
 ### Vue
