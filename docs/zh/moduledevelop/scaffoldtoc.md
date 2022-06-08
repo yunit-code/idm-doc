@@ -58,7 +58,7 @@
 - **脚手架地址**
   [https://github.com/web-csq/idm-module-react/](https://github.com/web-csq/idm-module-react/)
 
-:::tip
+:::warning
 由于idm框架使用了`antd-vue`，在`idm-module-react`中如果使用了`antd-react`组件，在idm配置页面时，与右侧配置栏的属性控件可能会产生样式冲突
 :::
 
