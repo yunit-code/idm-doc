@@ -17,11 +17,17 @@ v14.17.0
 无需准备任何环境
 ## 脚手架初始化
 - **步骤1**: 创建并进入一个新目录
+<CodeGroup>
+  <CodeGroupItem title="Both" active>
 
 ```bash
 mkdir packageName
 cd packageName
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
+
 - **步骤2**: 初始化脚手架
 
 <CodeGroup>
@@ -34,10 +40,20 @@ git clone https://github.com/yunit-code/idm-module-vue.git
   </CodeGroupItem>
 </CodeGroup>
 
+<CodeGroup>
+  <CodeGroupItem title="React" active>
+
+```bash
+git clone https://github.com/web-csq/idm-module-react.git
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
 - **步骤3**: 安装脚手架依赖
 
 <CodeGroup>
-  <CodeGroupItem title="Vue" active>
+  <CodeGroupItem title="Both" active>
 
 ```bash
 npm i
@@ -53,6 +69,16 @@ npm i
 
 ```bash
 npm run serve
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+<CodeGroup>
+  <CodeGroupItem title="React" active>
+
+```bash
+npm start
 ```
 
   </CodeGroupItem>
@@ -212,12 +238,10 @@ export default {
 - **步骤3**: 在`src\components\`目录下新建一个与组件类名同名的`DemoText.tsx`组件代码文件。
 ```tsx
 import { Component } from 'react'
-
-class DemoText extends Component<{}, {}> {
+class DemoText extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        id: '',
         propData: {
           htmlTitle: '测试文本'
         },
@@ -229,11 +253,14 @@ class DemoText extends Component<{}, {}> {
     this.setState({ ...this.state, propData })
   }
   render() {
+    const { id } = this.props
     const { propData } = this.state
-    return <div>{propData.htmlTitle}</div>
+    return <div idm-ctrl="idm_module" idm-ctrl-id={ id }>
+      <div>{propData.htmlTitle}</div>
+      <div>{propData.text}</div>
+    </div>
   }
 }
-
 export default DemoText
 
 ```

@@ -58,7 +58,7 @@
   [https://github.com/web-csq/idm-module-react/](https://github.com/web-csq/idm-module-react/)
 
 :::tip
-由于idm框架使用了`antd-vue`，在`idm-module-react`中可以直接使用`antd-react`组件，不用担心过量引入`antd-creat`的js文件自动`tree shaking`
+由于idm框架使用了`antd-vue`，在`idm-module-react`中可以直接使用`antd-react`组件，不用担心过量引入，`antd-creat`的js文件自动`tree shaking`
 :::
 
 - **目录结构**

@@ -206,12 +206,10 @@ export default {
 - **步骤3**: 在`src\components\`目录下新建一个与组件类名同名的`DemoText.tsx`组件代码文件。
 ```tsx
 import { Component } from 'react'
-
-class DemoText extends Component<{}, {}> {
+class DemoText extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        id: '',
         propData: {
           htmlTitle: '测试文本'
         },
@@ -223,11 +221,14 @@ class DemoText extends Component<{}, {}> {
     this.setState({ ...this.state, propData })
   }
   render() {
+    const { id } = this.props
     const { propData } = this.state
-    return <div>{propData.htmlTitle}</div>
+    return <div idm-ctrl="idm_module" idm-ctrl-id={ id }>
+      <div>{propData.htmlTitle}</div>
+      <div>{propData.text}</div>
+    </div>
   }
 }
-
 export default DemoText
 
 ```
