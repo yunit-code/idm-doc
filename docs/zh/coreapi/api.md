@@ -1642,6 +1642,68 @@
   ```
   此方法用于获取缓存池中的数据
 
+## page
+此分类为页面全局功能控制信息存储的公共方法分类，此分类需要追加分类名（IDM.page.方法名）访问下列的方法。
+### getPullToRefreshStatus
+- **定义**：
+
+  `getPullToRefreshStatus()`
+- **用法**：
+  ``` js
+  IDM.page.getPullToRefreshStatus() // => true or false
+  ```
+  用于获取当前页面下拉刷新功能的开启状态，返回`true`则是已经开启，返回`false`则是关闭或禁用状态
+### getPullToRefreshPtr
+- **定义**：
+
+  `getPullToRefreshPtr()`
+- **用法**：
+  ``` js
+  IDM.page.getPullToRefreshPtr
+  ```
+  返回下拉刷新PullToRefresh带有destroy()方法的唯一 ptr 实例。
+
+  :::tip
+  实例可参考 [PullToRefresh](https://github.com/BoxFactura/pulltorefresh.js)
+  :::
+
+### stopPullToRefresh
+- **定义**：
+
+  `stopPullToRefresh()`
+- **用法**：
+  ``` js
+  IDM.page.stopPullToRefresh()
+  ```
+  停止禁用页面下拉刷新，比如有手势操作其他功能的时候不想页面也被下拉刷新出现可以通过调用此方法禁用
+
+### startPullToRefresh
+- **定义**：
+
+  `startPullToRefresh()`
+- **参数**：
+  - `{PullToRefresh} [ptr]`
+
+- **用法**：
+  ``` js
+  IDM.page.startPullToRefresh()
+  //以下示例为渲染引擎下拉刷新的部分代码
+  const ptr = PullToRefresh.init({
+    mainElement: 'body',
+    instructionsPullToRefresh:"下拉刷新",
+    instructionsReleaseToRefresh:"松手刷新",
+    instructionsRefreshing:"刷新中",
+    onRefresh() {
+      that.initPulltorefreshHandle();
+    },
+    shouldPullToRefresh:function(){
+      return IDM.page.getPullToRefreshStatus();
+    }
+  });
+  IDM.page.startPullToRefresh(ptr)
+  ```
+  启用允许页面下拉刷新，比如有手势操作其他功能的时候不想页面也被下拉刷新出现会通过`IDM.page.stopPullToRefresh()`禁用刷新，当需要再次启用的时候可调用`IDM.page.startPullToRefresh()`方法启用刷新
+
 ## app
 此分类为应用程序信息存储的公共方法分类，此分类需要追加分类名（IDM.app.方法名）访问下列的方法。
 ### getAppInfo
