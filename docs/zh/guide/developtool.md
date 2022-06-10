@@ -498,6 +498,22 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 :::tip
 获取用户信息只需要调用 `IDM.user.getCurrentUserInfo()` 即可获取
 :::
+
+##### 开启会话保持【openSessionKeep】
+开启后如果登录用户信息丢失将会根据登录时候的令牌进行静默重新登录，从而保持登录用户的不会掉线
+- 默认值：自动获取配置项`sessionKeep.defaultOpenSessionKeep` 配置的状态
+- 显示条件：`开启用户信息 = true`
+
+##### 静默登录接口地址【silentReLoginUrl】
+
+用于设置静默重新登录的接口地址
+- 默认值：自动获取配置项`sessionKeep.defaultSilentReLoginUrl` 配置的地址
+- 显示条件：`开启用户信息 = true && url('mode') != 'easy'`
+
+:::tip
+- 默认值配置参考：[配置项](../setting/config.md#defaultsilentreloginurl)
+- 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
+:::
 ##### 用户信息接口地址【userInfoUrl】
 <img :src="$withBase('/images/attr/page_attr_userInfoUrl.jpg')" style="margin-top:10px" alt="预览效果" />
 

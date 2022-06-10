@@ -937,7 +937,6 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   ```json
   [
       "/resource/js/public.js",
-      "/resource/js/dreamweb-core.js",
       "/websocket/webscoket.js"
   ]
   ```
@@ -1087,3 +1086,54 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
     }
   }
   ```
+
+## sessionKeep
+
+主要用来对整个框架的用户登录状态是session存储的但是又需要对会话信息持久化的时候属性归类
+
+### cacheKeyName
+- 值类型：`string`
+
+- 默认值：`idm_sessionkeep_token`
+
+  前端缓存后端生成的密钥名称，可通过以下三种方式存储（包括获取缓存顺序）：
+
+  1. localStorage
+  2. cookie
+  3. url参数
+  
+  :::tip
+  生产的密钥存储请自行进行存储，框架不提供存储方法
+  :::
+
+### defaultOpenSessionKeep
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  用于设置页面属性的 [开启会话保持](../guide/developtool.md#开启会话保持【opensessionkeep】) 的默认值。
+
+### defaultSilentReLoginUrl
+
+- 值类型：`string`
+
+- 默认值：`/silentRelogin`
+
+- 请求方式：`POST`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |参数名为上述配置的[cacheKeyName](./config.md#cachekeyname)属性|当前登录用户缓存的令牌|
+
+- 返回结构：
+
+  需要返回以下格式数据：
+  ```json
+  {
+    "code":"200"
+  }
+  ```
+  用于设置页面属性的 [静默登录接口地址](../guide/developtool.md#静默登录接口地址【silentreloginurl】) 的默认值。
