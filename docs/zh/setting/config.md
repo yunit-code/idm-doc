@@ -845,6 +845,13 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 ## applications
 
 主要用来对整个框架的功能进行配置的属性归类
+### defaultTitle
+- 值类型：`string`
+
+- 默认值：`Idm preview default title`
+
+用于设置在渲染引擎中当页面标题如果为空不设置的时候显示的默认标题
+
 ### defaultLoginPageUrl
 - 值类型：`string`
 
