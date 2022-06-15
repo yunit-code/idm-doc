@@ -390,6 +390,73 @@
   ```
   强制更新Vue的Data，更多详细的内部方法可参考：[Vue.set](https://cn.vuejs.org/v2/api/#Vue-set)
   
+### dateFormat
+- **定义**：
+
+  `dateFormat(timestamp, formats)`
+- **参数**：
+  - `{string} [timestamp]`
+  - `{string} [formats]`
+  
+- **用法**：
+  ``` js
+  IDM.dateFormat(new Date().getTime(),"Y年m月d日") // => '2022年06月15日'
+
+  IDM.dateFormat("2022-06-15","Y年m月d日") // => '2022年06月15日'
+
+  IDM.dateFormat("2022-06-15 23:10:00","Y年m月d日 H时i分") // => '2022年06月15日 23时10分'
+
+  IDM.dateFormat("2022-06-15 23:10:33","Y-m-d H:i:s") // => '2022-06-15 23:10:33'
+  ```
+  对日期时间进行格式化显示
+
+### getCookie
+- **定义**：
+
+  `getCookie(t)`
+- **参数**：
+  - `{string} [t]`
+  
+- **用法**：
+  ``` js
+  IDM.getCookie("cookieKey") // => '返回cookie的名称'
+  ```
+  根据cookie名称获取cookie的值
+
+### hex8ToRgbaString
+- **定义**：
+
+  `hex8ToRgbaString(hex8)`
+- **参数**：
+  - `{string} [hex8]`
+  
+- **用法**：
+  ``` js
+  IDM.hex8ToRgbaString("#FF0000FF") // => 'rgba(255,0,0,1)'
+
+  IDM.hex8ToRgbaString("#000000FF") // => 'rgba(0,0,0,1)'
+
+  IDM.hex8ToRgbaString("#000000") // => '#000000'
+  ```
+  根据hex8格式的颜色值转换为rgba的字符串格式颜色值
+
+### hex8ToRgbaObject
+- **定义**：
+
+  `hex8ToRgbaObject(hex8)`
+- **参数**：
+  - `{string} [hex8]`
+  
+- **用法**：
+  ``` js
+  IDM.hex8ToRgbaObject("#FF0000FF") // => {r: 255, g: 0, b: 0, a: 1}
+  
+  IDM.hex8ToRgbaObject("#000000FF") // => {r: 0, g: 0, b: 0, a: 1}
+
+  IDM.hex8ToRgbaObject("#000000") // => '#000000'
+  ```
+  根据hex8格式的颜色值转换为rgba的对象格式颜色值
+
 ## array
 此分类为操作数组的公共方法分类，此分类需要追加分类名（`IDM.array.方法名`）访问下列的方法。
 ### ensure
