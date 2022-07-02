@@ -2053,6 +2053,38 @@
   详细使用请参考组件开发=>组件属性=>[反向设置属性](../moduledevelop/attributes.md#反向设置属性)
   :::
 
+### getDragWorkspaceInfo
+- **定义**：
+
+  `getDragWorkspaceInfo()`
+
+- **用法**：
+  ``` js
+  IDM.develop.getDragWorkspaceInfo()
+  ```
+- **返回值**：
+  ``` json
+  {
+    "key": "dragworkspace",
+    "width": 400,
+    "height": 300,
+    //非全屏左侧组件市场打开状态
+    "leftAreaOpened": true,
+    //非全屏右侧组件属性打开状态
+    "rightAreaOpened": true,
+    //非全屏顶部区域打开状态
+    "topAreaOpened": true,
+    //非全屏底部区域打开状态
+    "bottomAreaOpened": true,
+    //全屏状态下的临时打开窗口
+    "leftAreaLsOpened": false,
+    "rightAreaLsOpened": false,
+    "topAreaLsOpened": false,
+    "bottomAreaLsOpened": false,
+  }
+  ```
+  此方法用于获取当前拖拽区域、设计工具的一些信息
+
 ## controlcenter
 此分类为操作组件的控制中心(动态属性)方法分类，此分类需要追加分类名（IDM.controlcenter.方法名）访问下列的方法。
 ### getModuleAttrList
