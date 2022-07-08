@@ -9,6 +9,7 @@
 - **目录结构**
   ```bash
   └─ idm-module-vue  # <- 脚手架名，建议改成相应的包名
+     ├─ scripts  # <- npm脚本目录
      ├─ public  # <- 静态资源文件目录
      |  └─ lib  # <- 核心包目录，此目录的不会被打包进去，只有组件单独访问的时候才会使用
      |  |  └─ idm.base.css  # <- idm提供的基本样式文件，所有组件都需要基于此样式进行开发
@@ -27,7 +28,6 @@
      |  |  └─ main.js  # <- 组件包加载入口，此文件不需要做任何改动，否则组件加载可能异常
      |  └─ favicon.ico  # <- ico图标
      |  └─ index.html  # <- 组件包的页面
-     ├─ scripts  # <- npm脚本目录
      └─ src  # <- 源码目录
      |  └─ api  # <- 可用于存放公共api封装的目录
      |  └─ assets  # <- 静态资源文件目录
@@ -60,14 +60,15 @@
 
   [https://github.com/web-csq/idm-module-react/](https://github.com/web-csq/idm-module-react/)
 
-  :::warning
-  由于idm框架使用了`antd-vue`，在`idm-module-react`中如果使用了`antd-react`组件，在idm配置页面时，与右侧配置栏的属性控件可能会产生样式冲突
-  :::
+::: warning
+ 由于idm框架使用了`antd-vue`，在`idm-module-react`中可以使用`idm-react-ant`UI组件，避免和idm-core和其他组件中的样式冲突
+:::
 
 - **目录结构**
   ```bash
   └─ idm-module-react  # <- 脚手架名，建议改成相应的包名
      ├─ config  # <- 项目打包配置文件
+     ├─ scripts  # <- npm脚本目录
      ├─ public  # <- 静态资源文件目录
      |  └─ lib  # <- 核心包目录，此目录的不会被打包进去，只有组件单独访问的时候才会使用
      |  |  └─ idm.base.css  # <- idm提供的基本样式文件，所有组件都需要基于此样式进行开发
