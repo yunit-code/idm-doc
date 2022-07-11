@@ -27,7 +27,9 @@
     "relationId": "ceslayout_001",
     "relationType": "bottom",
     "type": "platform",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "routerId": "cVL6xqiyE8YHfUZt",
+    "pageid": "PAGE_cVL6xqiyE8YHfUZtcVL6xqiyE8YHfUZt"
 }
 ```
 - 数据结构内相关key说明：
@@ -60,3 +62,5 @@
 |version|组件的版本编号|
 |moduleReload|提供组件重新加载的方法，在组件内可以重复调用此方法加载自己本身，两个参数（packageid:组件实例ID,innerContainerIndex：要加载的内部容器ID，没有不传即可）|
 |mountComplete|组件内部全部加载完成需要回调此渲染引擎设置的加载方法，一个参数（moduleObject：当前组件对象，直接回传即可）|
+|routerId|路由ID，每次使用内置打开的页面都会有一个新的路由ID|
+|pageid|页面ID，当前组件所在页面ID|
