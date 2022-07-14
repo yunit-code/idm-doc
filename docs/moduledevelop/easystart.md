@@ -91,7 +91,13 @@ npm start
 
 ## 开始开发
 在开始开发之前建议先了解下 [脚手架目录结构](./scaffoldtoc.md)
+
+::: tip
+在[idm组件开发脚手架](./scaffoldtoc.md)里，可以通过脚本直接生成组件模板，只需要`npm run generate`即可
+:::
+
 ### Vue
+
 - **步骤1**: 在`public\static\config.json`文件中注册一个新的组件类名为`Test001`的组件。
 ```json
 {
