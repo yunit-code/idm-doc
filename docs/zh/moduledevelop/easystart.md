@@ -47,6 +47,14 @@ git clone https://github.com/web-csq/idm-module-react.git
   </CodeGroupItem>
 </CodeGroup>
 
+:::tip
+上述最新脚手架已支持单页面应用，如果您的IDM还是1.X.X版本，请下载0.1.1的脚手架
+
+[Vue-0.1.1](https://github.com/yunit-code/idm-module-vue/releases/tag/0.1.1)
+
+[React-0.1.1](https://github.com/web-csq/idm-module-react/releases/tag/0.1.1)
+:::
+
 - **步骤3**: 安装脚手架依赖
 
 <CodeGroup>
