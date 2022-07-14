@@ -12,7 +12,7 @@
 
   N个完善与优化
 
-[下载2.0.0版本](https://github.com/yunit-code/yunit-code.github.io/releases/download/2.0.0/idmcore_2.0.0.rar)
+[下载2.0.0版本](https://github.com/yunit-code/yunit-code.github.io/releases/download/2.0.0/idmcore_2.0.0.zip)
 ## 1.0.0（2022-04-05）
 首个正式版本发布
 
