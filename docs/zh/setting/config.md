@@ -996,6 +996,30 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
   用于设置页面属性的 [开启下拉刷新](../guide/developtool.md#开启下拉刷新【openPulltorefresh】) 的默认值。
 
+### httpInCommonHeaderList
+
+- 值类型：`Array`
+
+- 默认值：[]
+
+  用于设置所有IDM提供的请求方法设置统一的请求头信息，此处可以获取多方位的信息作为http的headers，方便后端做不同的处理
+
+- 数组中每个对象格式：
+  ```json
+  {
+    "name":"要发出到后端的请求头名称",
+    "type":"数据类型",
+    "express":"根据上面的类型填缓存KEY、表达式"
+  }
+  ```
+  字段属性解释：
+  - `name`：要发出到后端的请求头名。
+  - `type`：数据类型，有以下几种类型`constant`：常量、`cache`：从缓存中读取(优先cookie、其次localStorage、最后sessionStorage)、`cookie`：从cookie读取、`localStorage`：从localStorage中读取、`url`:从url参数中读取、`express`：IDM的表达式，可以获取IDM对象等等。
+  - `express`：根据上面的数据类型填缓存KEY或表达式。
+
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
 ## websocket
 
 主要用来对整个框架的websocket消息配置的属性归类

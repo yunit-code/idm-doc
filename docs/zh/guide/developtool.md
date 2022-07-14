@@ -227,6 +227,17 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 - 标识：`previewLoadColor`
 - 默认值：`@[IDM.setting.applications.defaultPreviewLoadColor]`
 
+#### vconsole【showVconsole】
+用于设置此页面是否开启vconsole日志调试功能
+- 标识：`showVconsole`
+- 默认值：false
+
+- 显示条件：`url('mode') != 'easy'`
+
+:::tip
+此属性在单页应用下只有首次打开的页面的设置才有效，其他子页面都是跟随主页面的设置而定的。
+:::
+
 ### 水印设置
 此级为页面级水印设置属性归类分组，主要用于设置页面级水印的一些基本样式。
 #### 水印方式【watermarkType】
@@ -438,7 +449,9 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 此级为复杂的设置属性归类分组，主要用于设置下拉刷新、应用信息、用户信息、应用主题、扩展脚本样式、页面接口、自定义加载函数等等。
 
 #### 下拉刷新
-
+  :::tip
+  此属性只有在移动端才生效，并且在单页应用下只有首次打开的页面的设置才有效，其他子页面都是跟随主页面的设置而定的。
+  :::
 ##### 开启下拉刷新【openPulltorefresh】
 
 用于设置页面是否开启下拉刷新功能，开启后将会加载下拉刷新功能，注意：此功能只在移动端生效
@@ -464,7 +477,9 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 - 支持多选：`是`
 
 #### 应用信息
-
+  :::tip
+  此属性在单页应用下只有首次打开的页面的设置才有效，其他子页面都是共享主页面的设置信息。
+  :::
 ##### 开启应用信息【openFetchApplicationInfo】
 <img :src="$withBase('/images/attr/page_attr_openFetchApplicationInfo.jpg')" style="margin-top:10px" alt="预览效果" />
 
@@ -490,6 +505,10 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 如果应用信息返回的数据格式为{"code":200,data:{appName:\"\"}},则会直接取data下面的对象作为应用信息对象，其他情况则直接用返回结果作为应用对象
 :::
 #### 用户信息
+
+  :::tip
+  此属性在单页应用下只有首次打开的页面的设置才有效，其他子页面都是共享主页面的设置信息，只有子页面涉及到开启会话保持时候如果发现重新登录操作了才会去利用子页面设置请求的用户信息重新设置主页面的信息，其他信息都是各自页面互不影响。
+  :::
 ##### 开启用户信息【openFetchUserInfo】
 <img :src="$withBase('/images/attr/page_attr_openFetchUserInfo.jpg')" style="margin-top:10px" alt="预览效果" />
 
@@ -581,8 +600,11 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 - 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
 :::
 #### websocket
+websocket初始化连接，监听等等方法请自行处理，这里只做一个与组件之间的沟通桥梁  
 
-websocket初始化连接，监听等等方法请自行处理，这里只做一个与组件之间的沟通桥梁
+  :::tip
+  此属性在单页应用下只有首次打开的页面的设置才有效，其他子页面都是共享主页面的设置信息。
+  :::
 ##### 开启websocket监听【switchWebSocket】
 
 用于设置页面是否启用websocke功能，开启后将会在页面加载用户信息之后调用初始化websocket方法
@@ -640,6 +662,9 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 :::
 
 #### 应用主题
+  :::tip
+  此属性在单页应用下只有首次打开的页面的设置才有效，其他子页面都是共享主页面的设置信息。
+  :::
 ##### 开启应用主题【openIdmTheme】
 <img :src="$withBase('/images/attr/page_attr_openIdmTheme.jpg')" style="margin-top:10px" alt="预览效果" />
 
@@ -724,6 +749,10 @@ websocket初始化连接，监听等等方法请自行处理，这里只做一�
 #### 微信JS-SDK
 
 用于开启设置微信JS-SDK功能，如果配置的页面有使用到微信APP的功能请开启此项配置
+
+  :::tip
+  此属性在单页应用下只有首次打开的页面的设置才有效，其他子页面都是共享主页面的设置信息。
+  :::
 ##### 开启JS-SDK功能【switchWeixinJSSDK】
 
 开启后将会自动加载微信的js-sdk，并且会根据配置项加载对应的功能
@@ -931,6 +960,122 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
     "urlData":"当前url地址的所有参数JSONObject字符串格式",
     "customParam":"自定义的参数",
     "_this":"当前渲染引擎的this对象"
+}
+```
+
+- 显示条件：`url('mode') != 'easy'`
+
+- 支持多选：`是`
+:::tip
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+:::
+#### 页面挂起事件【pageSuspendFunction】
+
+在单页应用下的时候如果此页面挂起之后会调用此处设置的方法，接收参数格式为：
+```json
+{
+    "pageid":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "router":"当前路由对象",
+    "params":"请求的参数对象"
+}
+```
+
+- 显示条件：`url('mode') != 'easy'`
+
+- 支持多选：`是`
+:::tip
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+:::
+#### 页面激活事件【pageActivatedFunction】
+
+在单页应用下的时候如果此页面激活之后会调用此处设置的方法，接收参数格式为：
+```json
+{
+    "pageid":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "router":"当前路由对象",
+    "params":"请求的参数对象"
+}
+```
+
+- 显示条件：`url('mode') != 'easy'`
+
+- 支持多选：`是`
+:::tip
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+:::
+#### 页面不缓存卸载前事件【pageNoKeepBeforeDestroyFunction】
+
+在单页应用下的时候如果此页面不缓存卸载前会调用此处设置的方法，接收参数格式为：
+```json
+{
+    "pageid":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "router":"当前路由对象",
+    "params":"请求的参数对象"
+}
+```
+- 返回值：如果返回false则不进行跳转页面，会阻断其组件内发起的页面打开
+
+- 显示条件：`url('mode') != 'easy'`
+
+- 支持多选：`否`
+:::tip
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+:::
+#### 页面不缓存卸载后事件【pageNoKeepDestroyedFunction】
+
+在单页应用下的时候如果此页面不缓存卸载后会调用此处设置的方法，接收参数格式为：
+```json
+{
+    "pageid":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "router":"当前路由对象",
+    "params":"请求的参数对象"
+}
+```
+
+- 显示条件：`url('mode') != 'easy'`
+
+- 支持多选：`是`
+:::tip
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+:::
+#### 页面返回卸载前事件【pageBackBeforeDestroyFunction】
+
+在单页应用下的时候如果此页面返回卸载前会调用此处设置的方法，接收参数格式为：
+```json
+{
+    "pageid":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "router":"当前路由对象",
+    "params":"请求的参数对象"
+}
+```
+- 返回值：如果返回false则不进行页面返回，会阻断其组件内发起的页面返回(关闭)
+
+- 显示条件：`url('mode') != 'easy'`
+
+- 支持多选：`否`
+:::tip
+自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
+:::
+#### 页面返回卸载后事件【pageBackDestroyedFunction】
+
+在单页应用下的时候如果此页面返回卸载后会调用此处设置的方法，接收参数格式为：
+```json
+{
+    "pageid":"当前配置的页面ID",
+    "urlData":"当前url地址的所有参数JSONObject字符串格式",
+    "customParam":"自定义的参数",
+    "router":"当前路由对象",
+    "params":"请求的参数对象"
 }
 ```
 
