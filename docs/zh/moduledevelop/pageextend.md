@@ -44,6 +44,7 @@
                     customFunction.forEach((item) => {
                     window[item.name] &&
                         window[item.name].call(this, {
+                        routerId:this.moduleObject.routerId
                         customParam: item.param,
                         _this: this,
                         itemObject
@@ -56,6 +57,10 @@
     <style lang="scss"  scoped>
     </style>
     ```
+
+    :::warning
+    建议执行call选择的动作时候一定要把routerId回传，否则如果在单页面情况的时候只会去对主页面的组件执行相关操作，例如：打开弹窗、关闭弹窗、显示组件、隐藏组件都只会对主页面（第一次打开的页面）才有效。
+    :::
 - **步骤3：配置组件选择方法**
 
   在使用IDM的开发工具修改组件属性的区域找到上述步骤1配置的动作选择属性，如下图：

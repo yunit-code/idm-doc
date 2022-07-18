@@ -826,6 +826,87 @@
   :::tip
   如果没有传`query`参数，则自动优先获取hash后面拼接的参数，如果hash后面没有参数再获取第一个问号后面的参数。
   :::
+## router
+此分类为操作单页面应用之间的页面跳转相关的公共方法分类，此分类需要追加分类名（`IDM.router.方法名`）访问下列的方法。
+
+:::tip
+组件内获取路由ID可以直接`this.moduleObject.routerId`获取，参考[组件开发-组件对象](../moduledevelop/moduleobject.md)
+:::
+### push
+- **定义**：
+
+  `push(from,next,keep,params,enterAnim,quitAnim)`
+- **参数**：
+  - `{String} [from]` 当前页面ID
+  - `{String} [next]` 下一个页面ID
+  - `{Object or Boolean} [keep]` true 为保留缓存页面，false为不缓存，或者为对象格式{keep,params,enterAnim,quitAnim}
+  - `{Object} [params]` 要传递的参数对象
+  - `{String} [enterAnim]` 进入动画名称
+  - `{String} [quitAnim]` 退出动画名称
+
+- **返回值**：`string` 当前生成的路由ID
+
+- **用法**：
+  ``` js
+  IDM.router.push("当前页面ID","下一个页面ID",true,{a:1,b:2},"","");
+  // 跳转页面并返回结果
+  // => 'lZbDZhbGj3ZeLU92'
+  
+  //此效果与上述效果一致
+  IDM.router.push("当前页面ID","下一个页面ID",{
+    keep:true,
+    params:{a:1,b:2},
+    enterAnim:"",
+    quitAnim:""
+  });
+  // 跳转页面并返回结果
+  // => 'lZbDZhbGj3ZeLU92'
+  ```
+  单页面应用的路由跳转页面，可以搭配组件属性开发单页面情况下进行页面跳转。
+### back
+- **定义**：
+
+  `back(routerId,params)`
+- **参数**：
+  - `{String} [routerId]` 要返回的路由ID
+  - `{Object} [params]` 携带返回的参数
+
+- **返回值**：`string` 当前返回的路由对象
+
+- **用法**：
+  ``` js
+  IDM.router.back("lZbDZhbGj3ZeLU92");
+  ```
+  单页面应用的路由返回关闭页面，可以搭配组件属性开发单页面情况下进行页面返回操作。
+### getParam
+- **定义**：
+
+  `getParam(routerId)`
+- **参数**：
+  - `{String} [routerId]` 要获取参数的路由ID
+
+- **返回值**：`Object` 当前路由传递的参数
+
+- **用法**：
+  ``` js
+  IDM.router.getParam("lZbDZhbGj3ZeLU92");
+  ```
+  单页面应用如果要获取上一个页面打开传递的参数可以通过此方法获取。
+### getRouter
+- **定义**：
+
+  `getRouter(routerId)`
+- **参数**：
+  - `{String} [routerId]` 要获取路由对象的路由ID
+
+- **返回值**：`Object` 当前路由对象
+
+- **用法**：
+  ``` js
+  IDM.router.getRouter("lZbDZhbGj3ZeLU92");
+  ```
+  要获取当前路由的对象信息可以通过此方法获取
+
 ## validate
 此分类为内容的校验相关的公共方法，此方法（`IDM.validate(arg1,arg2,argN)`）第一个参数为校验类型，第二个参数起为校验所需要的内容，以下列出了可使用的校验类型：
 ### isExternal
