@@ -1708,6 +1708,74 @@
   IDM.theme.setCurrentThemeInfo("blue")
   ```
   用于设置当前登录用户的主题信息，信息初始化参考：页面属性的 [应用主题](../guide/developtool.md#应用主题)
+
+## style
+此分类为设置组件属性样式公共方法分类，此分类需要追加分类名（IDM.style.方法名）访问下列的方法。
+### setBorderStyle
+此方法将设置边框样式的操作进行封装
+- **定义**：
+  `setBorderStyle(styleObject, element)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [element]` 组件配置属性列表中元素
+- **用法**：
+  ```js
+  for (const key in this.propData) {
+    case 'border':
+      IDM.style.setBorderStyle(styleObject, element)
+      break
+  }
+  ```
+
+### setBoxStyle
+此方法将设置内外边距的操作进行封装
+- **定义**：
+  `setBoxStyle(styleObject, element)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [element]` 组件配置属性列表中元素
+- **用法**：
+  ```js
+  for (const key in this.propData) {
+    case 'box':
+      IDM.style.setBoxStyle(styleObject, element)
+      break
+  }
+  ```
+
+### setFontStyle
+此方法将设置字体样式的操作进行封装
+- **定义**：
+  `setFontStyle(styleObject, element)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [element]` 组件配置属性列表中元素
+- **用法**：
+  ```js
+  for (const key in this.propData) {
+    case 'font':
+      IDM.style.setFontStyle(styleObject, element)
+      break
+  }
+  ```
+### generateClassName
+此方法用于批量生成css类名, 方便设置css选择器权重
+- **定义**：
+  `generateClassName(selectorPrefix, subSelectorArray)`
+- **参数**：
+  - `{String} [selectorPrefix]` 前缀选择器
+  - `{Array<String>} [subSelectorArray]` 子级选择器数组
+- **用法**：
+  ```js
+    IDM.setStyleToPageHead(
+        IDM.style.generateClassName(this.moduleObject.id + ' .class', [
+            ` .sub-class-one`,
+            ` .sub-class-two`,
+        ]),
+        styleObject
+    )
+  ```
+
 ## watermark
 此分类为水印设置与关闭的公共方法分类，此分类需要追加分类名（IDM.watermark.方法名）访问下列的方法。
 ### set
