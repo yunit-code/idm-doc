@@ -480,7 +480,9 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       "fontLineHeight": 5,
       "fontLineHeightUnit": "px",
       "fontTextAlign": "center",
-      "fontDecoration": "underline"
+      "fontDecoration": "underline",
+      "fontLetterSpacing": 6,
+      "fontLetterSpacingUnit": "px"
   }
   ```
 ### grid

@@ -1924,10 +1924,11 @@
 ### setBorderStyle
 此方法将设置边框样式的操作进行封装
 - **定义**：
-  `setBorderStyle(styleObject, element)`
+  `setBorderStyle(styleObject, element, isImportant = false)`
 - **参数**：
   - `{Object} [styleObject]` 要设置的样式对象
   - `{Object} [element]` 组件配置属性列表中元素
+  - `{Boolean} [isImportant]` 是否important, 默认false
 - **用法**：
   ```js
   for (const key in this.propData) {
@@ -1940,10 +1941,11 @@
 ### setBoxStyle
 此方法将设置内外边距的操作进行封装
 - **定义**：
-  `setBoxStyle(styleObject, element)`
+  `setBoxStyle(styleObject, element, isImportant = false)`
 - **参数**：
   - `{Object} [styleObject]` 要设置的样式对象
   - `{Object} [element]` 组件配置属性列表中元素
+  - `{Boolean} [isImportant]` 是否important, 默认false
 - **用法**：
   ```js
   for (const key in this.propData) {
@@ -1956,10 +1958,11 @@
 ### setFontStyle
 此方法将设置字体样式的操作进行封装
 - **定义**：
-  `setFontStyle(styleObject, element)`
+  `setFontStyle(styleObject, element, isImportant = false)`
 - **参数**：
   - `{Object} [styleObject]` 要设置的样式对象
   - `{Object} [element]` 组件配置属性列表中元素
+  - `{Boolean} [isImportant]` 是否important, 默认false
 - **用法**：
   ```js
   for (const key in this.propData) {

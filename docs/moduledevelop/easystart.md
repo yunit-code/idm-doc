@@ -93,7 +93,7 @@ npm start
 在开始开发之前建议先了解下 [脚手架目录结构](./scaffoldtoc.md)
 
 ::: tip
-在[idm组件开发脚手架](./scaffoldtoc.md)里，可以通过脚本直接生成组件模板，只需要`npm run generate`即可
+在[idm组件开发脚手架](./scaffoldtoc.md)里，可以通过脚本直接生成组件模板，只需要`npm run gen`即可
 :::
 
 ### Vue
