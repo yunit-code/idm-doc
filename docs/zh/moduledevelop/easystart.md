@@ -20,7 +20,7 @@ v14.17.0
 快捷拉取组件开发脚手架，可以安装`idm-cli`，代替下面的前三个步骤
 
 ```bash
-npm i @idm-modules/cli -g
+npm i @idm-modules/cli@latest -g
 idm create <your-project>
 ```
 :::
