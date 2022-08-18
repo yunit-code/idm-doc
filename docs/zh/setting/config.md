@@ -775,6 +775,189 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   只会使用配置项中（[userInfoUrl](config.md#userInfoUrl)）的接口进行加载，页面属性设置中如果修改了是不会加载修改后的接口返回的信息，所以请根据按需开启。
   :::
 
+### scaleOpen
+- 值类型：`boolean`
+
+- 默认值：`true`
+
+  开启开发工具中工作区的放大缩小功能
+
+### scaleList
+- 值类型：`array`
+
+- 默认值：`[25,50,75,100,125,150,200,300,400,600,800,1000]`
+
+  配置开发工具中工作区的放大缩小比例列表
+
+### pageSelectConditionType
+
+配置开发工具中组件属性控件（[页面选择：pageSelect](../moduledevelop/attributes.md#pageselect)）`页面类型`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：
+  ```json
+  [
+    {text:"PC",value:"0"},
+    {text:"移动端",value:"1"},
+    {text:"响应式",value:"2"}
+  ]
+  ```
+
+- **通过接口地址获取结果方式：**
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"PC",value:"0"},...]
+  }
+  ```
+  :::tip
+  此检索条件应用于[pageSelectFetchPageListApi](./config.md#pageselectfetchpagelistapi)接口的`pagetype`参数.
+  :::
+
+### pageSelectConditionSort
+
+配置开发工具中组件属性控件（[页面选择：pageSelect](../moduledevelop/attributes.md#pageselect)）`页面排序`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：
+  ```json
+  [
+    {text:"创建时间正序",value:"cjsjzx"},
+    {text:"创建时间倒序",value:"cjsjdx"},
+    {text:"优先级排序",value:"yxjpx"}
+  ]
+  ```
+
+- **通过接口地址获取结果方式：**
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"创建时间正序",value:"cjsjzx"},...]
+  }
+  ```
+  :::tip
+  此检索条件应用于[pageSelectFetchPageListApi](./config.md#pageselectfetchpagelistapi)接口的`sort`参数.
+  :::
+
+### pageSelectConditionGroup
+
+配置开发工具中组件属性控件（[页面选择：pageSelect](../moduledevelop/attributes.md#pageselect)）`页面分组`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`/ctrl/idm/console/fetchYMFZOptionList`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"首页",value:"index"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"创建时间正序",value:"cjsjzx"},
+    {text:"创建时间倒序",value:"cjsjdx"},
+    {text:"优先级排序",value:"yxjpx"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[pageSelectFetchPageListApi](./config.md#pageselectfetchpagelistapi)接口的`group`参数.
+  :::
+
+### pageSelectFetchPageListApi
+
+用于配置页面列表查询Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/console/fetchIdmListPageData`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |pageIndex|页码|
+  |pageSize|页大小|
+  |searchText|文本框检索条件|
+  |pagetype|页面类型检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
+  |group|页面分组检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
+  |sort|页面排序检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
+
+- 返回结构：
+
+  code返回值为 200 代表成功，否则为失败。
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [
+         {
+            "id": "页面ID，会根据此ID拼接成预览地址",
+            "title": "页面标题",
+            "moduleGroupId": "页面分组Value",
+            "moduleGroupText": "页面分组名称",
+            "pageType": "页面类型Value",
+            "pageRemark": "页面备注",
+            "previewImgJson": "[{\"uid\":\"1642733481374xiV1BZAGIMlDEfym\",\"ourl\":\"/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"size\":\"90KB\",\"src\":\"/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"name\":\"Dingtalk_20220121105100.jpg\",\"width\":1920,\"url\":\"/DreamWeb/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"status\":\"done\",\"height\":937}]"
+         },
+         ...
+        ]
+  }
+  ```
+  :::tip
+  如果返回结果中有`previewImgJson`但是没有`previewImgObject`，则会自动把`previewImgJson`转换为`previewImgObject`，如果存在`previewImgObject`则会直接应用，`previewImgObject`为JSON对象格式。
+  :::
+
 ## document
 
 主要用来对[文档管理](../guide/documentmanage.md)的功能进行配置的属性归类

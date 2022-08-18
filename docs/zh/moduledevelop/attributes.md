@@ -212,33 +212,6 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
 :::
 ## 属性控件
 目前开发工具右侧属性中支持的控件类型有以下几种：
-### actionSelect
-- 中文名：动作选择
-
-- 效果图：
-
-  <img :src="$withBase('/images/attr/page_attr_themeCustomFunction.jpg')" style="margin-top:10px" alt="预览效果" />
-
-- 返回值示例：
-  ```json
-  [
-      {
-          "name": "IdmBuiltin_ShowModule",
-          "param": {
-              "targetModule": [
-                  {
-                      "moduleId": "ceslayout_001",
-                      "moduleName": "页面"
-                  }
-              ]
-          },
-          "idmBuiltin": true
-      }
-  ]
-  ```
-  :::tip
-  返回值示例并不代表一定是此结构，示例中的只是一种情况，实际返回结果是根据选择的动作决定的，需要更加详细请参考：[页面扩展开发](./pageextend.md)
-  :::
 ### border
 - 中文名：边框
 
@@ -879,3 +852,46 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
   :::tip
   返回值示例中的格式是正确的，以数组形式返回，但数组中每个对象里面的具体属性值是根据自己配置的属性返回的。
   :::
+### actionSelect
+- 中文名：动作选择
+
+- 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_themeCustomFunction.jpg')" style="margin-top:10px" alt="预览效果" />
+
+- 返回值示例：
+  ```json
+  [
+      {
+          "name": "IdmBuiltin_ShowModule",
+          "param": {
+              "targetModule": [
+                  {
+                      "moduleId": "ceslayout_001",
+                      "moduleName": "页面"
+                  }
+              ]
+          },
+          "idmBuiltin": true
+      }
+  ]
+  ```
+  :::tip
+  返回值示例并不代表一定是此结构，示例中的只是一种情况，实际返回结果是根据选择的动作决定的，需要更加详细请参考：[页面扩展开发](./pageextend.md)
+  :::
+### pageSelect
+- 中文名：页面选择
+
+- 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_pageselecttest.jpg')" style="margin-top:10px" alt="预览效果" />
+
+- 返回值示例：
+  ```json
+  [
+      {
+          "id": "rndS0VgbZH7niLuU",
+          "title": "页面名称"
+      }
+  ]
+  ```
