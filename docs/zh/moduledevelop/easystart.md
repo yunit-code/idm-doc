@@ -16,6 +16,15 @@ v14.17.0
 ### Jquery
 无需准备任何环境
 ## 脚手架初始化
+::: tip
+快捷拉取组件开发脚手架，可以安装`idm-cli`，代替下面的前三个步骤
+
+```bash
+npm i @idm-modules/cli -g
+idm create <your-project>
+```
+:::
+
 - **步骤1**: 创建并进入一个新目录
 <CodeGroup>
   <CodeGroupItem title="Both" active>
