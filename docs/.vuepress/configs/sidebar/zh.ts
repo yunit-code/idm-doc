@@ -30,6 +30,7 @@ export const zh: SidebarConfig = {
         '/zh/moduledevelop/introduce.md',
         '/zh/moduledevelop/easystart.md',
         '/zh/moduledevelop/scaffoldtoc.md',
+        '/zh/moduledevelop/designcriterion.md',
       ],
     },
     {
