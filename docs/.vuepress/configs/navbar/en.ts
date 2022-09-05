@@ -32,6 +32,7 @@ export const en: NavbarConfig = [
           '/moduledevelop/introduce.md',
           '/moduledevelop/easystart.md',
           '/moduledevelop/scaffoldtoc.md',
+          '/zh/moduledevelop/designcriterion.md',
         ],
       },
       {
