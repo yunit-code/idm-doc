@@ -138,6 +138,24 @@ window.$$IDMSetting = {
   :::tip
   返回的数据结构请参考：[ComponentMarketData](./mockdata.md#componentmarketdata)
   :::
+
+### componentCustomUrl
+
+开发工具的左侧业务组件数据接口地址，带分组结构格式的
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/fetchComponentCustomData`
+
+- 请求方式：`GET`
+
+- 请求参数：
+  
+  url地址接收的参数会作为此处参数
+
+  :::tip
+  返回的数据结构请参考：[ComponentCustomData](./mockdata.md#componentcustomdata)
+  :::
+
 ### pageVersionListUrl
 
 开发工具的页面版本数据接口地址，主要用于工具的左侧顶部版本号列表
@@ -172,6 +190,9 @@ window.$$IDMSetting = {
   |pageid|当前配置的页面id|
   |version|页面版本号（如果版本号为空则需要返回最新的版本号的数据，不管saveType为disk还是database都是如此）|
   |savetype|当前配置的存储方式，参考 [saveType](./config.md#savetype)|
+  |projectNo|项目编号|
+  |schemaType|0：布局组件，1：业务组件|
+  |urlData|当前浏览器地址的所有参数json字符串格式，预览模式下也有可能会通过此处传schemaType参数|
 
   :::tip
   返回的数据结构请参考：[pageSettingDataData](./mockdata.md#pagesettingdatadata)
@@ -612,6 +633,15 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
   :::tip
   数据结构请参考：[ComponentMarketData](./mockdata.md#componentmarketdata)
+  :::
+
+### componentCustomUrl
+- 值类型：`string`
+
+- 默认值：`$/mockdata/ComponentCustomData.json`
+
+  :::tip
+  数据结构请参考：[ComponentCustomData](./mockdata.md#componentcustomdata)
   :::
 ### pageVersionListUrl
 - 值类型：`string`

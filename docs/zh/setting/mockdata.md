@@ -92,6 +92,66 @@
   |codeSrc|组件的当前版本加载组件代码的入口地址，此地址应该从代码包名开始|
   |datetime|版本上传的时间|
 
+## ComponentCustomData
+
+用于模拟开发工具的左侧业务组件接口返回的数据结构
+
+- 后端接口属性配置： [componentCustomUrl](./config.md#componentcustomurl)
+
+- 模拟接口属性配置： [componentCustomUrl](./config.md#componentcustomurl-1)
+
+```json
+{
+  "code": "200",
+  "type": "success",
+  "message": "操作成功",
+  "metadata": null,
+  "token": "",
+  "data": [
+    {
+      "groupId": "1",
+      "groupTitle": "组件测试",
+      "componentList": [
+        {
+          "comId": "gtJGORo5x1fSE9OMASulGf57mjYxDj9h",
+          "comName": "通用待办卡片",
+          "remark": "已配置好的图片组件，已配置好的图片组件，已配置好的图片组件",
+          "comType": "business",
+          "iconClass": "idmicon idm-icon-yingyongguanli",
+          "type": "platform",
+          "projectNo": "p1000",
+          "schemaText": {...},
+          "imgList": [
+            {
+              "src": "~/static/img/page_default.jpg",
+              "width": 371,
+              "height": 270,
+              "size": "113664"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+- 数据结构内相关key说明：
+
+  |key|说明|
+  |-|-|
+  |groupId|组件分组的ID|
+  |groupTitle|组件分组展示的名称|
+  |componentList|组件分组的数组key值|
+  |comId|组件的id，唯一且不重复|
+  |comName|组件的名称|
+  |comType|组件的类型，business：业务组件|
+  |remark|组件的概要说明|
+  |iconClass|组件在开发工具中显示的图标，可以参考 [字体图标](../guide/developtool.md#字体图标)|
+  |type|组件类型，目前可以为platform、project|
+  |imgList|组件的效果图片数组集合|
+  |projectNo|组件所属哪个项目编号|
+  |schemaText|业务组件的配置结构，结构其实跟[pageSettingDataData](./mockdata.md#pagesettingdatadata)中的data下的数据结构一致的|
+
 ## PageVersionListData
 
 用于模拟开发工具的左侧顶部版本号列表接口返回的数据结构
