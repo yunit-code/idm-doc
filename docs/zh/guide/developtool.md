@@ -931,6 +931,12 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 :::tip
 自定义函数用法请参考：[页面扩展开发](../moduledevelop/pageextend.md)
 :::
+##### 加载时机【loadTimingType】
+用于设置页面接口什么时候执行请求后端，目前有以下两种形式：
+1. 页面加载完成加载：当页面的组件都加载完成后才会加载此接口，仅会发送协议为[pageCommonInterface](../moduledevelop/communication.md#pagecommoninterface)的消息
+
+2. 页面加载之前加载：当页面的组件加载开始之前去加载页面接口，设置此属性将不会调用组件的[setContextValue](../moduledevelop/builtin.md#setcontextvalue)内置方法，仅会发送协议为[pageCommonInterface](../moduledevelop/communication.md#pagecommoninterface)的消息
+
 #### 组件加载之前执行【beforeLoadingFunction】
 <img :src="$withBase('/images/attr/page_attr_beforeLoadingFunction.jpg')" style="margin-top:10px" alt="预览效果" />
 

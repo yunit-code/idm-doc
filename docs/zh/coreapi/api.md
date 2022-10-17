@@ -1896,6 +1896,39 @@
   IDM.user.setCurrentUserInfo({userName:"IDM无限",userId:"user123",...})
   ```
   用于设置当前登录用户信息，信息初始化参考：页面属性的 [用户信息](../guide/developtool.md#用户信息)
+  
+### getUserFontSizeRatio
+- **定义**：
+
+  `getUserFontSizeRatio()`
+- **用法**：
+  ``` js
+  IDM.user.getUserFontSizeRatio() // => 1
+  ```
+  用于获取获取当前用户字体设置比例，内部会直接依据配置项配置的[fontSizeRatioRule](../setting/config.md#fontsizeratiorule)使用字段（支持a.b.c）格式去获取`IDM.user.getCurrentUserInfo()`返回的内部某个属性字段的值。
+
+  :::tip
+  前提条件是需要该页面已配置并启用了用户信息，请参考：页面属性的 [用户信息](../guide/developtool.md#用户信息)
+  :::
+
+### setUserFontSizeRatio
+- **定义**：
+
+  `setUserFontSizeRatio(object)`
+- **参数**：
+  - `{Object} [Number]`
+- **用法**：
+  ``` js
+  IDM.user.setUserFontSizeRatio(1)
+  ```
+  用于设置当前用户字体设置的比例，内部会直接依据配置项配置的[fontSizeRatioRule](../setting/config.md#fontsizeratiorule)使用字段（支持a.b.c）格式去设置`IDM.user.getCurrentUserInfo()`中对象的某个属性字段的值。
+
+  :::warning
+  为了使搭建出来的页面用户体验更加，改变用户个性化字体大小设置后建议逻辑是这样的：
+  1. 调用`IDM.user.setUserFontSizeRatio(1)`修改当前用户设置的字体
+  2. 根据需求再次去调用设置用户字体大小的后端接口
+  3. 发送改变字体设置大小的组件消息(基于组件通信协议：[userCustomFontSizeRatio](../moduledevelop/communication.md#内置通信协议))
+  :::
 ## theme
 此分类为当前登录用户主题存储的公共方法分类，此分类需要追加分类名（IDM.theme.方法名）访问下列的方法。
 ### getCurrentThemeInfo

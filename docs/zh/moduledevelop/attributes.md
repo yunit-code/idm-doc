@@ -761,6 +761,12 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       "data":["参考dictionary数据字典"]
   }
   ```
+- ctrlAttrObject属性介绍：
+  - treeDefaultExpandAll：
+  
+    值类型：`boolean`
+    
+    默认展开所有树节点，为空默认为true
 ### uploadImage
 - 中文名：图片上传
 

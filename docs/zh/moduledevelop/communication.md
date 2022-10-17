@@ -96,6 +96,18 @@ IDM框架中内置了几种通信协议，通过参数`type`指定以下的类�
   
   主要通过页面设置的属性[websocket](../guide/developtool.md#websocket)中设置的基本属性，当收到消息时会给所有组件发送此消息，然后组件内可以针对消息内容做组件相应的功能处理，比如刷新组件的数据等等。
 
+- **pageCommonInterface**
+
+  含义：页面统一接口返回的结果值
+  
+  主要通过页面设置的属性[页面接口](../guide/developtool.md#页面接口子表interfacelist)配置的接口，请求成功后会给页面的所有组件发送通信协议为`pageCommonInterface`且`messageKey`为结果集名称的消息。
+
+- **userCustomFontSizeRatio**
+
+  含义：用户个性化定制之改变字体大小比例的消息
+  
+  用户通过改变字体大小的设置后会通过此协议的消息来通知已经改变过字体大小设置，需要去重新获取一遍字体大小比例[getUserFontSizeRatio](../coreapi/api.md#getuserfontsizeratio)重新渲染页面样式，目的就是提高用户体验实现不需要刷新页面就能实现应用用户个性化定制的结果。
+
 :::tip
 如果要使用打开弹窗、关闭弹窗功能需要自行开发弹窗组件来接收消息进行打开显示，或者也可以从GitHub下载IDM官方提供的[Layout](https://github.com/yunit-code/layout)组件包（内含`IDialog`组件）
 :::

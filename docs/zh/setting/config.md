@@ -484,6 +484,7 @@ window.$$IDMSetting = {
   |pageid|页面ID|
   |version|页面版本号|
   |customData|个性化定制的数据，结构为对象，对象下包含数组层级的|
+  |reset|为1则代表重置操作|
 
 - 返回结构：
 
@@ -619,6 +620,56 @@ window.$$IDMSetting = {
       }]
   }
   ```
+
+### pageSelectFetchPageListApi
+
+用于配置页面列表查询Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/console/fetchIdmListPageData`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |pageIndex|页码|
+  |pageSize|页大小|
+  |searchText|文本框检索条件|
+  |pagetype|页面类型检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
+  |group|页面分组检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
+  |sort|页面排序检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
+
+- 返回结构：
+
+  code返回值为 200 代表成功，否则为失败。
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [
+         {
+            "id": "页面ID，会根据此ID拼接成预览地址",
+            "title": "页面标题",
+            "moduleGroupId": "页面分组Value",
+            "moduleGroupText": "页面分组名称",
+            "pageType": "页面类型Value",
+            "pageRemark": "页面备注",
+            "previewImgJson": "[{\"uid\":\"1642733481374xiV1BZAGIMlDEfym\",\"ourl\":\"/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"size\":\"90KB\",\"src\":\"/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"name\":\"Dingtalk_20220121105100.jpg\",\"width\":1920,\"url\":\"/DreamWeb/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"status\":\"done\",\"height\":937}]"
+         },
+         ...
+        ]
+  }
+  ```
+  :::tip
+  如果返回结果中有`previewImgJson`但是没有`previewImgObject`，则会自动把`previewImgJson`转换为`previewImgObject`，如果存在`previewImgObject`则会直接应用，`previewImgObject`为JSON对象格式。
+  :::
+
+
 ## mockurl
 
 mockdata地址，只有对应的api地址为空的时候才会使用这里的静态数据。mockdata数据格式参考：[mockdata](./mockdata.md)
@@ -940,54 +991,6 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   此检索条件应用于[pageSelectFetchPageListApi](./config.md#pageselectfetchpagelistapi)接口的`group`参数.
   :::
 
-### pageSelectFetchPageListApi
-
-用于配置页面列表查询Api地址
-- 值类型：`string`
-
-- 默认值：`/ctrl/idm/console/fetchIdmListPageData`
-
-- 请求方式：`GET`
-
-- 请求参数：
-
-  |参数|说明|
-  |-|-|
-  |pageIndex|页码|
-  |pageSize|页大小|
-  |searchText|文本框检索条件|
-  |pagetype|页面类型检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
-  |group|页面分组检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
-  |sort|页面排序检索条件,格式为JSON字符串数组格式,例如：`'[{"value":"1"}]'`|
-
-- 返回结构：
-
-  code返回值为 200 代表成功，否则为失败。
-  ```json
-  {
-      "code": "200",
-      "type": "success",
-      "message": "操作成功",
-      "metadata": null,
-      "token": "",
-      "data": [
-         {
-            "id": "页面ID，会根据此ID拼接成预览地址",
-            "title": "页面标题",
-            "moduleGroupId": "页面分组Value",
-            "moduleGroupText": "页面分组名称",
-            "pageType": "页面类型Value",
-            "pageRemark": "页面备注",
-            "previewImgJson": "[{\"uid\":\"1642733481374xiV1BZAGIMlDEfym\",\"ourl\":\"/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"size\":\"90KB\",\"src\":\"/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"name\":\"Dingtalk_20220121105100.jpg\",\"width\":1920,\"url\":\"/DreamWeb/p1000/idm/upload/idmfiles/6aaf99da-2053-4684-b80a-642328750d36.jpg\",\"status\":\"done\",\"height\":937}]"
-         },
-         ...
-        ]
-  }
-  ```
-  :::tip
-  如果返回结果中有`previewImgJson`但是没有`previewImgObject`，则会自动把`previewImgJson`转换为`previewImgObject`，如果存在`previewImgObject`则会直接应用，`previewImgObject`为JSON对象格式。
-  :::
-
 ## document
 
 主要用来对[文档管理](../guide/documentmanage.md)的功能进行配置的属性归类
@@ -1233,6 +1236,245 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   :::tip
   表达式可参考：[IDM.express](../coreapi/api.md#express)
   :::
+
+### basicAttributeAuthorizeConfig
+
+主要用来对基本属性授权属性配置的属性归类
+#### openAuthorize
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  设置是否开启授权配置属性，开启了则会在组件属性中的基本属性区域中显示授权的属性控件，如果开启了建议下面其他属性都要配置正确，否则在渲染的时候会进行比对权限的时候查找错误导致页面渲染有问题
+
+#### privilege
+
+权限授权配置
+
+##### open
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  设置是否开启》权限授权配置 的属性，不需要可以设置为`false`即可
+
+##### dataSourceUrl
+
+- 值类型：`String`
+
+- 默认值：`/ctrl/idm/api/getPrivilegeList`
+
+  设置权限授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getPrivilegeList?userType=@[IDM.user.getCurrentUserInfo().userType]`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### comparisonObject
+
+- 值类型：`String`
+
+- 默认值：`IDM.user.getCurrentUserInfo().privilegeIds`
+
+  比对对象，这里为填写表达式，可使用IDM整个对象（包括应用信息、用户信息），也可使用页面接口查询的结果。
+
+  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：privilegeIds] 或 IDM.user.userObject[比对内容的属性，例如：privilegeIds]
+
+  或
+
+  使用页面接口结果集：结果集名称[比对内容的属性，例如：privilegeIds]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### separator
+
+- 值类型：`String`
+
+- 默认值：`,`
+
+  分隔符，如果当前要比对的对象是多个，则需要进行拆分一个一个去比对，也就是多对多的比对，所以结果如果为字符串则需要配置上分隔符，如果结果为数组则不需要填写分隔符
+
+##### comparisonKey
+
+- 值类型：`String`
+
+- 默认值：`key`
+
+  比对的授权结果中每项的哪个字段
+
+#### role
+
+角色授权配置
+
+##### open
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  设置是否开启》角色授权配置 的属性，不需要可以设置为`false`即可
+
+##### dataSourceUrl
+
+- 值类型：`String`
+
+- 默认值：`/ctrl/idm/api/getRoleList`
+
+  设置角色授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getRoleList?userType=@[IDM.user.getCurrentUserInfo().userType]`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### comparisonObject
+
+- 值类型：`String`
+
+- 默认值：`IDM.user.getCurrentUserInfo().roleIds`
+
+  比对对象，这里为填写表达式，可使用IDM整个对象（包括应用信息、用户信息），也可使用页面接口查询的结果。
+
+  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：roleIds] 或 IDM.user.userObject[比对内容的属性，例如：roleIds]
+
+  或
+
+  使用页面接口结果集：结果集名称[比对内容的属性，例如：roleIds]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### separator
+
+- 值类型：`String`
+
+- 默认值：`,`
+
+  分隔符，如果当前要比对的对象是多个，则需要进行拆分一个一个去比对，也就是多对多的比对，所以结果如果为字符串则需要配置上分隔符，如果结果为数组则不需要填写分隔符
+
+##### comparisonKey
+
+- 值类型：`String`
+
+- 默认值：`key`
+
+  比对的授权结果中每项的哪个字段
+
+
+#### dept
+
+单位授权配置
+
+##### open
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  设置是否开启》单位授权配置 的属性，不需要可以设置为`false`即可
+
+##### dataSourceUrl
+
+- 值类型：`String`
+
+- 默认值：`/ctrl/idm/api/getDeptList?userType=@[IDM.user.getCurrentUserInfo().userType]`
+
+  设置单位授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getDeptList?userType=@[IDM.user.getCurrentUserInfo().userType]`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### comparisonObject
+
+- 值类型：`String`
+
+- 默认值：`IDM.user.getCurrentUserInfo().unitInfo.unitId`
+
+  比对对象，这里为填写表达式，可使用IDM整个对象（包括应用信息、用户信息），也可使用页面接口查询的结果。
+
+  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：unitInfo.unitId] 或 IDM.user.userObject[比对内容的属性，例如：unitInfo.unitId]
+
+  或
+
+  使用页面接口结果集：结果集名称[比对内容的属性，例如：unitId]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### separator
+
+- 值类型：`String`
+
+- 默认值：`,`
+
+  分隔符，如果当前要比对的对象是多个，则需要进行拆分一个一个去比对，也就是多对多的比对，所以结果如果为字符串则需要配置上分隔符，如果结果为数组则不需要填写分隔符
+
+##### comparisonKey
+
+- 值类型：`String`
+
+- 默认值：`attrs.idValue`
+
+  比对的授权结果中每项的哪个字段
+
+
+#### user
+
+人员授权配置
+
+##### open
+
+- 值类型：`boolean`
+
+- 默认值：true
+
+  设置是否开启》人员授权配置 的属性，不需要可以设置为`false`即可
+
+##### dataSourceUrl
+
+- 值类型：`String`
+
+- 默认值：`/ctrl/idm/api/getDeptList?types=person&rootObject=2`
+
+  设置单位授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getDeptList?types=person&rootObject=2`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### comparisonObject
+
+- 值类型：`String`
+
+- 默认值：`IDM.user.getCurrentUserInfo().userid`
+
+  比对对象，这里为填写表达式，可使用IDM整个对象（包括应用信息、用户信息），也可使用页面接口查询的结果。
+
+  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：userid] 或 IDM.user.userObject[比对内容的属性，例如：userid]
+
+  或
+
+  使用页面接口结果集：结果集名称[比对内容的属性，例如：userid]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
+
+##### comparisonKey
+
+- 值类型：`String`
+
+- 默认值：`attrs.idValue`
+
+  比对的授权结果中每项的哪个字段
+
+
 ## websocket
 
 主要用来对整个框架的websocket消息配置的属性归类
