@@ -1066,7 +1066,7 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
 - 默认值：`Idm preview default title`
 
-用于设置在渲染引擎中当页面标题如果为空不设置的时候显示的默认标题
+用于设置在渲染引擎中当页面标题如果为空不设置的时候显示的默认标题，支持使用表达式（IDM、window、...页面加载之前加载的页面接口集合）
 
 ### defaultLoginPageUrl
 - 值类型：`string`
@@ -1473,6 +1473,92 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 - 默认值：`attrs.idValue`
 
   比对的授权结果中每项的哪个字段
+
+### httpTimeout
+
+- 值类型：`Number`
+
+- 默认值：0
+
+  用于设置IDM.http请求的超时时间，默认为0永不超时。
+
+### userCustomConfig
+
+用户个性化相关配置
+
+#### fontSizeRatioRule
+
+- 值类型：`String`
+
+- 默认值：`fontSizeRatio`
+
+  用于设置用户个性化之文字比例获取字段，支持使用`a`、`a.b.c`的方式，填写的表达式基于[用户信息](../coreapi/api.md#getcurrentuserinfo)来填写，比如：
+
+  示例1：
+  `IDM.user.getCurrentUserInfo()`的对象结果为：
+  ```json
+  {
+    'userid':'',
+    'username':'IDM用户',
+    'fontSizeRatio':1.2
+  }
+  ```
+  则此处应该填写为 `fontSizeRatio`
+
+  示例2：
+   `IDM.user.getCurrentUserInfo()`的对象结果为：
+  ```json
+  {
+    'userid':'',
+    'username':'IDM用户',
+    'fontSizeRatio':{
+      'baseNumber':1.2
+    }
+  }
+  ```
+  则此处应该填写为 `fontSizeRatio.baseNumber`
+
+### pageDynamicHeadMetaConfig
+
+- 值类型：`Array`
+
+- 默认值：[]
+
+  用于设置页面头部head标签内的meta信息，此处维护的是数组格式，数组内的每个对象中所含有的属性是不固定的，依据meta标签所需要哪些字段就维护指定属性名的属性即可，属性内容支持使用表达式（IDM、window、...页面加载之前加载的页面接口集合），可能文字描述不清晰，我们直接通过示例来了解：
+
+  - **示例1：**
+  比如我们配置成以下格式
+  ```json
+  [
+    {
+      "name":"keywords",
+      "content":"IDM，组件，低代码，可视化，拖拽"
+    }
+  ]
+  ```
+  在所有的渲染页面上就会渲染转换为：
+  ```html
+  <meta name="keywords" content="IDM，组件，低代码，可视化，拖拽"/>
+  ```
+
+  - **示例2：**
+  如果我们的属性可能取决于后端返回的，可通过表达式从IDM、window对象中进行获取
+  ```json
+  [
+    {
+      "name":"description",
+      "content":"@[IDM.user.getCurrentUserInfo().description]-IDM描述信息"
+    }
+  ]
+  ```
+  在所有的渲染页面上就会渲染转换为：
+  ```html
+  <meta name="description" content="这里是后端根据业务返回的描述信息哟-IDM描述信息"/>
+  ```
+  
+  :::tip
+  表达式可参考：[IDM.express](../coreapi/api.md#express)
+  :::
 
 
 ## websocket
