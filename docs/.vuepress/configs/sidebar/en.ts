@@ -68,5 +68,18 @@ export const en: SidebarConfig = {
         '/coreapi/compatible.md'
       ],
     }
-  ]
+  ],
+  '/faq/': [
+    {
+      text: 'FAQ.',
+      children: [
+        {
+          text: '兼容性',
+          children: [
+            '/zh/faq/compatible-ie11.md'
+          ],
+        }
+      ]
+    },
+  ],
 }

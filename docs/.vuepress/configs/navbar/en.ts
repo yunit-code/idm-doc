@@ -79,5 +79,13 @@ export const en: NavbarConfig = [
   {
     text: 'FAQ',
     link: '/faq/',
+    children: [
+      {
+        text: '兼容性',
+        children: [
+          '/faq/compatible-ie11.md'
+        ]
+      }
+    ]
   },
 ]
