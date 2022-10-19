@@ -70,5 +70,18 @@ export const zh: SidebarConfig = {
         '/zh/coreapi/compatible.md'
       ],
     }
-  ]
+  ],
+  '/zh/faq/': [
+    {
+      text: '常见问题',
+      children: [
+        {
+          text: '兼容性',
+          children: [
+            '/zh/faq/compatible-ie11.md'
+          ],
+        }
+      ]
+    },
+  ],
 }
