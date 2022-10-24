@@ -917,7 +917,8 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
   [
       {
           "id": "rndS0VgbZH7niLuU",
-          "title": "数据源名称"
+          "title": "数据源名称",
+          "refreshJson":"[{\"key\":\"remind\",\"desc\":\"提醒数据要刷新的标识\"},{\"key\":\"inbox\",\"desc\":\"待办数据要刷新的标识\"}]"
       }
   ]
   ```
