@@ -2215,6 +2215,50 @@
   IDM.message.closeAll();
   ```
   用于移除所有的提醒
+## datasource
+此分类为操作数据源的公共方法分类，此分类需要追加分类名（IDM.develop.方法名）访问下列的方法。
+### request
+此方法用于请求指定数据源返回数据源的结果方法，提供给组件快速使用数据源从而不需要单独去维护接口等属性
+- **定义**：
+  `request(dataSourceId, paramInfo, successCallback, errorCallback)`
+- **参数**：
+  - `{String} [dataSourceId]` 数据源ID主键
+  - `{Object} [paramInfo]` 参数信息，需要包含moduleObject和param，其中param就是数据源可能用到的变量，建议把有用的信息都传递过去，例如获取详情接口需要一个详情ID，则这样传即可`{moduleObject:this.moduleObject,param:{id:'获取过来的详情ID'}}`
+  - `{Function} [successCallback]` 成功回调方法
+  - `{Function} [errorCallback]` 失败回调方法
+
+- **用法**：
+  ```js
+    IDM.datasource.request(this.propData[数据源ID属性变量名],{
+      moduleObject:this.moduleObject,
+      param:{id:'获取过来的详情ID'}
+    },function(resData){
+      //这里是请求成功的返回结果
+    },function(error){
+      //这里是请求失败的返回结果
+    })
+  ```
+  
+### getConfig
+此方法用于请求指定数据源的所有配置信息，可以通过获取数据源信息实现自定义请求数据源。
+- **定义**：
+  `getConfig(dataSourceId, success, error)`
+- **参数**：
+  - `{String} [dataSourceId]` 数据源ID主键
+  - `{Function} [success]` 成功回调方法
+  - `{Function} [error]` 失败回调方法
+
+- **用法**：
+  ```js
+    IDM.datasource.request(this.propData[数据源ID属性变量名],
+    function(resData){
+      //这里是请求成功的返回结果
+    },function(error){
+      //这里是请求失败的返回结果
+    })
+  ```
+
+
 ## develop
 此分类为操作开发工具的公共方法分类，此分类需要追加分类名（IDM.develop.方法名）访问下列的方法。
 ### externalMixAttributeChangeHandle
