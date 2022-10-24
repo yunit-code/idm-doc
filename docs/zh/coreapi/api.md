@@ -2229,7 +2229,7 @@
 
 - **用法**：
   ```js
-    IDM.datasource.request(this.propData[数据源ID属性变量名],{
+    IDM.datasource.request(this.propData[数据源ID属性变量名][0].id,{
       moduleObject:this.moduleObject,
       param:{id:'获取过来的详情ID'}
     },function(resData){
@@ -2238,7 +2238,7 @@
       //这里是请求失败的返回结果
     })
   ```
-  
+
 ### getConfig
 此方法用于请求指定数据源的所有配置信息，可以通过获取数据源信息实现自定义请求数据源。
 - **定义**：
@@ -2250,7 +2250,7 @@
 
 - **用法**：
   ```js
-    IDM.datasource.request(this.propData[数据源ID属性变量名],
+    IDM.datasource.request(this.propData[数据源ID属性变量名][0].id,
     function(resData){
       //这里是请求成功的返回结果
     },function(error){
