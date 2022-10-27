@@ -2220,12 +2220,13 @@
 ### request
 此方法用于请求指定数据源返回数据源的结果方法，提供给组件快速使用数据源从而不需要单独去维护接口等属性
 - **定义**：
-  `request(dataSourceId, paramInfo, successCallback, errorCallback)`
+  `request(dataSourceId, paramInfo, successCallback, errorCallback, finallyCallback)`
 - **参数**：
   - `{String} [dataSourceId]` 数据源ID主键
   - `{Object} [paramInfo]` 参数信息，需要包含moduleObject和param，其中param就是数据源可能用到的变量，建议把有用的信息都传递过去，例如获取详情接口需要一个详情ID，则这样传即可`{moduleObject:this.moduleObject,param:{id:'获取过来的详情ID'}}`
   - `{Function} [successCallback]` 成功回调方法
   - `{Function} [errorCallback]` 失败回调方法
+  - `{Function} [finallyCallback]` 最后执行回调方法
 
 - **用法**：
   ```js
@@ -2242,15 +2243,16 @@
 ### getConfig
 此方法用于请求指定数据源的所有配置信息，可以通过获取数据源信息实现自定义请求数据源。
 - **定义**：
-  `getConfig(dataSourceId, success, error)`
+  `getConfig(dataSourceId, success, error, finallyCb)`
 - **参数**：
   - `{String} [dataSourceId]` 数据源ID主键
   - `{Function} [success]` 成功回调方法
   - `{Function} [error]` 失败回调方法
+  - `{Function} [finallyCb]` 最后执行回调方法
 
 - **用法**：
   ```js
-    IDM.datasource.request(this.propData[数据源ID属性变量名][0].id,
+    IDM.datasource.getConfig(this.propData[数据源ID属性变量名][0].id,
     function(resData){
       //这里是请求成功的返回结果
     },function(error){
