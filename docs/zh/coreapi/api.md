@@ -568,6 +568,11 @@
   // 输出结果
   // => './idm_modules/iconfont/iconfont.css'
 
+  /* 前缀 ! 转换 */
+  IDM.url.getWebPath("!/lib/vconsole/vconsole.min.js"); 
+  // 输出结果
+  // => '/DreamWeb/p1000/idm/lib/vconsole/vconsole.min.js'
+
   /* 无前缀转换 */
   IDM.url.getWebPath("/iconfont/iconfont.css"); 
   // 输出结果
@@ -587,6 +592,8 @@
 
   - 前缀@代表：使用配置项 `webRoot > moduleDir` 替换，参考[moduledir](../setting/config.md#moduledir)
   
+  - 前缀!代表：使用配置项 `webRoot > default`+`webRoot > platformNo`+`webRoot > idm` 替换（如果`rootPath`参数不为空则在地址前面追加`rootPath`的参数），参考[default](../setting/config.md#default)，[platformNo](../setting/config.md#platformno)，[idm](../setting/config.md#idm)，
+
   - 其他情况使用配置项 `webRoot > default` 替换（如果`rootPath`参数不为空则在地址前面追加`rootPath`的参数），参考[default](../setting/config.md#default)
 
   :::tip
