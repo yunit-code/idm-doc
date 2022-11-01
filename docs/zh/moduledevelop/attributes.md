@@ -766,7 +766,19 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
   
     值类型：`boolean`
     
-    默认展开所有树节点，为空默认为true
+    默认展开所有树节点，为空默认为`true`
+    
+  - treeCheckable：
+  
+    值类型：`boolean`
+    
+    设置节点是否显示 checkbox	，为空默认为`false`
+
+  - treeCheckStrictly：
+  
+    值类型：`boolean`
+    
+    设置如果在线上 checkbox 状态下节点选择完全受控（父子节点选中状态不再关联），会使得 labelInValue 强制为 true且会出现全选下级的功能，为空默认为`false`
 ### uploadImage
 - 中文名：图片上传
 
@@ -930,3 +942,30 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
     默认值：空
 
     数据源结果标签，用于维护此处选择的数据源返回结果需要有哪些格式等等标签，比如我们返回结果需要有一个数组格式，则`[]`，如果数组中还要有对象，则`[...{}]`。还要更多，例如：`[...{id}]`、`{}`、`id`、`a.b.c`等等。主要是用于来匹配数据源维护的标签，当匹配度越高在推荐栏目就越靠前，因此建议尽量维护全面一点。
+
+
+
+### dataSourceFiledSelect
+- 中文名：数据源字段选择（可输入）
+
+- 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_datasourcefiled.jpg')" style="margin-top:10px" alt="预览效果" />
+
+- 返回值示例：
+  ```js
+  unitInfo.logoTitle
+  ```
+
+- ctrlAttrObject属性介绍：
+  - dataSourceBindkey：
+
+    值类型：`String`
+
+    默认值：空
+
+    此属性表示要选择哪个数据源的结果作为选择树结构。
+  
+  :::tip
+  此控件返回结果字符串类型的，需要组件内部根据需求自行进行表达式转换，需要特别注意的是：当开头带`[Number]`的代表结果是为数组类型且只取`Number`索引这一条的数据，例如：`[0].title`，反之如果结果为数组类型，但此处控件返回的是`title`则代表循环数组结果取`title`字段作为展示。
+  :::

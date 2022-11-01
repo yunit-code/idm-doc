@@ -2267,7 +2267,6 @@
     })
   ```
 
-
 ## develop
 此分类为操作开发工具的公共方法分类，此分类需要追加分类名（IDM.develop.方法名）访问下列的方法。
 ### externalMixAttributeChangeHandle

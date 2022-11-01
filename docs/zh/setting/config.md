@@ -310,6 +310,7 @@ window.$$IDMSetting = {
   |参数|说明|
   |-|-|
   |type|上传的类型值，这个由框架内决定性，例如图片上传属性控件的值为`dev_uploadimage_ctrl`|
+  |getFileContent|默认为1,为1代表返回上传文件的内容，数据源上传附件会用到|
   |file|上传的文件|
   |...webRoot|[webRoot](./config.md#webroot) 属性下面的所有子属性都会传递到后端，可以利用此处配置合理的存储文件|
 
@@ -328,7 +329,8 @@ window.$$IDMSetting = {
         "filePath": "/upload/idmfiles/f22081da-9410-40bc-afa0-6b3106c45c1c.png",
         "fileSize":"2188888",
         "imageWidth":"图片的宽度，如果上传的文件为图片的情况下",
-        "imageHeight":"图片的高度，如果上传的文件为图片的情况下"
+        "imageHeight":"图片的高度，如果上传的文件为图片的情况下",
+        "fileContent":"文件的内容，根据参数getFileContent=1返回"
       }
   }
   ```
@@ -670,6 +672,328 @@ window.$$IDMSetting = {
   :::
 
 
+### dataSourceFetchListApi
+
+数据源列表查询Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/dataSourceFetchListApi`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |pageIndex|页码|
+  |pageSize|页大小|
+  |searchText|文本框检索条件|
+  |type|数据源类型检索条件|
+  |group|数据源分组检索条件|
+  |moduleList|适配组件检索条件|
+  |dataSourceId|指定要获取数据源的ID，如果此参数不为空则返回单个对象的数据源，而非列表的数据源|
+
+- 返回结构：
+
+  code返回值为 200 代表成功，否则为失败。
+  ```json
+  {
+    "code": "200",
+    "type": "success",
+    "message": "操作成功",
+    "metadata": null,
+    "token": "",
+    "data": {
+        "total": 2,
+        "rows": [
+            {
+                
+                "projectId": "p1001",
+                "id": "221024160457KNtmriC82YL2dMjkgLG",
+                "type": 1,
+                "title": "当前登录人信息",
+                "author": "申龙",
+                "remark": "获取当前登录人信息接口，也是DreamWeb门户在用的接口",
+                "groupId": "xtjk",
+                "itemIndex": 1,
+                "rowState": 1,
+                "moduleIds": "",
+                "moduleNames": "",
+                "shareType": 1,
+                "tags": "common",
+                "loadType": 0,
+                "api": "/ctrl/api/frame/getApplicationInfo",
+                "paramJson": "[]",
+                "requestType": "GET",
+                "crossOrigin": 1,
+                "timeout": 0,
+                "headerJson": "[]",
+                "functionParam": "function (res) {\n    return res.data;\n}",
+                "functionResult": "function (res) {\n    return res.data.data;\n}",
+                "functionError": "function (err) {\n\n}",
+                "resultJson": "{}",
+                "fileName": "",
+                "fileContent": "",
+                "dbName": "",
+                "dbSql": "SELECT ",
+                "refreshJson": "[]",
+                "debugResult": "调试后的结果"
+            }
+          ]
+        }
+      }
+  ```
+
+  单个数据源返回格式为：
+  ```json
+  {
+    "code": "200",
+    "type": "success",
+    "message": "操作成功",
+    "metadata": null,
+    "token": "",
+    "data": {  
+        "id": "221024160457KNtmriC82YL2dMjkgLG",
+        ...
+    }
+  ```
+
+### dataSourceSaveFormApi
+
+用于数据源表单保存Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/saveDataSource`
+
+- 请求方式：`POST`
+
+- 请求类型：`Content-Type: multipart/form-data`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |id|为空则是新增|
+  |type|数据源类型，1：接口API、2：静态数据、3：json文件、4：sql语句、5：csv文件|
+  |shareType|共享属性，0：私有，1：共享|
+  |loadType|加载类型：0：前端请求，1：后端转发请求|
+  |dbName|驱动名称，数据库链接名称|
+  |dbSql|数据库sql语句|
+  |resultJson|静态类型的响应数据|
+  |functionParam|请求前对参数的处理函数|
+  |functionResult|请求成功对结果的处理函数|
+  |functionError|请求失败对异常的处理函数|
+  |title|名称|
+  |author|当前作者|
+  |remark|当前备注|
+  |groupId|分组ID|
+  |moduleArray|适用组件,例如：[{key: "1", label: " 组件示例 "}]|
+  |tags|数据源标签，例如：[],{}|
+  |itemIndex|排序|
+  |api|接口地址|
+  |requestType|请求类型，GET、POST|
+  |timeout|超时时间（毫秒），为0永不超时|
+  |crossOrigin|是否跨域|
+  |editDebugData|是否只修改调试后的结果，根据此参数如果不为空则去只更新debugResult数据|
+  |debugResult|数据源调试后的结果|
+  |paramJson|接口参数JSON格式字符串，例如：`[{\"name\":\"1\",\"valueType\":1,\"value\":true}]`|
+  |headerJson|接口请求头JSON格式字符串，例如：`[{\"name\":\"1\",\"valueType\":1,\"value\":true}]`|
+  |refreshJson|刷新标识，例如：`[{\"key\":\"inbox\",\"desc\":\"备注\"}]`|
+  |file_name|附件信息，参考以下附件信息示例|
+
+- 附件信息示例：
+  ```json
+  [
+      {
+          "uid": "1664508531878n0cxJmm9BxU83p1H",
+          "name": "1.txt",
+          "status": "done",
+          "url": "/DreamWeb/p1000/idm/upload/idmfiles/1a618495-93e3-4e80-b16c-6e18048e4177.txt",
+          "ourl": "/p1000/idm/upload/idmfiles/1a618495-93e3-4e80-b16c-6e18048e4177.txt",
+          "src": "/p1000/idm/upload/idmfiles/1a618495-93e3-4e80-b16c-6e18048e4177.txt",
+          "size": "7KB"
+      }
+    ]
+  ```
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": 
+  }
+  ```
+
+### dataSourceDeleteApi
+
+用于数据源删除Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/delDataSource`
+
+- 请求方式：`POST`
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |id|数据源主键|
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": 
+  }
+  ```
+
+### dataSourceCopyApi
+
+用于数据源复制Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/copyDataSource`
+
+- 请求方式：`POST`
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |id|数据源主键|
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": 
+  }
+  ```
+
+### dataSourceForwardApi
+
+用于后端转发请求数据源
+- 值类型：`string`
+
+- 默认值：`/ctrl/customPortal/dataSource/getDatas`
+
+- 请求方式：`POST`
+
+- 请求类型：`Content-Type: multipart/form-data`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |paramJSON|替换表达式后的参数对象，例如：`{"name":"张数","value":"李四","boolean":true}`|
+  |headerJSON|替换表达式后的请求头，例如：`{"code":"IDM",...}`|
+  |dataSourceData|数据源附带对象，参考以下信息示例|
+
+- dataSourceData示例：
+  ```json
+  {
+    "type":"1",
+    "shareType":1,
+    "loadType":"1",
+    "remark":"描述",
+    "groupId":"-1",
+    "title":"后端转发请求",
+    "author":"申龙",
+    "moduleArray":[
+        {
+            "key":"220922000804Bu18bbqfqyJNFuWJiZG",
+            "label":" 上传控件 "
+        }
+    ],
+    "tags":[
+        "{}",
+        "[]"
+    ],
+    "api":"请求地址",
+    "requestType":"POST",
+    "timeout":0,
+    "itemIndex":1,
+    "crossOrigin":true,
+    "resultJson":"{}",
+    "dbSql":"SELECT ",
+    "functionParam":"function (options){\n\treturn options;\n}",
+    "functionResult":"function (res){\n\treturn res.data;\n}",
+    "functionError":"function (err){\n\n}",
+    "refreshJson":"[{\"key\":\"inbox\",\"desc\":\"刷新标识\"}]",
+    "paramJson":"[{\"name\":\"name\",\"value\":\"张数\",\"valueType\":0},{\"name\":\"value\",\"value\":\"李四\",\"valueType\":2},{\"name\":\"boolean\",\"value\":true,\"valueType\":1}]",
+    "headerJson":"[{\"name\":\"code\",\"value\":\"请求头\",\"valueType\":0}]",
+    "paramJson_debug":[
+        {
+            "name":"name",
+            "value":"张数",
+            "valueType":0
+        },
+        {
+            "name":"value",
+            "value":"李四",
+            "valueType":2
+        },
+        {
+            "name":"boolean",
+            "value":true,
+            "valueType":1
+        }
+    ],
+    "headerJson_debug":[
+        {
+            "name":"code",
+            "value":"请求头",
+            "valueType":0
+        }
+    ]
+  }
+  ```
+- 返回结构：
+
+  不固定
+
+### dataSourceDbSqlApi
+
+用于数据源数据库sql执行api
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/api/executeSql`
+
+- 请求方式：`POST`
+
+- 请求类型：`Content-Type: multipart/form-data`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |sqlParam|替换表达式后的参数对象，例如：`{"name":"张数","value":"李四","boolean":true}`|
+  |paramInfo|调用直接传递的参数，可能为任意值|
+  |dataSourceId|数据源ID|
+
+- 返回结构：
+
+  不固定
+
+:::tip
+出于安全考虑，执行sql建议使用参数信息，不使用拼接的方式且sql语句在后端执行，前端不暴露不拼接用户输入的参数。
+:::
+
 ## mockurl
 
 mockdata地址，只有对应的api地址为空的时候才会使用这里的静态数据。mockdata数据格式参考：[mockdata](./mockdata.md)
@@ -991,6 +1315,128 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   此检索条件应用于[pageSelectFetchPageListApi](./config.md#pageselectfetchpagelistapi)接口的`group`参数.
   :::
 
+### dataSourceConditionType
+
+配置开发工具中组件属性控件（[数据源：dataSourceSelect](../moduledevelop/attributes.md#datasourceselect)）`数据源类型的选项值`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`[{text:"接口API",value:"1"},{text:"静态数据",value:"2"},{text:"json文件",value:"3"},{text:"sql语句",value:"4"},{text:"csv文件",value:"5"}]`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"接口API",value:"1"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"接口API",value:"1"},
+    {text:"静态数据",value:"2"},
+    {text:"json文件",value:"3"},
+    {text:"sql语句",value:"4"},
+    {text:"csv文件",value:"5"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataSourceFetchListApi](./config.md#datasourcefetchlistapi)接口的`type`参数.
+  :::
+
+
+### dataSourceConditionGroup
+
+配置开发工具中组件属性控件（[数据源：dataSourceSelect](../moduledevelop/attributes.md#datasourceselect)）`数据源分组的选项值`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`/ctrl/idm/console/fetchCommonOptionCodeList?codeFid=221020231236xTtQEZlqukQA0Z3dIMp`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"未分组",value:"-1"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"未分组",value:"-1"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataSourceFetchListApi](./config.md#datasourcefetchlistapi)接口的`group`参数.
+  :::
+
+
+### dataSourceConditionModuleList
+
+配置开发工具中数据源列表适配组件的选项值的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`/ctrl/idm/api/fetchComponentMarketData`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据，或者支持下拉列表分组方式，数据返回结构参考[componentMarketUrl](./config.md#componentmarketurl)
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"组件示例",value:"1"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"组件示例",value:"1"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataSourceFetchListApi](./config.md#datasourcefetchlistapi)接口的`moduleList`参数.
+  :::
 ## document
 
 主要用来对[文档管理](../guide/documentmanage.md)的功能进行配置的属性归类
@@ -1381,7 +1827,7 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
 - 值类型：`String`
 
-- 默认值：`/ctrl/idm/api/getDeptList?userType=@[IDM.user.getCurrentUserInfo().userType]`
+- 默认值：`/ctrl/idm/api/getDeptList?types=department,org&rootObject=2`
 
   设置单位授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getDeptList?userType=@[IDM.user.getCurrentUserInfo().userType]`
   
@@ -1393,15 +1839,15 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
 - 值类型：`String`
 
-- 默认值：`IDM.user.getCurrentUserInfo().userDepIds`
+- 默认值：`IDM.user.getCurrentUserInfo().userOrgId`
 
   比对对象，这里为填写表达式，可使用IDM整个对象（包括应用信息、用户信息），也可使用页面接口查询的结果。
 
-  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：userDepIds] 或 IDM.user.userObject[比对内容的属性，例如：userDepIds]
+  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：userOrgId] 或 IDM.user.userObject[比对内容的属性，例如：userOrgId]
 
   或
 
-  使用页面接口结果集：结果集名称[比对内容的属性，例如：userDepIds]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
+  使用页面接口结果集：结果集名称[比对内容的属性，例如：userOrgId]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
   
   :::tip
   表达式可参考：[IDM.express](../coreapi/api.md#express)
@@ -1442,7 +1888,7 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
 - 默认值：`/ctrl/idm/api/getDeptList?types=person&rootObject=2`
 
-  设置单位授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getDeptList?types=person&rootObject=2`
+  设置单位授权下拉选择的数据源地址，可携带参数，参数或地址可填写表达式，例如：`/ctrl/idm/api/getDeptList?userType=@[IDM.user.getCurrentUserInfo().userType]`
   
   :::tip
   表达式可参考：[IDM.express](../coreapi/api.md#express)
