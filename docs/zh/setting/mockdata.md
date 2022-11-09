@@ -33,6 +33,7 @@
           "className": "Container",
           "iconClass": "idmicon idm-icon-rongqi4",
           "type": "platform",
+          "defaultSize":"300,400",
           "imgList": [
             {
               "src": "~/static/img/demo/dbtablist.jpg",
@@ -83,6 +84,7 @@
   |className|组件的类名，该属性由组件开发者提供，当前代码包内不重复即可，请注意格式|
   |iconClass|组件在开发工具中显示的图标，可以参考 [字体图标](../guide/developtool.md#字体图标)|
   |type|组件类型，目前可以为platform、project|
+  |defaultSize|组件默认大小，此属性只有悬浮布局模式下才有效，格式为：`宽,高`，例如：`300,400`|
   |imgList|组件的效果图片数组集合|
   |src|图片的路径，会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
   |lastVersion|当前组件的最后一个版本|
