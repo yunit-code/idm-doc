@@ -11,6 +11,7 @@
     "className": "Test001",
     "comType": "common",
     "comLangue": "vue",
+    "defaultSize":"300,400",
     "compositeAttr": [
         {
             "type": "input",
@@ -51,6 +52,7 @@
   |className|组件的类名，请参考[组件类名](./config.md#组件类名)|
   |comType|组件的类型，common：通用型组件，dialog：弹窗类型组件，请根据组件用途谨慎选择|
   |comLangue|组件的技术栈，可以为vue、react、angular、jquery以及其他|
+  |defaultSize|组件的默认大小，用逗号分隔宽与高，比如：300,400，则代表宽为300px，高为400px，在悬浮布局模式下拖拽进去的时候默认大小为300*400|
   |compositeAttr|组件的综合属性数组|
   |innerComName|组件内部容器的容器名称，比如如果要在开发工具中能单独设置这个容器的属性，则此属性就是可以定义该容器的名称|
   |innerAttr|组件内部容器的综合属性数组，比如如果要在开发工具中能单独设置这个容器的属性，则此属性就是可以定义该容器有哪些属性值能设置|
