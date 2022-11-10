@@ -691,6 +691,7 @@ window.$$IDMSetting = {
   |type|数据源类型检索条件|
   |group|数据源分组检索条件|
   |moduleList|适配组件检索条件|
+  |productList|产品标签检索条件|
   |dataSourceId|指定要获取数据源的ID，如果此参数不为空则返回单个对象的数据源，而非列表的数据源|
 
 - 返回结构：
@@ -786,6 +787,8 @@ window.$$IDMSetting = {
   |title|名称|
   |author|当前作者|
   |remark|当前备注|
+  |datamodelId|数据模型ID|
+  |datamodelName|数据模型名称|
   |groupId|分组ID|
   |moduleArray|适用组件,例如：[{key: "1", label: " 组件示例 "}]|
   |tags|数据源标签，例如：[],{}|
@@ -993,6 +996,115 @@ window.$$IDMSetting = {
 :::tip
 出于安全考虑，执行sql建议使用参数信息，不使用拼接的方式且sql语句在后端执行，前端不暴露不拼接用户输入的参数。
 :::
+
+
+### dataModelGetDataApi
+
+用于数据模型获取数据接口
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/datamodel/get`
+
+- 请求方式：`GET`
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |id|数据模型主键|
+
+- 返回结构：
+
+  不固定
+
+### dataModelFetchListApi
+
+数据源列表查询Api地址
+- 值类型：`string`
+
+- 默认值：`/ctrl/idm/datamodel/getList`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  |参数|说明|
+  |-|-|
+  |pageIndex|页码|
+  |pageSize|页大小|
+  |searchText|文本框检索条件|
+  |TYPE|数据源类型检索条件|
+  |GROUP_ID|数据源分组检索条件|
+
+- 返回结构：
+
+  code返回值为 200 代表成功，否则为失败。
+  ```json
+  {
+    "code": "200",
+    "type": "success",
+    "message": "操作成功",
+    "metadata": null,
+    "token": "",
+    "data": {
+        "total": 1,
+        "rows": [
+            {
+              "createUserId": "1",
+              "createUName": "超级管理员",
+              "createDeptId": "180505162656YILYYOzw1FnE5OzzNxm",
+              "createDeptName": "江西省政府",
+              "createUnitId": "180505162656YILYYOzw1FnE5OzzNxm",
+              "createUnitName": "江西省政府",
+              "createTime": "2022-11-10 14:13:05",
+              "lastUpdateUserId": "",
+              "lastUpdateUName": "",
+              "lastUpdateDeptId": "",
+              "lastUpdateDeptName": "",
+              "lastUpdateUnitId": "",
+              "lastUpdateUnitName": "",
+              "lastUpdateTime": null,
+              "projectId": "p1001",
+              "productId": "",
+              "id": "221110141305jKKpNE8rXUyC8GSjm95",
+              "type": 1,
+              "dataSourceId": "221026143130LoelFRBveZdrsgPkN5u",
+              "dataSourceText": "查询框架分组下的页面",
+              "title": "测试数据源",
+              "author": "申龙",
+              "remark": "此处为测试数据源",
+              "itemindex": 1,
+              "groupId": "-1",
+              "tags": "[]",
+              "api": "",
+              "headerJson": "",
+              "paramJson": "[{\"name\":\"GROUP_ID\",\"value\":\"kjym\",\"valueType\":0}]",
+              "requestType": "GET",
+              "timeout": 0,
+              "resultJson": "",
+              "fileName": "",
+              "filePath": "",
+              "fileSize": "",
+              "fileContent": "",
+              "dbName": "",
+              "dbSql": "SELECT ",
+              "datatableName": ",idmqJHirTfLGr",
+              "updateCycleType": 1,
+              "updateRateType": 1,
+              "pullDate": "2022-11-10 14:13:24",
+              "day": "2022-11-10 14:04:06",
+              "hour": "",
+              "minute": "",
+              "pullType": 1,
+              "generateType": 1,
+              "dataTableListJson": "",
+              "productIds": "p1101",
+              "productNames": " 门户管理 ",
+              "productArray": null
+            }
+          ]
+        }
+      }
+  ```
 
 ## mockurl
 
@@ -1321,7 +1433,7 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
 - 值类型：`array` | `string`
 
-- 默认值：`[{text:"接口API",value:"1"},{text:"静态数据",value:"2"},{text:"json文件",value:"3"},{text:"sql语句",value:"4"},{text:"csv文件",value:"5"}]`
+- 默认值：`[{text:"接口API",value:"1"},{text:"数据模型",value:"6"},{text:"静态数据",value:"2"},{text:"json文件",value:"3"},{text:"sql语句",value:"4"},{text:"csv文件",value:"5"}]`
 
 - 请求方式：`GET`
 
@@ -1437,6 +1549,130 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   :::tip
   此检索条件应用于[dataSourceFetchListApi](./config.md#datasourcefetchlistapi)接口的`moduleList`参数.
   :::
+
+
+
+### dataSourceConditionProductList
+
+配置开发工具中数据源列表产品标签的选项值的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`/ctrl/idm/console/fetchCommonOptionCodeList?codeFid=221018150019zKrByzp12esVB7nAiIT`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"产品标签",value:"p1000"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"产品标签",value:"p1000"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataSourceFetchListApi](./config.md#datasourcefetchlistapi)接口的`productList`参数.
+  :::
+
+
+### dataModelConditionGroup
+
+配置开发工具中数据源维护中的数据模型选择列表的`数据模型分组的选项值`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`/ctrl/idm/console/fetchCommonOptionCodeList?codeFid=2211101124250PGpoTKvOI9rrBXDNKo`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"未分组",value:"-1"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"未分组",value:"-1"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataModelFetchListApi](./config.md#datamodelfetchlistapi)接口的`GROUP_ID`参数.
+  :::
+
+### dataModelConditionType
+
+配置开发工具中数据源维护中的数据模型选择列表的`数据模型类型的选项值`的检索条件，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`[{text:"数据源建表",value:"1"},{text:"SQL建表",value:"2"},{text:"excel上传",value:"3"},{text:"api数据",value:"4"}]`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": [{text:"数据源建表",value:"1"},...]
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {text:"数据源建表",value:"1"},
+    {text:"SQL建表",value:"2"},
+    {text:"excel上传",value:"3"},
+    {text:"api数据",value:"4"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataModelFetchListApi](./config.md#datamodelfetchlistapi)接口的`TYPE`参数.
+  :::
+
 ## document
 
 主要用来对[文档管理](../guide/documentmanage.md)的功能进行配置的属性归类
