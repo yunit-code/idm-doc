@@ -693,6 +693,7 @@ window.$$IDMSetting = {
   |moduleList|适配组件检索条件|
   |productList|产品标签检索条件|
   |dataSourceId|指定要获取数据源的ID，如果此参数不为空则返回单个对象的数据源，而非列表的数据源|
+  |codeId|数据源所在的目录ID，为空则是查询所有目录|
 
 - 返回结构：
 
@@ -1666,6 +1667,69 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
     {text:"SQL建表",value:"2"},
     {text:"excel上传",value:"3"},
     {text:"api数据",value:"4"}
+  ]
+  ```
+
+  :::tip
+  此检索条件应用于[dataModelFetchListApi](./config.md#datamodelfetchlistapi)接口的`TYPE`参数.
+  :::
+
+### dataSourceDirectoryTree
+
+配置开发工具中数据源维护中的所属目录的树结构数据，此处可以为静态数据结构，也支持通过接口地址获取结果
+
+- 值类型：`array` | `string`
+
+- 默认值：`ctrl/idm/code/getCodeTree?codeIds=221129152011u6M5NIlmdGWDs5vNWRR`
+
+- 请求方式：`GET`
+
+- 请求参数：
+
+  无
+
+- 返回结构：
+
+  需要返回以下格式数据
+  ```json
+  {
+      "code": "200",
+      "type": "success",
+      "message": "操作成功",
+      "metadata": null,
+      "token": "",
+      "data": {
+        "codeList":[
+          {
+            "id":"221129152011u6M5NIlmdGWDs5vNWRR",
+            "pid": "1",
+            "name": "数据源",
+            "itemIndex": 2,
+            "showName": "数据源",
+            "type": 0,
+            "children":[
+              ...
+            ]
+          }
+        ]
+      }
+  }
+  ```
+
+- **通过静态配置数据格式：**
+  ```json
+  [
+    {
+      "id":"221129152011u6M5NIlmdGWDs5vNWRR",
+      "pid": "1",
+      "name": "数据源",
+      "itemIndex": 2,
+      "showName": "数据源",
+      "type": 0,
+      "children":[
+        ...
+      ]
+    }
   ]
   ```
 
