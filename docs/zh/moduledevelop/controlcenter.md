@@ -35,6 +35,49 @@ IDM已基于[ant design vue](https://www.antdv.com/components/modal-cn/)的UI组
 ```
 ### 组件控件属性[useCtrlAttr]介绍
 此处用于介绍上述 [组件数据结构](./controlcenter.md#组件数据结构) 中的useCtrlAttr结构，通过维护此处属性能控制各个内部控件的各种状态等。
+
+**面板选择示例**
+  ```json
+  {
+    "desc":"显示备注的",
+    "rules":[{ "required": true, "message": "必填项，请输入" }],
+    "dataType":"code",
+    "codeId":"211119180404fD2g1pqxcFIbG2PMyJo",
+    "showFiledName":"data.codeList[0].children",
+    "replaceFields":{
+      "title":"showName",
+      "label":"showName", 
+      "key":"id", 
+      "value": "id",
+      "children":"children"
+    }
+  }
+  ```
+
+**部门/用户选择示例**
+  ```json
+  {
+    "desc":"显示备注的",
+    "rules":[{ "required": true, "message": "必填项，请输入" }],
+    "dataType":"url",
+    "interfaceUrl":"/ctrl/user/select/data?metaKey=C-FW-0034&t=1638256325206&moduleId=190223111129QHn5ZVAru9uvSp7Oqjh&customUserSelectScope=1812101427453OGYKdWUZ8DzdsBd5dS&userProperty=S-BASE-0005&userPropertyText=%E5%88%9B%E5%BB%BA%E9%83%A8%E9%97%A8ID",
+    "interfaceType":"post",
+    "customParam":{
+      "types":"person,privateGroup,orgLV1",
+      "action":"self_org",
+      "rootObject":"2"
+    },
+    "showFiledName":"data.departmentList",
+    "replaceFields":{
+      "title":"showName",
+      "label":"showName", 
+      "key":"id", 
+      "value": "id",
+      "children":"children"
+    },
+    "showCheckedStrategy":"SHOW_ALL"
+  }
+  ```
 #### 通用属性
 
 ##### desc
