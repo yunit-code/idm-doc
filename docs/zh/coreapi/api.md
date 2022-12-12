@@ -1859,6 +1859,71 @@
   ```
   启用允许页面下拉刷新，比如有手势操作其他功能的时候不想页面也被下拉刷新出现会通过`IDM.page.stopPullToRefresh()`禁用刷新，当需要再次启用的时候可调用`IDM.page.startPullToRefresh()`方法启用刷新
 
+
+### changePageUserDefinedStatus
+- **定义**：
+
+  `changePageUserDefinedStatus(ctx)`
+- **参数**：
+  - `{routerId,status,save} [ctx]`
+  - **参数含义**
+    - routerId：路由ID，可为空
+    - status: true 进入编辑状态   false  退出编辑状态
+    - save: true 且 status的参数为 false 的时候则是需要保存状态,其他情况则是不执行保存状态
+- **用法**：
+  ``` js
+  IDM.page.changePageUserDefinedStatus({status:true})
+  ```
+  改变页面用户定制化工作状态，用于开始进入编辑状态、退出编辑状态的切换
+
+### executeUserDefinedSave
+- **定义**：
+
+  `executeUserDefinedSave(ctx)`
+- **参数**：
+  - `{routerId} [ctx]`
+  - **参数含义**
+    - routerId：路由ID，可为空
+- **用法**：
+  ``` js
+  IDM.page.executeUserDefinedSave()
+  
+  IDM.page.executeUserDefinedSave({routerId:this.moduleObject.routerId})
+  ```
+  执行内部的个性化功能用户自定义保存事件
+
+### executeUserDefinedReset
+- **定义**：
+
+  `executeUserDefinedReset(ctx)`
+- **参数**：
+  - `{routerId} [ctx]`
+  - **参数含义**
+    - routerId：路由ID，可为空
+- **用法**：
+  ``` js
+  IDM.page.executeUserDefinedReset()
+  
+  IDM.page.executeUserDefinedReset({routerId:this.moduleObject.routerId})
+  ```
+  执行内部的个性化功能用户自定义重置事件
+
+### executeUserDefinedQuit
+- **定义**：
+
+  `executeUserDefinedQuit(ctx)`
+- **参数**：
+  - `{routerId} [ctx]`
+  - **参数含义**
+    - routerId：路由ID，可为空
+- **用法**：
+  ``` js
+  IDM.page.executeUserDefinedQuit()
+  
+  IDM.page.executeUserDefinedQuit({routerId:this.moduleObject.routerId})
+  ```
+  执行内部的个性化功能用户自定义退出事件
+
 ## app
 此分类为应用程序信息存储的公共方法分类，此分类需要追加分类名（IDM.app.方法名）访问下列的方法。
 ### getAppInfo
