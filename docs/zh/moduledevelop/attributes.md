@@ -781,6 +781,12 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
     值类型：`boolean`
     
     设置如果在线上 checkbox 状态下节点选择完全受控（父子节点选中状态不再关联），会使得 labelInValue 强制为 true且会出现全选下级的功能，为空默认为`false`
+  - replaceFields：
+  
+    值类型：`Object`
+    
+    替换 treeNode 中 title,value,key,children 字段为 treeData 中对应的字段，如果不设置则默认为`{children:'children', title:'title', key:'key', value: 'value' }`
+
 ### uploadImage
 - 中文名：图片上传
 
