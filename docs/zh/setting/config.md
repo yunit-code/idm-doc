@@ -1804,6 +1804,21 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   }
   ```
 
+### logoImgSrc
+- 值类型：`string`
+
+- 默认值：``
+
+设计器的左上角图片地址，如果为空则显示默认的IDM的logo
+
+
+### siteTitle
+- 值类型：`string`
+
+- 默认值：`IDM可视化设计器`
+
+设计器的浏览器标题名称
+
 ## applications
 
 主要用来对整个框架的功能进行配置的属性归类
@@ -1813,6 +1828,13 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 - 默认值：`Idm preview default title`
 
 用于设置在渲染引擎中当页面标题如果为空不设置的时候显示的默认标题，支持使用表达式（IDM、window、...页面加载之前加载的页面接口集合）
+
+### faviconIcoSrc
+- 值类型：`string`
+
+- 默认值：``
+
+用于设置在设计器和渲染引擎默认的浏览器ico图标，为空则使用IDM默认的，渲染引擎会使用页面设置的覆盖
 
 ### defaultLoginPageUrl
 - 值类型：`string`
