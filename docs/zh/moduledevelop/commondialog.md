@@ -24,6 +24,19 @@
     ```
 - **二、新建属性文件**
 
+  :::tip
+  如果Dialog组件需要控制点击遮罩是否关闭弹窗可以增加`bindKey`为`shadeClose`且`type`为`switch`的属性，例如：
+  ```json
+    {
+        "type": "switch",
+        "layoutType": "inline",
+        "text": "蒙层关闭",
+        "desc":"点击窗口之外的蒙层是否能关闭",
+        "bindKey": "shadeClose",
+        "default": true
+    }
+  ```
+  :::
   在`public\static\attributes\`目录下新建一个与组件类名同名的`Dialog001.json`属性注册文件。
     ```json
     {
