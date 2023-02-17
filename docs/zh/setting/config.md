@@ -2161,15 +2161,15 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
 
 - 值类型：`String`
 
-- 默认值：`IDM.user.getCurrentUserInfo().userOrgId`
+- 默认值：`IDM.user.getCurrentUserInfo().userAllDepIds`
 
   比对对象，这里为填写表达式，可使用IDM整个对象（包括应用信息、用户信息），也可使用页面接口查询的结果。
 
-  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：userOrgId] 或 IDM.user.userObject[比对内容的属性，例如：userOrgId]
+  使用IDM对象：IDM.user.getCurrentUserInfo()[比对内容的属性，例如：userAllDepIds] 或 IDM.user.userObject[比对内容的属性，例如：userAllDepIds]
 
   或
 
-  使用页面接口结果集：结果集名称[比对内容的属性，例如：userOrgId]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
+  使用页面接口结果集：结果集名称[比对内容的属性，例如：userAllDepIds]，注意：页面接口的加载时机需要设置为 `页面加载之前加载`
   
   :::tip
   表达式可参考：[IDM.express](../coreapi/api.md#express)
