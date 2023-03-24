@@ -358,6 +358,20 @@
   IDM.removeStyleTagForId('.ClassName div') 
   ```
   根据id移除style标签
+  
+### invokeCustomFunctions
+- **定义**：
+
+  `invokeCustomFunctions(...args)`
+- **参数**：
+  - `{...} [args]`
+
+- **用法**：
+  ``` js
+  const results = IDM.invokeCustomFunctions.apply(this, [this.propData.customFunction, {}]); // => [function result 1,function result 2]
+  ```
+  用于调用属性中自定义动作（自定义函数）的公共执行方法。
+
 ### difference
 - **定义**：
 
