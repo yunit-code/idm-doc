@@ -75,6 +75,7 @@ export const zh: SidebarConfig = {
     {
       text: '常见问题',
       children: [
+        '/zh/faq/README.md',
         {
           text: '兼容性',
           children: [

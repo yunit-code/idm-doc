@@ -81,6 +81,7 @@ export const zh: NavbarConfig = [
     text: '常见问题',
     link: '/zh/faq/',
     children: [
+      '/zh/faq/README.md',
       {
         text: '兼容性',
         children: [

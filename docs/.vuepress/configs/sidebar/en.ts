@@ -73,6 +73,7 @@ export const en: SidebarConfig = {
     {
       text: 'FAQ.',
       children: [
+        '/faq/README.md',
         {
           text: '兼容性',
           children: [
