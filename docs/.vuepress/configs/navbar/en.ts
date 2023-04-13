@@ -80,6 +80,7 @@ export const en: NavbarConfig = [
     text: 'FAQ',
     link: '/faq/',
     children: [
+      '/faq/README.md',
       {
         text: '兼容性',
         children: [

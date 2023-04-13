@@ -358,6 +358,20 @@
   IDM.removeStyleTagForId('.ClassName div') 
   ```
   根据id移除style标签
+  
+### invokeCustomFunctions
+- **定义**：
+
+  `invokeCustomFunctions(...args)`
+- **参数**：
+  - `{...} [args]`
+
+- **用法**：
+  ``` js
+  const results = IDM.invokeCustomFunctions.apply(this, [this.propData.customFunction, {}]); // => [function result 1,function result 2]
+  ```
+  用于调用属性中自定义动作（自定义函数）的公共执行方法。
+
 ### difference
 - **定义**：
 
@@ -1923,6 +1937,22 @@
   IDM.page.executeUserDefinedQuit({routerId:this.moduleObject.routerId})
   ```
   执行内部的个性化功能用户自定义退出事件
+
+### checkComponentHasAuthority
+- **定义**：
+
+  `checkComponentHasAuthority(item)`
+- **参数**：
+  - `{Object} [item]`
+  - **参数含义**
+    IDM的Schema结构中的单个组件对象。
+- **用法**：
+  ``` js
+  IDM.page.checkComponentHasAuthority(item)
+  ```
+  检查单个组件对象是否有权限显示，注意需要开启用户信息且[setting.js](../setting/config.md#basicattributeauthorizeconfig)是否正确配置。
+  
+- **返回值**：`Boolean` 返回当前用户是否有此权限显示此组件，`false`表示无权限
 
 ## app
 此分类为应用程序信息存储的公共方法分类，此分类需要追加分类名（IDM.app.方法名）访问下列的方法。
