@@ -13,3 +13,17 @@ IDM对文档目录有一定的要求，虽然能自由规定文档目录，但�
 2. 文档维护建议使用[文档管理](../guide/documentmanage.md)在线维护然后下载到组件的开发环境代码包中
 
 3. 一个组件包只有一个组件包文档，一个组件只有对应一个组件文档，组件包文档命名为`index.md`，组件的文档命名为`组件类名.md`
+
+## 文档生成
+对于还没有文档的组件（如果文档已存在，会提示是否覆盖原文档），可以使用idm-cli快速生成文档，
+
+:::warning
+使用前请确保安装idm-cli最新版 `npm i @idm-modules/cli@latest -g`
+:::
+
+### 使用步骤
+
+1. 查看`idm-cli`版本 `npm info @idm-modules/cli` 版本大于等于1.0.32
+
+2. 在idm组件项目中输入命令 `idm doc <componentClassName>`
+
