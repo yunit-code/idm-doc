@@ -23,7 +23,7 @@ IDM对文档目录有一定的要求，虽然能自由规定文档目录，但�
 
 ### 使用步骤
 
-1. 查看`idm-cli`版本 `npm info @idm-modules/cli` 版本大于等于1.0.32
+1. 查看`idm-cli`版本 `npm info @idm-modules/cli` 版本大于等于 `1.0.36`
 
 2. 在idm组件项目中输入命令 `idm doc <componentClassName>`
 
