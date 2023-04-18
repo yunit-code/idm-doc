@@ -1244,7 +1244,7 @@
      debugger
   })
   ```
-  基于 [Axios](https://axios-http.com/docs/api_intro) 的 get 请求方法。
+  基于 [Axios](https://axios-http.com/docs/api_intro) 的 get 异步请求方法。
   :::tip
   更多用法请参考：
 
@@ -1277,7 +1277,7 @@
      debugger
   })
   ```
-  基于 [Axios](https://axios-http.com/docs/api_intro) 的 post 请求方法。
+  基于 [Axios](https://axios-http.com/docs/api_intro) 的 post 异步请求方法。
   :::tip
   更多用法请参考：
 
@@ -1352,6 +1352,60 @@
 
   Axios Github：[Axios](https://github.com/axios/axios)
   :::
+
+### getSync
+- **定义**：
+
+  `getSync(path, params, options, rootPath)`
+- **参数**：
+  - `{String} [path]` 请求地址，此地址会经 [getWebPath](./api.md#getwebpath) 转换
+  - `{Object} [params]`  携带参数
+  - `{Object} [options]`  请求选项，如果为字符串则会直接当做rootPath参数
+  - `{String} [rootPath]`  可选，如果options参数为字符串则此参数无效
+
+- **用法**：
+  ``` js
+  var resultData = IDM.http.getSync('api/getMyInfo', {
+     userId: '1b1d18d830c44b509d4fa730fa9d0b9b'
+  },{
+    contentType:"application/json"
+  })
+  /**
+   * resultData输出结果为
+   * {
+    ...
+   }
+   */
+  ```
+  基于 [jQuery Ajax](https://www.w3school.com.cn/jquery/ajax_ajax.asp) 的 get 同步请求方法。
+
+### postSync
+- **定义**：
+
+  `postSync(path, params, options, rootPath)`
+- **参数**：
+  - `{String} [path]` 请求地址，此地址会经 [getWebPath](./api.md#getwebpath) 转换
+  - `{Object} [params]`  携带参数
+  - `{Object} [options]`  请求选项，如果为字符串则会直接当做rootPath参数
+  - `{String} [rootPath]`  可选，如果options参数为字符串则此参数无效
+
+- **用法**：
+  ``` js
+  var resultData = IDM.http.postSync('api/saveMyInfo', {
+     userName:"申龙",
+     mobile:"11000000000"
+  },{
+    contentType:"application/json"
+  });
+  /**
+   * resultData输出结果为
+   * {
+    ...
+   }
+   */
+  ```
+  基于 [jQuery Ajax](https://www.w3school.com.cn/jquery/ajax_ajax.asp) 的 post 同步请求方法。
+  
 ### importFiles
 - **定义**：
 
