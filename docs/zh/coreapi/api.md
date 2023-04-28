@@ -1669,6 +1669,7 @@
   option的格式为：
   ```json
   {
+   "url":"要展示的页面地址，如果为空则使用 页面设置=>控制中心 的默认地址，如果此地址不为空则 param 参数为非必填",
    "param":{
     "marketModuleId":"必填，市场组件的ID，组件内取this.moduleObject.comId即可",
     "pageId":"必填，页面的ID，直接使用 IDM.broadcast.pageModule.id 即可获取",
@@ -1687,6 +1688,8 @@
   ``` js
   //组件内调用
   IDM.broadcast.openControlSetPanel({
+    //如果要想打开IDM内置的控制中心，则此处url必须为空。
+    "url":"",
     "param":{
       "marketModuleId":this.moduleObject.comId,
       "pageId":IDM.broadcast.pageModule.id,
