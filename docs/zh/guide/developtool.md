@@ -844,6 +844,17 @@ defer解释请参考： [async](https://www.w3school.com.cn/html5/att_script_def
 
 页面接口使用方法请参考： [组件高级开发-统一接口](../moduledevelop/unifiedinterface.md)
 :::
+##### 配置方式【interfaceType】
+
+用于设置页面接口配置方式，目前支持数据源、自定义两种。
+- 默认值：`数据源`
+
+##### 数据源【dataSourceSelectData】
+
+用于选择要求请求执行的数据源，支持使用联动的消息对象，一级属性名称为：linkMessageObject
+- 是否多选：否
+- 默认值：空
+
 ##### 请求方式【interfaceMode】
 <img :src="$withBase('/images/attr/page_attr_interfaceMode.jpg')" style="margin-top:10px" alt="预览效果" />
 
@@ -877,7 +888,7 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 :::tip
 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
 :::
-##### 表单数据自定义函数【formDataFunction】
+##### 参数数据自定义函数【formDataFunction】
 <img :src="$withBase('/images/attr/page_attr_formDataFunction.jpg')" style="margin-top:10px" alt="预览效果" />
 
 请求接口post要提交的数据，请求前会调用此处设置的自定义函数，函数接收参数为格式为：
@@ -936,6 +947,34 @@ Get、Post解释请参考： [GET 对比 POST](https://www.runoob.com/tags/html-
 1. 页面加载完成加载：当页面的组件都加载完成后才会加载此接口，仅会发送协议为[pageCommonInterface](../moduledevelop/communication.md#pagecommoninterface)的消息
 
 2. 页面加载之前加载：当页面的组件加载开始之前去加载页面接口，设置此属性将不会调用组件的[setContextValue](../moduledevelop/builtin.md#setcontextvalue)内置方法，仅会发送协议为[pageCommonInterface](../moduledevelop/communication.md#pagecommoninterface)的消息
+
+
+##### 联动请求【reloadType】
+
+当设置的页面接口需要依据其他组件进行筛选重新查询的时候可以设置此属性为表达式依据或者自定义函数依据即可，目前有三种属性支持选择：
+
+1. 无联动：不会再重新请求
+
+2. 表达式依据：设置使用IDM表达式来判断是否进行联动请求
+
+3. 自定义函数依据：设置使用自定义函数来判断是否进行联动请求
+
+
+##### 表达式依据【reloadExpression】
+
+当组件发送消息时候会依据此处填写的表达式来判断是否需要重新请求页面接口，支持IDM表达式，可直接使用IDM变量和联动的消息，联动消息属性为：linkMessageObject
+
+- 显示条件：`联动请求 = 表达式依据`
+
+:::tip
+表达式可参考：[IDM.express](../coreapi/api.md#express)
+:::
+
+##### 自定义函数依据【actionSelect】
+
+当组件发送消息时候会依据此处填写的自定义函数来判断是否需要重新请求页面接口，接收参数格式为{...自定义的，linkMessageObject:联动的消息数据}
+
+- 显示条件：`联动请求 = 自定义函数依据`
 
 #### 组件加载之前执行【beforeLoadingFunction】
 <img :src="$withBase('/images/attr/page_attr_beforeLoadingFunction.jpg')" style="margin-top:10px" alt="预览效果" />
