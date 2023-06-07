@@ -314,10 +314,11 @@
 ### setStyleToPageHead
 - **定义**：
 
-  `setStyleToPageHead(id,object)`
+  `setStyleToPageHead(id,object,addSelector)`
 - **参数**：
   - `{string} [id]`
   - `{Object} [object]`
+  - `{Boolean} [addSelector]` 是否添加前缀，传false就不加，不传则默认加
 
 - **用法**：
   ``` js
@@ -343,6 +344,82 @@
   :::tip
   如果id已经添加过会删除已经存在的相同ID并重新添加。
   :::
+
+
+### setStyleHtmlToPageHead
+- **定义**：
+
+  `setStyleHtmlToPageHead(selector,styleHtml)`
+- **参数**：
+  - `{string} [selector]` 样式的唯一ID，
+  - `{string} [styleHtml]` 样式的字符串代码
+
+- **用法**：
+  ``` js
+  var cssObject = 'body{border:1px solid #000000;background-color:red}'
+
+  IDM.setStyleHtmlToPageHead(IDM.uuid(),cssObject) 
+  ```
+  把object样式转换为style标签样式并添加到head的标签中
+
+  :::tip
+  如果selector已经添加过会删除已经存在的相同selector并重新添加。
+  :::
+
+### getExpressData
+- **定义**：
+
+  `getExpressData(expressStr, objectData, defaultPrefix,addAt)`
+- **参数**：
+  - `{string} [expressStr]` 表达式字符串，不包含 @[]，如果传了addAt为false，则需要带上 @[]，
+  - `{Object} [objectData]` 表达式所使用的对象数据，如果为object类型则可直接使用，如果为数组或者其他类型则会默认给添加到 _idm_ 字段中，因此表达式需要带上 _idm_.dataFieldName 这样
+  - `{string} [defaultPrefix]` 为数组或者其他类型的默认字段名称，默认为 _idm_ ，如果需要定义其他可以传此参数
+  - `{Boolean} [addAt]` 是否自动追加艾特@符号 '@[]',默认为追加，为false则不追加
+
+- **用法**：
+  ``` js
+    //例1：
+    IDM.getExpressData("data.dataFieldName",{data:{dataFieldName:"1234"}})  // => 1234
+    //例2：
+    IDM.getExpressData("_idm_[0].data.dataFieldName",[{data:{dataFieldName:"1234"}}])  // => 1234
+    //例3：
+    IDM.getExpressData("_idm_","这里是字符串1234")  // => 这里是字符串1234
+    //例4：
+    IDM.getExpressData("mydata[0].data.dataFieldName",[{data:{dataFieldName:"1234"}}],"mydata")  // => 1234
+  ```
+  通用的获取表达式匹配后的结果
+
+
+### renderAttrStyleToPage
+- **定义**：
+
+  `renderAttrStyleToPage(attrArray, moduleObject, otherObject)`
+- **参数**：
+  - `{Array} [attrArray]` 样式属性对象，必须是数组格式
+  - `{Object} [moduleObject]` 组件对象，不能为空
+  - `{Object} [otherObject]` 能在使用条件或者样式中使用的表达式对象
+
+- **用法**：
+  ``` js
+  //会移除form为 ElementId 的 style 标签样式
+  IDM.renderAttrStyleToPage(this.propData.styleAttrArray,this.moduleObject,{...填写样式所需要用到的组件内的数据来进行判断等}) 
+  ```
+  组件内手动渲染属性样式到页面的head中，组件属性控件 `styleEditor` 默认是不需要进行单独处理渲染的，如果属性控件配置为这种方式：
+  ````JSON
+  {
+    "type": "styleEditor",
+    "ctrlAttrObject":{
+      "idmCoreLoad":true
+    },
+    ...
+  }
+  ```
+  则组件内不需要单独处理，如果为`idmCoreLoad=false`则需要组件内调用此方法且传`otherObject`参数并且在需要的地方调用即可，可重复调用。
+  
+  :::tip
+  如果在写样式的时候需要用到组件内的动态数据等，则必须组件内调用，在需要的地方重复调用即可
+  :::
+
 ### removeStyleTagForId
 - **定义**：
 
@@ -2163,6 +2240,95 @@
       break
   }
   ```
+
+  
+### setLayoutStyle
+此方法将设置layout属性控件的flex的操作进行封装
+- **定义**：
+  `setLayoutStyle(styleObject, element, isImportant = false)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [element]` 组件配置属性列表中元素
+  - `{Boolean} [isImportant]` 是否important, 默认false
+- **用法**：
+  ```js
+  for (const key in this.propData) {
+    case 'layout':
+      IDM.style.setLayoutStyle(styleObject, element)
+      break
+  }
+  ```
+  
+### setBackgroundStyle
+此方法将设置背景颜色属性的操作进行封装
+- **定义**：
+  `setBackgroundStyle(styleObject, propData, keyObject, isImportant = false)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [propData]` 背景属性所在的属性对象
+  - `{
+        bgSize: "bgSize",
+        bgSizeWidth: "bgSizeWidth",
+        bgSizeHeight: "bgSizeHeight",
+        positionX: "positionX",
+        positionY: "positionY",
+        bgColor: "bgColor",
+        bgImgUrl: "bgImgUrl",
+        bgRepeat: "bgRepeat",
+        bgAttachment: "bgAttachment",
+    } [keyObject]` 背景颜色的属性的字段名称指定，默认为此，如没有变动则不需要传此参数
+  - `{Boolean} [isImportant]` 是否important, 默认false
+- **用法**：
+  ```js
+  var styleObject = {};
+  IDM.style.setBackgroundStyle(styleObject, this.propData,{
+        bgSize: "bgSize",
+        bgSizeWidth: "bgSizeWidth",
+        bgSizeHeight: "bgSizeHeight",
+        positionX: "positionX",
+        positionY: "positionY",
+        bgColor: "bgColor",
+        bgImgUrl: "bgImgUrl",
+        bgRepeat: "bgRepeat",
+        bgAttachment: "bgAttachment",
+    })
+  ```
+
+### setFilterStyle
+此方法将设置过滤镜样式属性的操作进行封装
+- **定义**：
+  `setFilterStyle(styleObject, propData, keyObject, isImportant = false)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [propData]` 滤镜属性所在的属性对象
+  - `{
+        openFilter:"openFilter",
+        contrast:"contrast",
+        saturate:"saturate",
+        brightness:"brightness",
+        opacity:"opacity",
+        grayscale:"grayscale",
+        hueRotate:"hueRotate",
+        invert:"invert",
+        blur:"blur",
+    } [keyObject]` 滤镜属性的字段名称指定，默认为此，如没有变动则不需要传此参数
+  - `{Boolean} [isImportant]` 是否important, 默认false
+- **用法**：
+  ```js
+  var styleObject = {};
+  IDM.style.setFilterStyle(styleObject, this.propData,{
+        openFilter:"openFilter",
+        contrast:"contrast",
+        saturate:"saturate",
+        brightness:"brightness",
+        opacity:"opacity",
+        grayscale:"grayscale",
+        hueRotate:"hueRotate",
+        invert:"invert",
+        blur:"blur",
+    })
+  ```
+
 ### generateClassName
 此方法用于批量生成css类名, 方便设置css选择器权重
 - **定义**：

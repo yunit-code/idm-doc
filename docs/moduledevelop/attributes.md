@@ -514,7 +514,8 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       "display": "flex",
       "direction": "column",
       "align": "center",
-      "justify": "flex-end"
+      "justify": "flex-end",
+      "wrap":"nowrap"
   }
   ```
 ### inputNumber

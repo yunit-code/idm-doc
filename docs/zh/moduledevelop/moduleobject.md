@@ -29,7 +29,10 @@
     "type": "platform",
     "version": "1.0.0",
     "routerId": "cVL6xqiyE8YHfUZt",
-    "pageid": "PAGE_cVL6xqiyE8YHfUZtcVL6xqiyE8YHfUZt"
+    "pageid": "PAGE_cVL6xqiyE8YHfUZtcVL6xqiyE8YHfUZt",
+    "dynamicRenderModuleGroupInitData": ƒ (),
+    "removeDynamicRenderModuleGroup": ƒ (),
+    "getModuleChildrenPackageId": ƒ (),
 }
 ```
 - 数据结构内相关key说明：
@@ -64,3 +67,6 @@
 |mountComplete|组件内部全部加载完成需要回调此渲染引擎设置的加载方法，一个参数（moduleObject：当前组件对象，直接回传即可）|
 |routerId|路由ID，每次使用内置打开的页面都会有一个新的路由ID|
 |pageid|页面ID，当前组件所在页面ID|
+|dynamicRenderModuleGroupInitData|动态渲染复制组件组的组件且加载数据，每次只复制一个分组(只有不包含的dynamicModule)，动态渲染会移除之前的重新渲染一遍。五个参数（packageid：组件packageid，要动态渲染复制的父级组件,idmContainerId：要动态渲染的容器索引ID,itemData：动态渲染组件所使用到的数据,containerGroup：是否容器分组，如果是则containerIndex会用 idmContainerId+"_" 前缀这种方式查找,sendMessageKey：发送联动消息的messageKey标识，为空则默认为dynamicRenderModule）|
+|removeDynamicRenderModuleGroup|移除动态渲染的组件组，如果删除的是原始组件会找其中一条修改为原始组件，如果是只有一个索引了则不移除数据只移除dom。三个参数（packageid：组件packageid，要动态渲染复制的父级组件,idmContainerId：要动态渲染的容器索引ID,containerGroup：是否容器分组，如果是则containerIndex会用 idmContainerId+"_" 前缀这种方式查找）|
+|getModuleChildrenPackageId|获取组件的子组件packageid集合，返回数组。三个参数（packageid：父组件packageid,idmContainerId：要获取所在容器的containerIndex，如果为空则获取所有的,containerGroup：是否容器分组，如果是则containerIndex会用 idmContainerId+"_" 前缀这种方式查找）|

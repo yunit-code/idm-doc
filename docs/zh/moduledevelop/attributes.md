@@ -515,7 +515,8 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       "display": "flex",
       "direction": "column",
       "align": "center",
-      "justify": "flex-end"
+      "justify": "flex-end",
+      "wrap":"nowrap"
   }
   ```
 ### inputNumber
@@ -977,3 +978,28 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
   :::tip
   此控件返回结果字符串类型的，需要组件内部根据需求自行进行表达式转换，需要特别注意的是：当开头带`[Number]`的代表结果是为数组类型且只取`Number`索引这一条的数据，例如：`[0].title`，反之如果结果为数组类型，但此处控件返回的是`title`则代表循环数组结果取`title`字段作为展示。
   :::
+
+
+### styleEditor
+- 中文名：样式自定义
+
+- 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_styleeditor.jpg')" style="margin-top:10px" alt="预览效果" />
+
+- 返回值示例：
+  ```json
+  [
+      {
+          "styleUUID": "rndS0VgbZH7niLuU",
+          "styleType": "css、scss",
+          "cssCode": "样式diam",
+          "idmCoreLoad": false,
+          "styleCondition": "使用条件",
+          "scssCode": "scss源码"
+      }
+  ]
+  ```
+
+- ctrlAttrObject属性介绍：
+  - idmCoreLoad：true | false 代表是否idm内部处理，当然组件内也可以自行处理。
