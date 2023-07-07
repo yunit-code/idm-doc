@@ -1003,3 +1003,29 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
 
 - ctrlAttrObject属性介绍：
   - idmCoreLoad：true | false 代表是否idm内部处理，当然组件内也可以自行处理。
+
+### multiBackground
+- 中文名：多背景图
+
+- 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_m_background.jpg')" style="margin-top:10px" alt="预览效果" />
+
+  <img :src="$withBase('/images/attr/page_attr_m_background_modal.jpg')" style="margin-top:10px" alt="预览效果" />
+
+- 返回值示例：
+  ```json
+  {
+      "bgList":[
+          Object{...},
+          Object{...}
+      ],
+      "bgAttachment":"fixed",
+      "style":{
+          "background-attachment":"fixed",
+          "background":"linear-gradient(0deg, #fbc2eb 0%,#a6c1ee 100%) 50% 50%/contain repeat,url(/DreamWeb/imageurl/img.jpg) 0% 0%/100px 100px no-repeat"
+      }
+  }
+  ```
+- ctrlAttrObject属性介绍：
+  同[图片上传控件](./attributes.md#uploadimage)
