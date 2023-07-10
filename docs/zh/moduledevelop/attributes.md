@@ -95,6 +95,10 @@
   - 值类型：boolean
 
   设置此属性控件是否禁用，默认为false不禁用，true代表禁用。
+- **deleteStyle**
+  - 值类型：boolean
+
+  设置此属性控件是被弃用，默认为false则正常，true代表被弃用，会出现删除线和半透明标题。
 - **default**
   - 值类型：Any
 
@@ -1016,16 +1020,147 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
 - 返回值示例：
   ```json
   {
-      "bgList":[
-          Object{...},
-          Object{...}
-      ],
-      "bgAttachment":"fixed",
-      "style":{
-          "background-attachment":"fixed",
-          "background":"linear-gradient(0deg, #fbc2eb 0%,#a6c1ee 100%) 50% 50%/contain repeat,url(/DreamWeb/imageurl/img.jpg) 0% 0%/100px 100px no-repeat"
-      }
+    "bgAttachment": "fixed",
+    "bgList": [
+        {
+            "top": 0,
+            "left": 0,
+            "topUnit": "%",
+            "leftUnit": "%",
+            "type": "gradient",
+            "gradientObject": {
+                "shape": {
+                    "selections": [
+                        "circle",
+                        "ellipse"
+                    ],
+                    "selected": "ellipse"
+                },
+                "size": {
+                    "ellipse": {
+                        "width": {
+                            "amount": "13",
+                            "unit": "%",
+                            "min": 0,
+                            "max": 100,
+                            "name": "width"
+                        },
+                        "height": {
+                            "amount": "8",
+                            "unit": "%",
+                            "min": 0,
+                            "max": 100,
+                            "name": "Height"
+                        }
+                    },
+                    "circle": {
+                        "length": {
+                            "amount": 500,
+                            "unit": "px",
+                            "min": 0,
+                            "max": 1000,
+                            "name": "Length"
+                        }
+                    }
+                },
+                "repeating": {
+                    "selections": [
+                        false,
+                        true
+                    ],
+                    "selected": true
+                },
+                "style": {
+                    "background-image": "repeating-radial-gradient(ellipse 13% 8% at 50% 50%, #ff8177 0%,#ff867a 0%,#ff8c7f 21%,#f99185 52%,#cf556c 78%,#b12a5b 100%)"
+                },
+                "position": {
+                    "horizontal": {
+                        "amount": 50,
+                        "unit": "%",
+                        "min": 0,
+                        "max": 100,
+                        "name": "x-offset"
+                    },
+                    "vertical": {
+                        "amount": 50,
+                        "unit": "%",
+                        "min": 0,
+                        "max": 100,
+                        "name": "y-offset"
+                    }
+                },
+                "type": {
+                    "selections": [
+                        "linear",
+                        "radial"
+                    ],
+                    "selected": "radial"
+                },
+                "colors": [
+                    {
+                        "stop": "0",
+                        "value": "#ff8177",
+                        "status": "in"
+                    },
+                    {
+                        "stop": "0",
+                        "value": "#ff867a",
+                        "status": "in"
+                    },
+                    {
+                        "stop": "21",
+                        "value": "#ff8c7f",
+                        "status": "in"
+                    },
+                    {
+                        "stop": "52",
+                        "value": "#f99185",
+                        "status": "in"
+                    },
+                    {
+                        "stop": "78",
+                        "value": "#cf556c",
+                        "status": "in"
+                    },
+                    {
+                        "stop": "100",
+                        "value": "#b12a5b",
+                        "status": "in"
+                    }
+                ],
+                "direction": {
+                    "amount": 90
+                },
+                "status": "show"
+            },
+            "size": "",
+            "width": 100,
+            "widthUnit": "px",
+            "height": 100,
+            "heightUnit": "px",
+            "repeat": "no-repeat"
+        },
+        {
+            "type": "image",
+            "top": 50,
+            "left": 50,
+            "topUnit": "%",
+            "leftUnit": "%",
+            "gradientObject": null,
+            "imgurl": "http://192.168.1.63:8080/dreaminvoice/home/img/banner1/one_bg1.jpg",
+            "size": "contain",
+            "repeat": "no-repeat"
+        }
+    ],
+    "style": {
+        "background-attachment": "fixed",
+        "background": "repeating-radial-gradient(ellipse 13% 8% at 50% 50%, #ff8177 0%,#ff867a 0%,#ff8c7f 21%,#f99185 52%,#cf556c 78%,#b12a5b 100%) 0% 0%/100px 100px no-repeat,url(http://192.168.1.63:8080/dreaminvoice/home/img/banner1/one_bg1.jpg) 50% 50%/contain no-repeat"
+    }
   }
   ```
 - ctrlAttrObject属性介绍：
   同[图片上传控件](./attributes.md#uploadimage)
+
+  :::tip
+  因控件直接返回了`style`属性，所以在组件应用该属性值的代码可以这样写`Object.assign(styleObject, element.style);` 亦或者直接使用 [IDM.style.setMultiBackgroundStyle](../coreapi/api.md#setmultibackgroundstyle) API
+  :::

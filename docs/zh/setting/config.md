@@ -2328,6 +2328,13 @@ mockdata地址，只有对应的api地址为空的时候才会使用这里的静
   表达式可参考：[IDM.express](../coreapi/api.md#express)
   :::
 
+### noLoginStatusCode
+
+- 值类型：`Number`
+
+- 默认值：30001
+
+  设置未登录的状态码，通过判断此状态码来去拦截所有接口未登录则去跳转到页面设置中设置了强制登录的跳转地址
 
 ## websocket
 

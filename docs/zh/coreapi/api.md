@@ -2294,6 +2294,24 @@
     })
   ```
 
+  
+### setMultiBackgroundStyle
+此方法将设置[多背景图属性控件](../moduledevelop/attributes.md#multibackground)的样式进行封装
+- **定义**：
+  `setMultiBackgroundStyle(styleObject, element, isImportant = false)`
+- **参数**：
+  - `{Object} [styleObject]` 要设置的样式对象
+  - `{Object} [element]` 组件配置属性列表中元素
+  - `{Boolean} [isImportant]` 是否important, 默认false
+- **用法**：
+  ```js
+  for (const key in this.propData) {
+    case 'multiBackground':
+      IDM.style.setMultiBackgroundStyle(styleObject, element)
+      break
+  }
+  ```
+
 ### setFilterStyle
 此方法将设置过滤镜样式属性的操作进行封装
 - **定义**：

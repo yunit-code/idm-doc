@@ -373,7 +373,16 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 :::tip
 颜色值参考：[color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/color_value)
 :::
+##### 多背景图【multiBackground】
+支持同时设置多个背景图片、渐变色作为背景，使用此属性则背景图片的设置作废
+
+- 标识：`multiBackground`
+
+::: tip
+  图片地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](https://yunit-code.github.io/zh/coreapi/api.html#getwebpath)
+:::
 ##### 背景图片【bgImgUrl】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_bgImgUrl.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置页面的背景图片，可填写绝对地址或者相对地址，也可以直接上传图片，上传成功后会直接把地址回填到此处文本框中。
@@ -381,14 +390,17 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 地址会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
 :::
 ##### 横向偏移【positionX】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_positionX.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置背景图片的X轴偏移位置，数值可为正负数，可选单位有：`px` `%` `em`
 ##### 纵向偏移【positionY】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_positionY.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置背景图片的Y轴偏移位置，数值可为正负数，可选单位有：`px` `%` `em`
 ##### 背景大小【bgSize】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_bgSize.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置背景图片显示方式，有以下三种方式：
@@ -399,16 +411,19 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 参考资料：[background-size](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size)
 :::
 ##### 宽度【bgSizeWidth】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_bgSizeWidth.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置背景大小在自定义模式下的图片大小的宽度，可选单位有：`px` `%` `em`
 - 显示条件：`背景大小 = 自定义`
 ##### 高度【bgSizeHeight】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_bgSizeHeight.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置背景大小在自定义模式下的图片大小的高度，可选单位有：`px` `%` `em`
 - 显示条件：`背景大小 = 自定义`
 ##### 平铺模式【bgRepeat】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_bgRepeat.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置背景图片平铺方式，有以下五种方式：
@@ -421,6 +436,7 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 参考资料：[background-repeat](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-repeat)
 :::
 ##### 背景模式【bgAttachment】
+- **该功能已废弃，请使用多背景图属性设置。**
 <img :src="$withBase('/images/attr/page_attr_bgAttachment.jpg')" style="margin-top:10px" alt="预览效果" />
 
 用于设置决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动，有以下三种方式：
