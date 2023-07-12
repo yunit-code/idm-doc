@@ -1383,7 +1383,7 @@
      debugger
   })
   ```
-  用户直接返回 [Axios](https://axios-http.com/docs/api_intro) 对象。
+  用于直接返回 [Axios](https://axios-http.com/docs/api_intro) 对象。
   :::tip
   更多用法请参考：
 
