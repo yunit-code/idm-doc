@@ -1364,6 +1364,35 @@
 
   Axios Github：[Axios](https://github.com/axios/axios)
   :::
+
+### getAxios
+- **定义**：
+
+  `getAxios()`
+- **参数**：
+  无
+- **用法**：
+  ``` js
+  IDM.http.getAxios().get('api/getMyInfo', {
+     userId: '1b1d18d830c44b509d4fa730fa9d0b9b'
+  }).done((d) => {
+     alert('模拟Get请求成功', true)
+  }).error((response) => {
+     alert('模拟Get请求失败', false)
+  }).always((res) => {
+     debugger
+  })
+  ```
+  用户直接返回 [Axios](https://axios-http.com/docs/api_intro) 对象。
+  :::tip
+  更多用法请参考：
+
+  Axios 中文文档：[Axios中文](https://www.axios-http.cn/docs/intro)
+  
+  Axios 英文文档：[Axios英文](https://axios-http.com/docs/api_intro)
+
+  Axios Github：[Axios](https://github.com/axios/axios)
+  :::
 ### all
 - **定义**：
 
