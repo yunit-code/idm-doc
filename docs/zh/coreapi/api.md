@@ -1781,6 +1781,11 @@
     "pageId":"必填，页面的ID，直接使用 IDM.broadcast.pageModule.id 即可获取",
     "packageid":"必填，组件实例的ID，主要用于区别页面的同一个组件，直接使用 this.moduleObject.packageid 即可获取到"
    },
+   "title":"要显示的标题，如果为空则取页面属性设置的",
+   "showTitle":"Boolean类型，不传则使用设置的，如果传true和false则会直接控制",
+   "width":"宽度	string | number	256，如果为空则取页面属性设置的",
+   "height":"高度, 在 placement 为 top 或 bottom 时使用	string | number	256，如果为空则取页面属性设置的",
+   "placement":"抽屉的方向	'top' | 'right' | 'bottom' | 'left' | 'center'	'right'，如果为空则取页面属性设置的",
    "showTop":"默认为true，设置是否显示在最顶级页面中，这样做的目的是为了在跨页面的时候遮罩显示在最外面，能覆盖整个窗口",
    "success":"层弹出后的成功回调方法",
    "yes":"确定按钮回调方法",
@@ -1823,7 +1828,7 @@
 
   `closeControlSetPanel(option)`
 - **参数**：
-  - `{Object} [option]`
+  - `{Object | String} [option]`
 
   option的格式为：
   ```json
@@ -1831,9 +1836,14 @@
     "controlSetPanelId":"控制面板窗口ID"
   }
   ```
+  或直接字符串。
 - **用法**：
   ``` js
-  IDM.broadcast.closeControlSetPanel("233443344354545fgffggf")
+  IDM.broadcast.closeControlSetPanel("233443344354545fgffggf");
+  
+  IDM.broadcast.closeControlSetPanel({
+    "controlSetPanelId":"233443344354545fgffggf"
+  });//此用法与直接传字符串功能相同
   ```
   用于关闭指定ID（上述[打开方法](./api.md#opencontrolsetpanel)返回的ID）的控制中心窗口，此方法一般在页面动作中要自定义扩展js的时候会非常有用或者组件内部js直接调用。
   :::tip
