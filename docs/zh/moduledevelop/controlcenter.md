@@ -67,6 +67,11 @@ IDM已基于[ant design vue](https://www.antdv.com/components/modal-cn/)的UI组
       "action":"self_org",
       "rootObject":"2"
     },
+    "interfaceOption":{
+      "headers":{
+        "Content-Type":"multipart/form-data"
+      }
+    },
     "showFiledName":"data.departmentList",
     "replaceFields":{
       "title":"showName",
@@ -347,6 +352,22 @@ IDM已基于[ant design vue](https://www.antdv.com/components/modal-cn/)的UI组
 
 - 值类型：`String`
 
+##### interfaceOption
+选项数据的接口其他配置项，例如：headers头部，详细可参考Axios
+
+- 值类型：`String`
+
+:::tip
+
+更多用法请参考：
+
+Axios 中文文档：[Axios中文](https://www.axios-http.cn/docs/intro)
+
+Axios 英文文档：[Axios英文](https://axios-http.com/docs/api_intro)
+
+Axios Github：[Axios](https://github.com/axios/axios)
+:::
+
 ##### metaKey
 sql语句元数据Key，这一块需要配合属性“sql执行接口地址”使用
 
@@ -393,6 +414,22 @@ sql语句元数据Key，这一块需要配合属性“sql执行接口地址”�
 选项数据的接口地址
 
 - 值类型：`String`
+
+##### interfaceOption
+选项数据的接口其他配置项，例如：headers头部，详细可参考Axios
+
+- 值类型：`String`
+
+:::tip
+
+更多用法请参考：
+
+Axios 中文文档：[Axios中文](https://www.axios-http.cn/docs/intro)
+
+Axios 英文文档：[Axios英文](https://axios-http.com/docs/api_intro)
+
+Axios Github：[Axios](https://github.com/axios/axios)
+:::
 
 ##### metaKey
 sql语句元数据Key，这一块需要配合属性“sql执行接口地址”使用
