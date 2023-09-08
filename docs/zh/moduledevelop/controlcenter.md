@@ -23,6 +23,7 @@ IDM已基于[ant design vue](https://www.antdv.com/components/modal-cn/)的UI组
   - 代码选择：codeSelect
   - 时间选择：timePicker
   - 级联选择：cascader
+  - 表格：table
 ### 组件数据结构
 ```json
 [{
@@ -83,6 +84,39 @@ IDM已基于[ant design vue](https://www.antdv.com/components/modal-cn/)的UI组
     "showCheckedStrategy":"SHOW_ALL"
   }
   ```
+**表格示例**
+ ```json
+  {
+      "tableTheme":"zebra",
+      "reserveOneData":false,
+      "required": true, 
+      "message": "必填项，请输入",
+      "tableFiledList":[
+          {
+              "title":"页签名称",
+              "dataIndex":"tabName",
+              "type":"input"
+          },
+          {
+              "title":"页签类型",
+              "dataIndex":"tabType",
+              "type":"select",
+              "dataType":"code",
+              "codeId":"211119180404fD2g1pqxcFIbG2PMyJo",
+              "replaceFields":{"title":"showName", "key":"id", "value": "id" },
+              "showFiledName":"data.codeList[0].children"
+          },
+          {
+              "title":"显示图片",
+              "dataIndex":"tabImg",
+              "type":"upload",
+              "buttonName":"上传图片",
+              "listType":"picture-card",
+              "uploadMaxNumber":1
+          }
+      ]
+  }
+ ```
 #### 通用属性
 
 ##### desc
@@ -472,6 +506,207 @@ sql语句元数据Key，这一块需要配合属性“sql执行接口地址”�
 设置要使用的结果字段，支持a.b.c或a[0].b.c[1].d或[0].a，例如：`data.codeList`
 
 - 值类型：`String`
+
+#### 表格专有属性大全【table】
+直接来个完整的JSON结构吧
+```json
+{
+    tableTheme:"表格主题：zebra（斑马纹）、split（分割线）、border（边框线），为空则默认为 zebra",
+    showTableHeader:"是否显示表格表头，默认为true",
+    showTableNo:"是否显示表格第一列为序号列，默认为true",
+    tableNoWidth:"序号宽度，如果都为空则默认为50px",
+    required: true, 
+    message: "必填项，请输入",
+    tableFiledList:[
+        {
+            title:"表头标题",
+            width:"列宽度，单位可为px、%、rem、em、vw、vh等，空则默认为auto",
+            dataIndex:"列标识，不能配置为indexDataFiled属性配置的数据索引标识且不能为idmContainerFold",
+            size:"控件尺寸,small|小、default|中、large|大，默认为default",
+            type:"控件类型，input|文本框、radio|单选框、select|下拉框、mSelect|多选下拉框、switch|开关、upload|上传",
+            dataType:"数据来源，url|数据接口、code|数据代码值、sql|数据库sql语句、customFun|全局的函数名",
+            dictionary:"控件的数据，根据控件类型自行维护值格式，如dataType为空则这里的值不会被覆盖，否则会被上述的请求结果覆盖",
+            interfaceUrl:"接口地址，默认get",
+            interfaceType:"请求类型，get、post",
+            interfaceOption:"选项数据的接口其他配置项，例如：headers头部，详细可参考Axios",
+            optionFunction:"自定义函数名称，接口请求成功后会调用此名称的函数，如果此处不为空也会把dictionary覆盖",
+            metaKey:"sql语句元数据Key,这一块需要使用属性sql语句统一请求",
+            codeId:"201211162442uPdW6cyjA6waWPRqAJ2,这一块需要使用属性数据代码值接口统一请求",
+            replaceFields:{children:'children', title:'title', key:'key', value: 'value' },
+
+            buttonName:"上传控件的按钮名称，默认为：点击上传",
+            inputFileName:"文件的name，默认为：file",
+            uploadAction:"文件的上传地址，默认为组件属性配置的文件上传接口地址",
+            listType:"上传列表的内建样式，支持三种基本样式 text, picture 和 picture-card",
+            multipleMode:"是否多选模式，默认为false，设置为true则多选",
+            uploadMaxNumber:"上传文件最大数量，空位无限制",
+            uploadSuffix:"接受上传的文件类型，默认为：image/*",
+            showFiledName:"用于指定上传后返回或其他数据来源类型返回的结果中的哪个数据对象，支持a.b.c或a[0].b.c[1].d或[0].a",
+            customParam:"自定义参数接口或者上传的参数，对象格式"
+        }
+    ],
+    showOperateButtonList:"是否显示操作列，默认为true显示",
+    tableOperateWidth:"操作列宽，单位可为px、%、rem、em、vw、vh等，空则默认为160px",
+    handleButtonList:[
+        {
+            btnTitle:"文案内容，也就是按钮的名称",
+            btnFont:"文字样式对象，可参考字体属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#font",
+            btnLeftMargin:"设置内部区域距离左边的距离",
+            btnIcon:"图标完整的class名，应用此属性需要控制中心组件设置了字体图标引用文件",
+            btnIconColor:"图标颜色，可参考颜色属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#colorpicker",
+            btnIconSize:"图标大小，默认24",
+            btnIconLeftMargin:"设置图标距离右边的距离",
+            moveShowMoreDropDownList:"设置该按钮操作是否显示在更多下拉中，默认false不显示",
+            buttonHandleType:"点击按钮触发的操作类型，可以选择内置的处理函数（none|无事件、insert|添加、del|删除、upsort|上移、downsort|下移、或直接填写全局的函数名）",
+            showCustomExpression:"按钮显示表达式，当动作按钮需要个性化来设置是否显示（只读、至少保留一条、第一条和最后一条会强制控制对应操作按钮隐藏）可以设置此处的表达式来返回true还是false来控制显示，可使用参数为格式有{itemObject：数据对象,index,configObject:当前按钮配置项}，返回布尔值，注意：如果设置了 按钮显示自定义函数 属性则此处无效",
+            showCustomFunction:"按钮显示自定义函数名称，当动作按钮需要个性化来设置是否显示（只读、至少保留一条、第一条和最后一条会强制控制对应操作按钮隐藏）可以设置此处的自定义函数来返回true还是false来控制显示，接收参数为格式为{customParam：自定义的,itemObject：数据对象(折叠属性名称为idmContainerFold),index,configObject:当前按钮配置项}，返回布尔值",
+            beforeCustomFunction:"执行动作前处理函数名称，当执行的动作按钮需要个性化来设置是否走动作的后续逻辑时候可以设置此处的自定义函数来返回true还是false来控制，返回false则不走后续删除动作，否则会继续执行，接收参数为格式为{itemObject：数据对象,index,configObject:当前按钮配置项}，返回布尔值或不返回",
+            laterCustomFunction:"执行动作后处理函数名称，当执行的动作按钮执行动作后需要处理其他事情可以设置此处的自定义函数来进行处理，接收参数为格式为{itemObject：数据对象,index,configObject:当前按钮配置项}"
+        }
+    ],
+    indexDataFiled:"数据索引字段标识，默认为idmKey",
+    componentEditStatus:"是否可编辑状态，默认为true可编辑",
+    newPosition:"新增位置:bottom（底部）、top（顶部），默认为bottom",
+    reserveOneData:"保留一条,设置是否至少保留一条，即如果是最后一条是不允许删除的，默认为true",
+    
+    tableHeaderfont:"表头文字样式，可参考字体属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#font",
+    tableHeaderBgColor:"表头背景色，可参考颜色属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#colorpicker",
+    tableBodyfont:"表内容文字，可参考字体属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#font",
+    tableBodyBgColor:"斑马纹背景色，可参考颜色属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#colorpicker",
+    tableBoderNumber:"设置边框的大小，以像素px为单位",
+    tableBoderColor:"边框颜色，可参考颜色属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#colorpicker",
+    tableBoderType:"边框类型,solid|实线、dotted|点线、dashed|虚线",
+
+    showAddNewBtn:"是否显示最后面或最底部的新增按钮，默认为true显示",
+    addNewTitle:"新增按钮文案内容，为空默认为 新增一条",
+    addNewFont:"文字样式，默认值为{fontColors:{'hex':'#CCCCCC','hex8':'#CCCCCCFF'}}，可参考字体属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#font",
+    addNewLeftMargin:"设置内部区域距离左边的距离，默认为15",
+    addNewBtnType:"新增按钮类型，primary|主要、default|次要、dashed|虚线、danger|危险、link|链接，默认为primary",
+    addNewBtnSize:"新增按钮尺寸,small|小、default|中、large|大，默认为default",
+    addNewBtnShape:"新增按钮形状,default|默认、circle|圆形、round|圆角，默认为default",
+    addNewIcon:"图标完整的class名，应用此属性需要控制中心组件设置了字体图标引用文件",
+    addNewIconColor:"图标颜色，可参考颜色属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#colorpicker",
+    addNewIconSize:"图标大小，默认24",
+    addNewIconLeftMargin:"设置图标距离右边的距离",
+    addNewShowCustomFunction:"新增显示自定义函数名称,当新增一条的动作按钮需要个性化来设置是否显示可以设置此处的自定义函数来返回true还是false来控制显示，接收参数为格式为{}，返回布尔值",
+    addNewBeforeCustomFunction:"新增行前处理函数名称，当新增行的动作按钮需要个性化来设置是否走新增的后续逻辑时候可以设置此处的自定义函数来返回true还是false来控制，返回false则不走后续插入动作，否则会继续执行，接收参数为格式为{}，返回布尔值或不返回",
+    addNewLaterCustomFunction:"新增行后处理函数名称，当新增行的动作按钮执行新增行后需要处理其他事情可以设置此处的自定义函数来进行处理，接收参数为格式为{}",
+
+    showTooltip:"是否显示提示内容区域，默认为false不显示",
+    tooltipTitle:"提示文案，默认为空",
+    tooltipFont:"文字样式，默认值为{fontColors:{'hex':'#CCCCCC','hex8':'#CCCCCCFF'}}，可参考字体属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#font",
+    tooltipLeftMargin:"设置内部区域距离左边的距离",
+    tooltipIcon:"图标完整的class名，应用此属性需要控制中心组件设置了字体图标引用文件",
+    tooltipIconColor:"图标颜色，可参考颜色属性控件返回值：https://yunit-code.github.io/zh/moduledevelop/attributes.html#colorpicker",
+    tooltipIconSize:"图标大小，默认24",
+    tooltipIconLeftMargin:"设置图标距离右边的距离",
+    tooltipTextShowCustomFunction:"提示内容自定义函数名称，当提示内容固定文案无法满足要求的时候可以通过此处的自定义函数来实现提示内容动态个性化，接收参数为格式为{}，返回文本",
+}
+```
+  :::warning
+  特别注意！！！其中handleButtonList的默认值（如果handleButtonList设置了则会把默认值覆盖，因此如果需要保留默认值请把默认值复制配置上）为：
+  ```json
+  [
+      {
+          "btnTitle": "添加",
+          "btnLeftMargin": 10,
+          "btnIconColor": {},
+          "btnIconSize": 16,
+          "buttonHandleType": "insert",
+          "btnIcon": "",
+          "btnFont": {
+              "fontFamily": "",
+              "fontColors": {
+                  "hex8": "#1890ffFF",
+                  "hex": "#1890ff",
+                  "rgba": {
+                      "r": 24,
+                      "g": 144,
+                      "b": 255,
+                      "a": 1
+                  }
+              },
+              "fontLetterSpacingUnit": "",
+              "fontLetterSpacing": "",
+              "fontSize": 14,
+              "fontSizeUnit": "px"
+          }
+      },
+      {
+          "btnTitle": "删除",
+          "btnLeftMargin": 10,
+          "btnIconColor": {},
+          "btnIconSize": 24,
+          "buttonHandleType": "del",
+          "btnFont": {
+              "fontFamily": "",
+              "fontColors": {
+                  "hex8": "#1890ffFF",
+                  "hex": "#1890ff",
+                  "rgba": {
+                      "r": 24,
+                      "g": 144,
+                      "b": 255,
+                      "a": 1
+                  }
+              },
+              "fontLetterSpacingUnit": "",
+              "fontLetterSpacing": "",
+              "fontSize": 14,
+              "fontSizeUnit": "px"
+          }
+      },
+      {
+          "btnTitle": "上移",
+          "btnLeftMargin": 10,
+          "btnIconColor": {},
+          "btnIconSize": 24,
+          "buttonHandleType": "upsort",
+          "btnFont": {
+              "fontFamily": "",
+              "fontColors": {
+                  "hex8": "#1890ffFF",
+                  "hex": "#1890ff",
+                  "rgba": {
+                      "r": 24,
+                      "g": 144,
+                      "b": 255,
+                      "a": 1
+                  }
+              },
+              "fontLetterSpacingUnit": "",
+              "fontLetterSpacing": "",
+              "fontSize": 14,
+              "fontSizeUnit": "px"
+          }
+      },
+      {
+          "btnTitle": "下移",
+          "btnLeftMargin": 10,
+          "btnIconColor": {},
+          "btnIconSize": 24,
+          "buttonHandleType": "downsort",
+          "btnFont": {
+              "fontFamily": "",
+              "fontColors": {
+                  "hex8": "#1890ffFF",
+                  "hex": "#1890ff",
+                  "rgba": {
+                      "r": 24,
+                      "g": 144,
+                      "b": 255,
+                      "a": 1
+                  }
+              },
+              "fontLetterSpacingUnit": "",
+              "fontLetterSpacing": "",
+              "fontSize": 14,
+              "fontSizeUnit": "px"
+          }
+      }
+  ]
+  ```
+  :::
 
 :::tip
 控制中心组件详细配置与讲解可参考组件包内组件说明文档
