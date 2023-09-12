@@ -400,12 +400,12 @@
   - `{Object} [otherObject]` 能在使用条件或者样式中使用的表达式对象
 
 - **用法**：
-  ``` js
+  ```js
   //会移除form为 ElementId 的 style 标签样式
   IDM.renderAttrStyleToPage(this.propData.styleAttrArray,this.moduleObject,{...填写样式所需要用到的组件内的数据来进行判断等}) 
   ```
   组件内手动渲染属性样式到页面的head中，组件属性控件 `styleEditor` 默认是不需要进行单独处理渲染的，如果属性控件配置为这种方式：
-  ````JSON
+  ```JSON
   {
     "type": "styleEditor",
     "ctrlAttrObject":{
@@ -420,6 +420,58 @@
   如果在写样式的时候需要用到组件内的动态数据等，则必须组件内调用，在需要的地方重复调用即可
   :::
 
+
+### getAttrVarBindResultData
+- **定义**：
+
+  `getAttrVarBindResultData(_this,propData,attrName,moduleObject,extendPrefixName,extendData)`
+- **参数**：
+  - `{Object} [_this]` 当前组件的this对象
+  - `{Object} [propData]` 当前组件的所有属性数据
+  - `{Object} [attrName]` 要获取的属性名称
+  - `{Object} [moduleObject]` 当前组件的对象
+  - `{Object} [extendPrefixName]` 当前属性的扩展前缀名称
+  - `{Object} [extendData]` 表达式绑定中提供的扩展数据对象
+
+- **用法**：
+  ```js
+
+  //例如其中testtitle带有额外的一个属性 varBind 如下：
+  /**
+    {
+     "text": "标题测试",
+     "bindKey": "testtitle",
+     "varBind":{
+                "prefixName":"prefixTest",
+                "usableVarList":[
+                    {
+                        "varStr":"varName",
+                        "desc":"这个是注释，是该变量或方法的提示，varStr为字符串类型的变量名称或带参数的方法名，其中var1和var2甚至更多的都是该方法所需要的参数，在实际使用过程中需要把变量名称[var1,...]替换成正确的常量或者变量，type有var和function两个值，如果是function则会在变量列表显示fx字符",
+                        "helpUrl":"",
+                        "type":"var"
+                    },
+                    {
+                        "varStr":"function(var1,var2)",
+                        "desc":"这个是注释，是该变量或方法的提示，varStr为字符串类型的变量名称或带参数的方法名，其中var1和var2甚至更多的都是该方法所需要的参数，在实际使用过程中需要把变量名称[var1,...]替换成正确的常量或者变量，type有var和function两个值，如果是function则会在变量列表显示fx字符",
+                        "helpUrl":"",
+                        "type":"function"
+                    }
+                ]
+              }
+     }
+   */
+  
+  IDM.getAttrVarBindResultData(this,propData,'testtitle',moduleObject,'prefixTest',{varName:IDM.UUID(),functionTest:functionTest}) // -->  打印最终属性的结果
+
+
+  functionTest(var1,var2){
+    return var1+var2;
+  }
+
+  ```
+  
+  获取属性的最终结果值，优先去获取指定属性的变量绑定的执行结果，如果表达式没有则返回属性设置的结果
+  
 ### removeStyleTagForId
 - **定义**：
 
@@ -510,7 +562,7 @@
   
 - **用法**：
   ``` js
-  IDM.getCookie("cookieKey") // => '返回cookie的名称'
+  IDM.getCookie("cookieKey") // => '返回cookie的值'
   ```
   根据cookie名称获取cookie的值
 

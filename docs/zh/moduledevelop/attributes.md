@@ -186,6 +186,53 @@
   - 值类型：boolean
 
   用于设置type=group的时候是否默认展开，默认为折叠状态，只有设置为true的时候才展开。
+
+- **varBind**
+  - 值类型：Object
+
+  设置属性是否需要带有动态绑定功能，该属性是一个对象格式，直接看一个完整的示例吧：
+
+  ```json
+  "varBind":{
+      "prefixName":"prefixTest",
+      "usableVarList":[
+          {
+              "varStr":"varName",
+              "desc":"这个是注释，是该变量或方法的提示，varStr为字符串类型的变量名称或带参数的方法名，其中var1和var2甚至更多的都是该方法所需要的参数，在实际使用过程中需要把变量名称[var1,...]替换成正确的常量或者变量，type有var和function两个值，如果是function则会在变量列表显示fx字符",
+              "helpUrl":"",
+              "type":"var"
+          },
+          {
+              "varStr":"functionTest(var1,var2)",
+              "desc":"这个是注释，是该变量或方法的提示，varStr为字符串类型的变量名称或带参数的方法名，其中var1和var2甚至更多的都是该方法所需要的参数，在实际使用过程中需要把变量名称[var1,...]替换成正确的常量或者变量，type有var和function两个值，如果是function则会在变量列表显示fx字符",
+              "helpUrl":"",
+              "type":"function"
+          }
+      ]
+  }
+  ```
+
+  **属性介绍**
+
+  - prefixName：扩展变量 `usableVarList` 列表使用的前缀标识，这里设定了什么值，那就在调用的时候需要传此名称
+
+  - usableVarList：可使用的扩展变量列表
+
+  - varStr：表达式的名称或者带参数的方法名称，如果实际使用的时候需要手动把方法参数替换
+  
+  - desc：这个是注释，是该变量或方法的提示，以方便使用的时候有详细提示，当如果`helpUrl`不为空的时候则会自动在此注释最后面加上 `。点击可查看详细的说明文档`
+
+  - helpUrl：点击帮助提示图标要跳转的链接
+
+  - type：有`var`和`function`两个值，如果是`function`则会在变量列表显示`fx`字符，`var`表示`varStr`的内容是一个字符串变量，`function`表示`varStr`的内容为带参数的函数
+
+  - 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_varBind.jpg')" style="margin-top:10px" alt="预览效果" />
+
+  :::tip
+  组件内应用方法可参考 [IDM.getAttrVarBindResultData](../coreapi/api.md#getattrvarbindresultdata)
+  :::
 ### 层级结构
 IDM开发工具组件的属性控件展示是支持树结构展示形式的，但是展示的层级以及控件是有限定的，格式如下：
 ```bash

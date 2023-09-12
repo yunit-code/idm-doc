@@ -460,6 +460,174 @@ IDM开发工具具有 `默认主题`和`酷黑主题`两种主题风格，可以
 
 字体可选项配置参考：[配置项](../setting/config.md#fontfamilylist)
 :::
+
+
+### 表单设置
+
+用于设置开启是否表单类的页面以及表单模式下相关的基本设置信息分组
+
+#### 表单模式
+
+用于设置当前页面是否表单类型的页面，如果开启则可以使用表单相关的功能
+
+- 标识：`openFormMode`
+
+#### 表单加载
+
+用于设置表单加载相关的配置信息
+
+##### 接口地址
+
+用于设置表单模式下请求表单初始化数据、元数据、表单数据、节点权限、元数据数据源等信息的接口地址，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.initFormDataDefaultApi】
+
+- 标识：`formInitDataApi`
+
+- 默认值：`@[IDM.setting.form.initFormDataDefaultApi]`
+
+##### 请求方式
+
+加载表单数据接口请求方式，默认为get
+
+- 标识：`formInitRequestType`
+
+- 默认值：`@[IDM.setting.form.initApiDefaultRequestType]`
+
+##### 参数类型
+
+参数的数据类型，请根据后端需求进行选择，有以下三种选项：
+
+1.默认
+2.JSON（application/json;charset=UTF-8）
+3.FormData（multipart/form-data）
+
+- 标识：`formInitContentType`
+
+- 默认值：`@[IDM.setting.form.initApiDefaultContentType]`
+
+##### 结果映射
+
+用于设置表单加载请求的结果值映射对象配置
+
+###### 基本信息与参数
+
+用于设置结果中哪个对象需要映射到QueryObject对象中[IDM.form.getQueryObject()可获取到]，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.initResultFieldExpress.queryObject】
+
+- 标识：`formInitResultQueryObject`
+
+- 默认值：`@[IDM.setting.form.initResultFieldExpress.queryObject]`
+
+###### 元数据配置信息
+
+用于设置结果中哪个对象需要映射到MetaConfig对象中[IDM.form.getMetaConfig()可获取到]，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.initResultFieldExpress.metaConfig】
+
+- 标识：`formInitResultMetaConfig`
+
+- 默认值：`@[IDM.setting.form.initResultFieldExpress.metaConfig]`
+
+###### 元数据数据源
+
+用于设置结果中哪个对象需要映射到ComponentData对象中[IDM.form.getComponentData()可获取到]，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.initResultFieldExpress.componentData】
+
+- 标识：`formInitResultComponentData`
+
+- 默认值：`@[IDM.setting.form.initResultFieldExpress.componentData]`
+
+###### 表单填写的数据
+
+用于设置结果中哪个对象需要映射到FormData对象中[IDM.form.getFormData()可获取到]，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.initResultFieldExpress.formData】
+
+- 标识：`formInitResultFormData`
+
+- 默认值：`@[IDM.setting.form.initResultFieldExpress.formData]`
+
+###### 表单节点权限信息
+
+用于设置结果中哪个对象需要映射到RoleData对象中[IDM.form.getRoleData()可获取到]，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.initResultFieldExpress.roleData】
+
+- 标识：`formInitResultRoleData`
+
+- 默认值：`@[IDM.setting.form.initResultFieldExpress.roleData]`
+
+##### 加载扩展参数
+
+用于设置接口请求所需要的额外参数，其中该接口默认带有__formData和formId参数，分别取自url参数和页面ID
+
+- 标识：`formInitExtendParamList`
+
+- 默认值：`@[IDM.setting.form.initApiDefaultExtendParam]`
+
+###### 参数名
+
+用于设置请求后端的参数名称，支持IDM表达式
+
+- 标识：`paramKey`
+
+###### 参数值
+
+用于设置请求后端的参数对应值，支持IDM表达式
+
+- 标识：`paramVal`
+
+###### 自定义处理函数
+
+用于设置该参数值的内容的自定义函数，接收参数格式为{...自定义的}
+
+- 标识：`paramFunction`
+
+- 支持多选：`否`
+
+##### 表单保存
+
+用于设置表单保存相关的配置信息
+##### 接口地址
+
+用于设置表单模式下保存表单上所有相同分组标识的表单数据的保存接口地址，支持IDM表达式填写，该地址有默认值可在配置项【IDM.setting.form.saveFormDataDefaultApi】
+
+- 标识：`formSaveDataApi`
+
+- 默认值：`@[IDM.setting.form.saveFormDataDefaultApi]`
+
+##### 参数类型
+
+参数的数据类型，请根据后端需求进行选择，有以下三种选项：
+
+1.默认
+2.JSON（application/json;charset=UTF-8）
+3.FormData（multipart/form-data）
+
+- 标识：`formSaveContentType`
+
+- 默认值：`@[IDM.setting.form.saveApiDefaultContentType]`
+
+
+##### 保存扩展参数
+
+用于设置接口保存所需要的额外参数
+
+- 标识：`formSaveExtendParamList`
+
+- 默认值：`@[IDM.setting.form.saveApiDefaultExtendParam]`
+
+###### 参数名
+
+用于设置请求后端的参数名称，支持IDM表达式
+
+- 标识：`paramKey`
+
+###### 参数值
+
+用于设置请求后端的参数对应值，支持IDM表达式
+
+- 标识：`paramVal`
+
+###### 自定义处理函数
+
+用于设置该参数值的内容的自定义函数，接收参数格式为{...自定义的}
+
+- 标识：`paramFunction`
+
+- 支持多选：`否`
+
 ### 高级设置
 
 此级为复杂的设置属性归类分组，主要用于设置下拉刷新、应用信息、用户信息、应用主题、扩展脚本样式、页面接口、自定义加载函数等等。
