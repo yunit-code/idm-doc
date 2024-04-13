@@ -931,8 +931,26 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       }
   ]
   ```
+  
+- ctrlAttrObject属性介绍：
+  - hideAdd：
+
+    值类型：`Boolean`
+
+    默认值：空
+
+    如果设置为`true`则不能添加页签数据
+
+  - hideDel：
+
+    值类型：`Boolean`
+
+    默认值：空
+
+    如果设置为`true`则不能删除页签数据
+
   :::tip
-  返回值示例中的格式是正确的，以数组形式返回，但数组中每个对象里面的具体属性值是根据自己配置的属性返回的。
+  返回值示例中的格式是正确的，以数组形式返回，但数组中每个对象里面的具体属性值是根据自己配置的属性返回的。同时table下的子属性控件的默认值可以使用 currentIndex 属性获取当前行的索引，例如："defalut"的值可以设置为 `@[currentIndex]`
   :::
 ### actionSelect
 - 中文名：动作选择
@@ -958,6 +976,19 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
       }
   ]
   ```
+
+- ctrlAttrObject属性介绍：
+  - customActionTab：
+
+    值类型：`Boolean`
+
+    默认值：空
+
+    如果设置为`false`则自定义函数页签会不显示，如图所示：
+
+    <img :src="$withBase('/images/attr/page_attr_themeCustomFunction1.jpg')" style="margin-top:10px" alt="预览效果" />
+
+
   :::tip
   返回值示例并不代表一定是此结构，示例中的只是一种情况，实际返回结果是根据选择的动作决定的，需要更加详细请参考：[页面扩展开发](./pageextend.md)
   :::
@@ -1210,4 +1241,31 @@ IDM开发工具组件的属性控件展示是支持树结构展示形式的，�
 
   :::tip
   因控件直接返回了`style`属性，所以在组件应用该属性值的代码可以这样写`Object.assign(styleObject, element.style);` 亦或者直接使用 [IDM.style.setMultiBackgroundStyle](../coreapi/api.md#setmultibackgroundstyle) API
+  :::
+
+
+### jsonEditor
+- 中文名：JSON编辑
+
+- 效果图：
+
+  <img :src="$withBase('/images/attr/page_attr_jsoneditor1.jpg')" style="margin-top:10px" alt="预览效果" />
+
+  <img :src="$withBase('/images/attr/page_attr_jsoneditor2.jpg')" style="margin-top:10px" alt="预览效果" />
+
+- 返回值示例：
+  ```json
+  {
+    "test":"1"
+  }
+  ```
+  or
+  ```json
+  [
+    "1","2"
+  ]
+  ```
+
+  :::tip
+  返回值为JSON格式的形式。
   :::

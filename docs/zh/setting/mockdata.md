@@ -34,6 +34,7 @@
           "iconClass": "idmicon idm-icon-rongqi4",
           "type": "platform",
           "defaultSize":"300,400",
+          "codeIds":"231205164647BZbxoFsAsCUjsy3Guyd,231205103122Plymsuv87RXfNlmqDPR",
           "imgList": [
             {
               "src": "~/static/img/demo/dbtablist.jpg",
@@ -85,6 +86,7 @@
   |iconClass|组件在开发工具中显示的图标，可以参考 [字体图标](../guide/developtool.md#字体图标)|
   |type|组件类型，目前可以为platform、project|
   |defaultSize|组件默认大小，此属性只有悬浮布局模式下才有效，格式为：`宽,高`，例如：`300,400`|
+  |codeIds|组件的归类，此属性用于区分组件的类型，比如：通用组件、门户组件、列表组件、表单组件、大屏组件、综合组件等，在设计器中会只显示对应的组件|
   |imgList|组件的效果图片数组集合|
   |src|图片的路径，会经过IDM提供的核心方法`IDM.url.getWebPath`进行地址转换，更多用法请参考： [标准API](../coreapi/api.md#getwebpath)
   |lastVersion|当前组件的最后一个版本|
@@ -122,6 +124,7 @@
           "iconClass": "idmicon idm-icon-yingyongguanli",
           "type": "platform",
           "projectNo": "p1000",
+          "codeIds":"231205164647BZbxoFsAsCUjsy3Guyd,231205103122Plymsuv87RXfNlmqDPR",
           "schemaText": {...},
           "imgList": [
             {
@@ -152,6 +155,7 @@
   |type|组件类型，目前可以为platform、project|
   |imgList|组件的效果图片数组集合|
   |projectNo|组件所属哪个项目编号|
+  |codeIds|组件的归类，此属性用于区分组件的类型，比如：通用组件、门户组件、列表组件、表单组件、大屏组件、综合组件等，在设计器中会只显示对应的组件|
   |schemaText|业务组件的配置结构，结构其实跟[pageSettingDataData](./mockdata.md#pagesettingdatadata)中的data下的数据结构一致的|
 
 ## PageVersionListData

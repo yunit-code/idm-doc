@@ -318,7 +318,8 @@
 - **参数**：
   - `{string} [id]`
   - `{Object} [object]`
-  - `{Boolean} [addSelector]` 是否添加前缀，传false就不加，不传则默认加
+  - `{Boolean} [addSelector]` 是否添加前缀，传false就不加，不传则默认加，如果传字符串则默认为`fromId`参数
+  - `{string} fromId` 样式的唯一标识，主要用于用来判断是否同一个样式，防止selector过长引起的不必要资源浪费
 
 - **用法**：
   ``` js
@@ -338,6 +339,12 @@
 
   //可以指定多层级元素样式，例如此处会对包含样式名为 ClassName 下的所有div元素生效
   IDM.setStyleToPageHead('.ClassName div',cssObject) 
+
+  //指定同一样式代码的标识，注意示例中的 _modulefontstyle 只是作为示例，非固定值。
+  IDM.setStyleToPageHead('.ClassName div',cssObject,false,this.moduleObject.packageid+"_modulefontstyle") 
+
+  //效果同上一例子
+  IDM.setStyleToPageHead('.ClassName div',cssObject,this.moduleObject.packageid+"_modulefontstyle") 
   ```
   把object样式转换为style标签样式并添加到head的标签中
 
@@ -2179,6 +2186,23 @@
   
 - **返回值**：`Boolean` 返回当前用户是否有此权限显示此组件，`false`表示无权限
 
+### getPageComponentListByClassId
+- **定义**：
+
+  `getPageComponentListByClassId(classId, routerId)`
+- **参数**：
+  - `{String} [classId]` 组件类ID
+  - `{String} [routerId]` 当前路由，没有可不传
+  - **参数含义**
+    IDM的Schema结构中的单个组件对象。
+- **用法**：
+  ``` js
+  IDM.page.getPageComponentListByClassId("传组件的类ID");
+  ```
+  根据classId获取页面上所有相同的组件
+  
+- **返回值**：`Array` 返回所有匹配的组件对象
+
 ## app
 此分类为应用程序信息存储的公共方法分类，此分类需要追加分类名（IDM.app.方法名）访问下列的方法。
 ### getAppInfo
@@ -2748,6 +2772,203 @@
   }
   ```
   此方法用于获取当前拖拽区域、设计工具的一些信息
+
+### selectedPageModule
+- **定义**：
+
+  `selectedPageModule(packageid,iscahce,containerIndex,hoverCheck,noChangeTabActive)`
+
+- **参数**：
+  - `{String} [packageid]` 要选中的组件packageid
+  - `{Boolean} [iscahce]` 是否使用当前选中的缓存
+  - `{String} [containerIndex]` 默认为-1是组件，如果要选中组件内部的容器，则需要传指定容器的idm-container-index
+  - `{Boolean} [hoverCheck]` 悬浮组件选中，传true、false代表不执行悬浮选中
+  - `{Boolean} [noChangeTabActive]` 是否切换回页签基本属性
+
+- **用法**：
+  ``` js
+  IDM.develop.selectedPageModule(this.moduleObject.packageid)
+  ```
+- **返回值**：
+  无
+
+  选中页面中的某个组件
+
+### customAttrOpen
+- **定义**：
+
+  `customAttrOpen(drawerConfig,moduleObject,attrSettingData,props)`
+
+- **参数**：
+  - `{Object} [drawerConfig]` 抽屉的基本设置信息对象，{title:"窗口标题",ok:(props)=>{确定的回调函数},close:(props)=>{关闭的回调函数}}
+  - `{Object} [moduleObject]` 组件对象
+  - `{Object|String} [attrSettingData]` 属性数据对象，如果为直接传`attr`则会取当前选中组件的属性配置，如果为`innerAttr`则会取当前选中组件内部的格子属性配置，如果为对象则直接应用
+  - `{Object} [props]` 存在的已经设置的属性数据对象
+
+- **用法**：
+  ``` js
+  let existsProps = {};//来源已存在的
+  IDM.develop?.customAttrOpen(
+    {
+      title: "单元格属性",
+      ok: (props) => {
+        existsProps = props;
+      },
+      close: (props) => {
+        
+      },
+    },
+    this.moduleObject,
+    "innerAttr",
+    existsProps
+  )
+  ```
+- **返回值**：
+  无
+  
+  自定义属性抽屉打开
+
+
+### openContextMenu
+- **定义**：
+
+  `openContextMenu(menuInfo)`
+
+- **参数**：
+  - `{Object} [menuInfo]` 菜单数据对象，格式如下：
+
+  ``` json
+  {
+    "position": {
+      "x": "X轴坐标",
+      "y": "Y轴坐标",
+    },
+    "menulists": [
+      {
+        "divider":"代表是否分割线，设置为true，如果不是则不需要此属性",
+        "fnName": "唯一函数名称",
+        "btnName": "菜单名称",
+        "handler": "调用的函数方法",
+        "disabled": "是否禁用，true | false"
+      }
+    ]
+  }
+  ``` 
+
+- **用法**：
+  ``` js
+  let rightclickInfo = {
+    position: {
+      x: e.clientX,
+      y: e.clientY,
+    },
+    menulists: [
+      {
+        fnName: "mergeCellsHanlder",
+        btnName: "合并单元格",
+        handler: this.mergeCellsHanlder,
+        disabled: count < 2,
+      },
+      {
+        fnName: "splitCellHandler",
+        btnName: "拆分单元格",
+        disabled: getMergedCells.call(this).length <= 0,
+        handler: this.splitCellHandler,
+      },
+      {
+        divider: true,
+      },
+      {
+        btnName: "插入行",
+        params: {},
+        submenu: [
+          {
+            fnName: "insertRowBefore",
+            btnName: "向前插入",
+            handler: this.insertRowBefore,
+          },
+          {
+            fnName: "insertRowAfter",
+            btnName: "向后插入",
+            handler: this.insertRowAfter,
+          },
+        ],
+      },
+      {
+        btnName: "插入列",
+        params: {},
+        submenu: [
+          {
+            fnName: "insertColumnBefore",
+            btnName: "向前插入",
+            handler: this.insertColumnBefore,
+          },
+          {
+            fnName: "insertColumnAfter",
+            btnName: "向后插入",
+            handler: this.insertColumnAfter,
+          },
+        ],
+      },
+      {
+        divider: true,
+      },
+      {
+        btnName: "删除",
+        params: {},
+        submenu: [
+          {
+            fnName: "deleteRows",
+            btnName: "删除整行",
+            handler: this.deleteRows,
+          },
+          {
+            fnName: "deleteColumns",
+            btnName: "删除整列",
+            handler: this.deleteColumns,
+          },
+        ],
+      },
+      {
+        divider: true,
+      },
+      {
+        fnName: "resetColWidth",
+        btnName: "重置列宽",
+        handler: this.resetColWidth,
+      },
+      {
+        fnName: "resetRowHeight",
+        btnName: "重置行高",
+        handler: this.resetRowHeight,
+      },
+      {
+        divider: true,
+      },
+      {
+        fnName: "setTableCell",
+        btnName: "单元格设置",
+        handler: this.setTableCell,
+      },
+      {
+        fnName: "clearChooseCell",
+        btnName: "清除选中格式",
+        handler: this.clearChooseCell,
+      },
+      {
+        fnName: "clearAllCell",
+        btnName: "清除所有格式",
+        handler: this.clearAllCell,
+      },
+    ],
+  };
+  IDM.develop.openContextMenu(rightclickInfo);
+  ```
+- **返回值**：
+  无
+  
+  从组件内打开设计器内的右键菜单
+
 
 ## controlcenter
 此分类为操作组件的控制中心(动态属性)方法分类，此分类需要追加分类名（IDM.controlcenter.方法名）访问下列的方法。

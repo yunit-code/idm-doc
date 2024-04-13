@@ -118,9 +118,9 @@ export default {
   },
   methods:{
     /**
-     * 获取需要返回的值
+     * 获取需要返回的值，例如：{noVerify:true} 代表组件内部不进行校验
      */
-    getContextValue() {
+    getContextValue(object) {
       //此返回结果仅作为示例，并不固定。
       let result = {
         type: "success",
