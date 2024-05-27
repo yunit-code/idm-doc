@@ -166,6 +166,8 @@ npm start
    :idm-ctrl-id="moduleObject.id" 
    :title="propData.htmlTitle?propData.fontContent:''">
     {{propData.fontContent}}
+    <!--如果是带有容器的组件则下述为统一的插槽写法，主要用于vue组件，其他语言的脚手架可忽略，name规则为moduleObject.id+容器的idm-container-index值-->
+    <slot :name="moduleObject.id+1"></slot>
   </div>
 </template>
 
@@ -174,16 +176,20 @@ export default {
   name: 'Test001',
   data(){
     return {
-      moduleObject:{},
-      propData:this.$root.propData.compositeAttr||{}
+      moduleObject:this._moduleObject||{},
+      propData:this._propData?.compositeAttr||this.$root?.propData?.compositeAttr||{}
     }
   },
   props: {
+    _moduleObject: Object,
+    _propData: Object
   },
   created() {
-    this.moduleObject = this.$root.moduleObject
+    this.moduleObject = this._moduleObject||this.$root.moduleObject;
   },
   mounted() {
+    //直接使用组件此处的回调必须的
+    this._moduleObject&&IDM.callBackComponentMountComplete?.apply(this,[this._moduleObject]);
   },
   destroyed() {},
   methods:{
