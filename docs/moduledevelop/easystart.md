@@ -1,20 +1,13 @@
 # 快速上手
 因为组件开发无限制您使用哪种技术栈，所以在开始之前，请根据你即将要开发的组件使用哪种技术栈来进行针对性的了解以下文档
 ## 环境准备
-### Vue
-首先得有 node，并确保 node 版本是 14.17 或以上。
+
+首先得有 `nodejs`，并确保 `nodejs` 版本是 14.17 或以上。
 ```sh
 node -v
 v14.17.0
 ```
-### React
-首先得有 node，并确保 node 版本是 14.17 或以上。
-```sh
-node -v
-v14.17.0
-```
-### Jquery
-无需准备任何环境
+
 ## 脚手架初始化
 ::: tip
 快捷拉取组件开发脚手架，可以安装`idm-cli`，代替下面的前三个步骤
@@ -47,13 +40,18 @@ git clone https://github.com/yunit-code/idm-module-vue.git
 ```
 
   </CodeGroupItem>
-</CodeGroup>
-
-<CodeGroup>
-  <CodeGroupItem title="React" active>
+  
+  <CodeGroupItem title="React">
 
 ```bash
 git clone https://github.com/web-csq/idm-module-react.git
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Jquery">
+
+```bash
+git clone https://github.com/web-csq/idm-module-jquery.git
 ```
 
   </CodeGroupItem>
@@ -81,13 +79,17 @@ npm run serve
 ```
 
   </CodeGroupItem>
-</CodeGroup>
-
-<CodeGroup>
-  <CodeGroupItem title="React" active>
+  <CodeGroupItem title="React">
 
 ```bash
 npm start
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Jquery">
+
+```bash
+npm run dev
 ```
 
   </CodeGroupItem>
@@ -281,7 +283,139 @@ export default DemoText
 ```
 - **步骤4**: 在浏览器中输入`http://localhost:3000/?className=DemoText`地址访问您的组件
 ### Jquery
-TODO
+
+- **步骤1**: 在`public\static\config.json`文件中注册一个新的组件类名为`Test001`的组件。
+```json
+{
+    "version": "1.0.0",
+    "lasttime": "2022-3-7 18:10:21",
+    "author": "申龙",
+    "className": "packageName",
+    "module": [
+        {
+            "classId": "idm.componet.packagename.test001",
+            "comName": "示例001",
+            "className": "Test001",
+            "comType": "common",
+            "comLangue": "vue"
+        }
+    ]
+}
+```
+- **步骤2**: 在`public\static\attributes\`目录下新建一个与组件类名同名的`Test001.json`属性注册文件。
+```json
+{
+    "classId": "idm.componet.packagename.test001",
+    "comName": "示例001",
+    "className": "Test001",
+    "comType": "common",
+    "comLangue": "vue",
+    "compositeAttr": [
+        {
+            "type": "input",
+            "layoutType": "inline",
+            "text": "唯一标识",
+            "bindKey": "ctrlId",
+            "disabled": true,
+            "default": "@[packageid]"
+        },
+        {
+            "type": "textarea",
+            "layoutType": "inline",
+            "text": "文本内容",
+            "bindKey": "fontContent",
+            "default": "文本内容"
+        }
+    ]
+}
+```
+- **步骤3**: 在`src\components\`目录下新建一个与组件类名同名的`Test001.js`组件代码文件。
+```js
+import template from './template/Test001.html'
+// import otherTemplate from './template/Test001_other.html'
+
+class Test001 {
+    propData = {
+        title: '测试文本_渲染'
+    }
+    moduleObject = {}
+    initComponent(moduleObject) {
+        this.propData = moduleObject?.props?.compositeAttr || this.propData
+        this.moduleObject = moduleObject
+        this.render(() => {
+            moduleObject?.mountComplete?.(moduleObject)
+        })
+    }
+    propDataWatchHandle(props) {
+        this.propData = props?.compositeAttr
+        this.render()
+    }
+    convertAttrToStyleObject() {
+        var styleObject = {}
+        for (const key in this.propData) {
+            const element = this.propData[key]
+            switch (key) {
+                case 'width':
+                case 'height':
+                    styleObject[key] = element
+                    break
+                case 'box':
+                    IDM.style.setBoxStyle(styleObject, element)
+                    break
+                case 'border':
+                    IDM.style.setBorderStyle(styleObject, element)
+                    break
+                case 'font':
+                    IDM.style.setFontStyle(styleObject, element)
+                    break
+            }
+            window.IDM.setStyleToPageHead(this.moduleObject.id, styleObject)
+        }
+    }
+    initData() {
+        
+    }
+    // 接受消息
+    receiveBroadcastMessage(message){}
+    // 设置组件的上下文内容值
+    setContextValue(object) {}
+    // 获取组件的上下文内容值
+    getContextValue(){}
+    // 渲染数据
+    render(_cb) {
+        const _this = this
+        IDM.laytpl(template).render({ propData: this.propData, moduleObject: this.moduleObject}, (html) => {
+            $('#idm_' + this.moduleObject.id + (this.moduleObject?.routerId ?? '')).html(html)
+            _cb?.() // 先回调
+            IDM.on({
+              btnClick:function(){
+                alert($(this).data("item")+$(this).attr("key"))
+              }
+            },{
+              elem:'#idm_' + this.moduleObject.id + (this.moduleObject?.routerId ?? '')
+            })
+            this.convertAttrToStyleObject()
+            this.initData()
+        })
+    }
+}
+
+export default Test001
+```
+- **步骤4**: 在`src\components\template`目录下新建一个与组件类名同名的`Test001.html`html文件。
+```html
+<!-- 组件主要模板 -->
+<div idm-ctrl="idm_module"
+   id="{{= d.moduleObject.id}}"
+   idm-ctrl-id="{{= d.moduleObject.id}}"
+   title="">
+   {{= d.propData.title}}
+   <button class="my-btn" idm-on="btnClick" data-item="{{= d.propData.title}}" key="1">1231</button>
+</div>
+```
+- **步骤5**: 在浏览器中输入`http://localhost:9527/index.html#/?className=Test001`地址访问您的组件
+
+
 ## 构建及部署
 ### Vue
 - **步骤1**: 执行build打包命令
@@ -299,4 +433,8 @@ npm run build
 ```
 - **步骤2**: 把`build`下面的全部文件拷贝到配置项[moduleDir](../setting/config.md#moduledir)配置的目录下，一般情况直接到目录`idm_modules/packageName(包名)/1.0.0(版本号)/`下直接粘贴即可。然后在组件市场中注册（如果已经把配置项[componentMarketUrl](../setting/config.md#componentmarketurl)改成了接口形式）即可，如果接口为空则在mockurl配置项[componentMarketUrl](../setting/config.md#componentmarketurl-1)的数据注册即可。
 ### Jquery
-TODO
+- **步骤1**: 执行build打包命令
+```bash
+npm run build
+```
+- **步骤2**: 把`build`下面的全部文件拷贝到配置项[moduleDir](../setting/config.md#moduledir)配置的目录下，一般情况直接到目录`idm_modules/packageName(包名)/1.0.0(版本号)/`下直接粘贴即可。然后在组件市场中注册（如果已经把配置项[componentMarketUrl](../setting/config.md#componentmarketurl)改成了接口形式）即可，如果接口为空则在mockurl配置项[componentMarketUrl](../setting/config.md#componentmarketurl-1)的数据注册即可。
