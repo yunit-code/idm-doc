@@ -49,6 +49,8 @@ export const zh: SidebarConfig = {
         '/zh/moduledevelop/controlcenter.md',
         '/zh/moduledevelop/builtin.md',
         '/zh/moduledevelop/helpdoc.md',
+        '/zh/moduledevelop/developmentSpecifications.md',
+        '/zh/moduledevelop/scaffoldOptimization.md',
       ],
     },
     {

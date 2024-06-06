@@ -51,6 +51,8 @@ export const en: NavbarConfig = [
           '/moduledevelop/controlcenter.md',
           '/moduledevelop/builtin.md',
           '/moduledevelop/helpdoc.md',
+          '/zh/moduledevelop/developmentSpecifications.md',
+          '/zh/moduledevelop/scaffoldOptimization.md',
         ],
       },
       {
