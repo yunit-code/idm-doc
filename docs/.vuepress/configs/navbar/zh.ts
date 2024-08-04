@@ -7,7 +7,7 @@ export const zh: NavbarConfig = [
     link: '/zh/guide/',
   },
   {
-    text: '配置参考',
+    text: '配置接入',
     children: [
       {
         text: '配置',
@@ -19,6 +19,12 @@ export const zh: NavbarConfig = [
         text: '模拟数据',
         children: [
           '/zh/setting/mockdata.md',
+        ],
+      },
+      {
+        text: '云IT接入',
+        children: [
+          '/zh/setting/yunitapi.md',
         ],
       }
     ],

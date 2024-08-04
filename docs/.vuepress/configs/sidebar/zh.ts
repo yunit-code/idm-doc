@@ -19,7 +19,8 @@ export const zh: SidebarConfig = {
       text: '配置参考',
       children: [
         '/zh/setting/config.md',
-        '/zh/setting/mockdata.md'
+        '/zh/setting/mockdata.md',
+        '/zh/setting/yunitapi.md'
       ],
     },
   ],
